@@ -116,8 +116,16 @@ export default function TestimonialsManager() {
                                         ))}
                                     </div>
                                     <p className="text-slate-600 italic leading-relaxed">&ldquo;{item.quote}&rdquo;</p>
+                                    {item.photoUrl && (
+                                        <div className="mt-3">
+                                            <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Uploaded Team Photo:</p>
+                                            <a href={item.photoUrl} target="_blank" rel="noopener noreferrer" className="inline-block">
+                                                <img src={item.photoUrl} alt="Team" className="h-20 w-auto object-contain rounded-xl border border-slate-200 shadow-sm hover:scale-105 transition-transform" />
+                                            </a>
+                                        </div>
+                                    )}
                                     {item.email && (
-                                        <p className="text-xs text-slate-400 mt-3">{item.email}</p>
+                                        <p className="text-xs text-slate-400 mt-3">Submitted by: {item.email}</p>
                                     )}
                                 </div>
                                 <div className="flex md:flex-col gap-2 shrink-0">

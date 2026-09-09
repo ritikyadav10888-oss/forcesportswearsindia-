@@ -7,6 +7,7 @@ export interface Testimonial {
     quote: string;
     rating?: number;
     email?: string;
+    photoUrl?: string;
     status: TestimonialStatus;
     createdAt?: unknown;
 }

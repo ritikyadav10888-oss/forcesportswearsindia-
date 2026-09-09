@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Loader2, Send, Star, CheckCircle2 } from 'lucide-react';
+import { Loader2, Send, Star, CheckCircle2, Upload, X, Camera } from 'lucide-react';
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { db } from '../../lib/firebase';
 
@@ -12,8 +12,24 @@ export default function TestimonialForm({ compact = false }: { compact?: boolean
     const [quote, setQuote] = useState('');
     const [rating, setRating] = useState(5);
     const [hoverRating, setHoverRating] = useState(0);
+    const [imagePreview, setImagePreview] = useState<string | null>(null);
     const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
     const [message, setMessage] = useState('');
+
+    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (file) {
+            if (file.size > 5 * 1024 * 1024) {
+                alert('Image size should be under 5MB');
+                return;
+            }
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImagePreview(reader.result as string);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -39,6 +55,7 @@ export default function TestimonialForm({ compact = false }: { compact?: boolean
             };
             const trimmedEmail = email.trim();
             if (trimmedEmail) payload.email = trimmedEmail.slice(0, 120);
+            if (imagePreview) payload.photoUrl = imagePreview;
 
             await addDoc(collection(db, 'testimonials'), payload);
             setStatus('success');
@@ -46,6 +63,7 @@ export default function TestimonialForm({ compact = false }: { compact?: boolean
             setRole('');
             setEmail('');
             setQuote('');
+            setImagePreview(null);
             setRating(5);
         } catch (error) {
             console.error('Testimonial submit failed', error);
@@ -147,6 +165,41 @@ export default function TestimonialForm({ compact = false }: { compact?: boolean
                     placeholder="Tell others about the kits, fabric, delivery, or service…"
                 />
                 <p className="text-[10px] text-slate-400 mt-1 text-right">{quote.length}/600</p>
+            </div>
+
+            <div>
+                <label className="block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">Team / Jersey Photo (Optional)</label>
+                <div className="relative group">
+                    <div className={`w-full p-4 border-2 border-dashed rounded-2xl transition-all flex items-center justify-center gap-3 ${imagePreview ? 'border-cyan-500 bg-cyan-50/10' : 'border-slate-200 hover:border-cyan-400 bg-slate-50'}`}>
+                        {imagePreview ? (
+                            <div className="relative flex items-center gap-3">
+                                <img src={imagePreview} alt="Team Preview" className="h-16 w-auto object-contain rounded-lg shadow-sm" />
+                                <span className="text-xs font-bold text-slate-700">Photo attached</span>
+                                <button 
+                                    type="button"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        setImagePreview(null);
+                                    }}
+                                    className="bg-red-500 text-white p-1 rounded-full shadow hover:bg-red-600 transition-colors ml-2"
+                                >
+                                    <X size={12} />
+                                </button>
+                            </div>
+                        ) : (
+                            <div className="flex items-center gap-2 text-slate-500 text-xs font-bold py-1">
+                                <Camera size={18} className="text-cyan-600" />
+                                <span>Upload photo of your team or jersey</span>
+                            </div>
+                        )}
+                        <input 
+                            type="file" 
+                            accept="image/*" 
+                            className="absolute inset-0 opacity-0 cursor-pointer"
+                            onChange={handleImageChange}
+                        />
+                    </div>
+                </div>
             </div>
 
             {status === 'error' && message && (
