@@ -661,7 +661,7 @@ const HomePage = () => {
                     <div className="max-w-2xl mx-auto mt-14">
                         <div className="text-center mb-6">
                             <h3 className="text-xl font-black uppercase tracking-tight text-slate-900">Share your review</h3>
-                            <p className="text-slate-500 text-sm mt-2">It goes live on this page after we approve it.</p>
+                            <p className="text-slate-500 text-sm mt-2">Tell us about your experience with Force Sports & Wears India.</p>
                         </div>
                         <TestimonialForm compact />
                     </div>
