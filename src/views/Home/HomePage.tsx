@@ -20,7 +20,6 @@ import { collection, onSnapshot, query, where } from 'firebase/firestore';
 import { findLiveProduct, mergeLiveProductCatalog, productFromFirestore } from '../../utils/productUtils';
 import { FALLBACK_TESTIMONIALS, Testimonial } from '../../data/testimonials';
 import TestimonialForm from '../../components/forms/TestimonialForm';
-import FounderStory from '../../components/brand/FounderStory';
 import { SEO_KEYWORDS } from '../../data/seoKeywords';
 
 const FEATURED_PRODUCT_IDS = ['force-3d-inv-01', 'force-stealth-joggers', 'force-plain-cap-black'];
@@ -306,8 +305,6 @@ const HomePage = () => {
                     ))}
                 </div>
             </section>
-
-            <FounderStory showAboutLink />
 
             {/* Customize your kit */}
             <section id="customize" className="py-16 md:py-24 bg-white scroll-mt-24">
