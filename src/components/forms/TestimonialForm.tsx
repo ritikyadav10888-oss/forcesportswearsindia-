@@ -58,9 +58,9 @@ export default function TestimonialForm({ compact = false }: { compact?: boolean
         return (
             <div className={`rounded-3xl border border-emerald-100 bg-emerald-50 text-center ${compact ? 'p-8' : 'p-10'}`}>
                 <CheckCircle2 className="w-12 h-12 text-emerald-600 mx-auto mb-4" />
-                <h3 className="text-xl font-black uppercase tracking-tight text-slate-900 mb-2">Thank you</h3>
+                <h3 className="text-xl font-black uppercase tracking-tight text-slate-900 mb-2">Review Submitted for Admin Approval</h3>
                 <p className="text-slate-600 text-sm">
-                    Your testimonial was received. It will appear on the homepage after our team approves it.
+                    Thank you! Your review has been sent to our admin team. It will become visible on the Home Page as soon as the Admin approves it.
                 </p>
             </div>
         );
@@ -72,7 +72,7 @@ export default function TestimonialForm({ compact = false }: { compact?: boolean
                 <div>
                     <p className="text-[10px] font-black uppercase tracking-widest text-cyan-600 mb-2">Share your experience</p>
                     <h3 className="text-2xl font-black uppercase tracking-tight text-slate-900">Write a testimonial</h3>
-                    <p className="text-slate-500 text-sm mt-2">Reviews go live after Force Sports approves them.</p>
+                    <p className="text-slate-500 text-sm mt-2">Submissions are sent to the Admin dashboard and go live on the home page once approved by the Admin.</p>
                 </div>
             )}
 
