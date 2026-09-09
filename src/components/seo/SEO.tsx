@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
+import { SEO_KEYWORDS } from '../../data/seoKeywords';
 
 
 interface SEOProps {
@@ -16,7 +17,7 @@ const SEO: React.FC<SEOProps> = ({
     description, 
     image = 'https://www.forcesportsindia.com/og-image.jpg', 
     article = false,
-    keywords
+    keywords = SEO_KEYWORDS.default
 }) => {
     const pathname = usePathname();
     
@@ -53,9 +54,7 @@ const SEO: React.FC<SEOProps> = ({
         // Standard Meta Tags
         updateMetaTag('name', 'description', seo.description);
         updateMetaTag('name', 'robots', 'index,follow');
-        if (keywords) {
-            updateMetaTag('name', 'keywords', keywords);
-        }
+        updateMetaTag('name', 'keywords', keywords);
 
         // Open Graph / Facebook
         updateMetaTag('property', 'og:type', article ? 'article' : 'website');
@@ -84,7 +83,7 @@ const SEO: React.FC<SEOProps> = ({
             document.head.appendChild(canonical);
         }
 
-    }, [seo.title, seo.description, seo.image, seo.url, article]);
+    }, [seo.title, seo.description, seo.image, seo.url, article, keywords]);
 
     return null; // This component doesn't render anything
 };

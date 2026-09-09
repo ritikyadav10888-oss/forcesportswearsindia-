@@ -1,12 +1,54 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from 'react';
-import { db, storage } from '../../../lib/firebase';
-import { collection, query, onSnapshot, doc, setDoc, deleteDoc, serverTimestamp } from 'firebase/firestore';
+import { db, storage, auth } from '../../../lib/firebase';
+import { collection, query, onSnapshot, doc, setDoc, deleteDoc, serverTimestamp, Timestamp } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { Loader2, Plus, Edit2, Trash2, Image as ImageIcon, X, Save, ArrowLeft, UploadCloud } from 'lucide-react';
 import imageCompression from 'browser-image-compression';
 import { getCDNUrl } from '../../../utils/cdnUtils';
+import { catalogRecencyMs, compare3dInnovations } from '../../../utils/productUtils';
+
+function httpAssetUrl(url?: string) {
+    if (!url || url.startsWith('blob:') || url.startsWith('data:')) return '';
+    return url;
+}
+
+function cleanStringArray(arr?: string[]) {
+    return (arr || []).map((s) => (s || '').trim()).filter(Boolean);
+}
+
+function cleanSpecs(specs?: Record<string, string>) {
+    const out: Record<string, string> = {};
+    if (!specs || typeof specs !== 'object') return out;
+    for (const [rawKey, rawVal] of Object.entries(specs)) {
+        const key = String(rawKey || '').trim();
+        if (!key) continue;
+        out[key] = rawVal == null ? '' : String(rawVal);
+    }
+    return out;
+}
+
+function storagePath(folder: string, kind: string, file: File) {
+    const ext = (file.name.split('.').pop() || 'jpg').replace(/[^a-zA-Z0-9]/g, '').toLowerCase() || 'jpg';
+    return `${folder}/${kind}_${Date.now()}_${Math.random().toString(36).slice(2, 8)}.${ext}`;
+}
+
+function saveErrorMessage(error: unknown) {
+    const err = error as { code?: string; message?: string };
+    const code = err.code || '';
+    const message = err.message || 'Unknown error';
+    if (code.includes('permission-denied') || message.toLowerCase().includes('permission')) {
+        return 'Permission denied. Sign out and log in again, then save.';
+    }
+    if (code.includes('unauthenticated') || code.includes('unauthorized')) {
+        return 'You are not signed in. Log in at Force HQ and try again.';
+    }
+    if (message.includes('invalid data') || message.includes('Unsupported field')) {
+        return 'Product data could not be saved. Check title, images, and specs, then try again.';
+    }
+    return message;
+}
 
 interface Product {
     id: string;
@@ -38,6 +80,7 @@ export default function ProductsManager() {
     const [loading, setLoading] = useState(true);
     const [view, setView] = useState<'list' | 'form'>('list');
     const [saving, setSaving] = useState(false);
+    const [saveNotice, setSaveNotice] = useState('');
     
     // Filters
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
@@ -71,8 +114,12 @@ export default function ProductsManager() {
     useEffect(() => {
         const q = query(collection(db, 'products'));
         const unsubscribe = onSnapshot(q, (snapshot) => {
-            const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })) as Product[];
+            const data = snapshot.docs.map(d => ({ ...d.data(), id: d.id })) as Product[];
+            data.sort((a, b) => catalogRecencyMs(b) - catalogRecencyMs(a));
             setProducts(data);
+            setLoading(false);
+        }, (error) => {
+            console.error('Failed to load HQ products', error);
             setLoading(false);
         });
 
@@ -114,7 +161,11 @@ export default function ProductsManager() {
     };
 
     const handleDeleteAllFiltered = async () => {
-        const filteredProducts = products.filter(p => (!selectedCategory || p.category === selectedCategory) && (!selectedSport || p.sport === selectedSport));
+        const filteredProducts = products.filter(p => {
+            const categoryOk = !selectedCategory || p.category === selectedCategory;
+            const sportOk = !selectedSport || p.sport === selectedSport || p.sport === 'All' || !p.sport;
+            return categoryOk && sportOk;
+        });
         if (filteredProducts.length === 0) return;
         
         if (confirm(`Are you sure you want to delete all ${filteredProducts.length} filtered products permanently?`)) {
@@ -159,15 +210,12 @@ export default function ProductsManager() {
     };
 
     const compressImage = async (file: File) => {
-        if (file.size > 5 * 1024 * 1024) {
-            alert('File is too large! Please select an image under 5MB.');
-            return null;
-        }
         try {
-            return await imageCompression(file, { maxSizeMB: 0.5, maxWidthOrHeight: 1200, useWebWorker: true });
+            return await imageCompression(file, { maxSizeMB: 0.8, maxWidthOrHeight: 1600, useWebWorker: true });
         } catch (error) {
             console.error('Compression error:', error);
-            alert('Failed to compress image.');
+            if (file.size <= 10 * 1024 * 1024) return file;
+            alert('Could not process this image. Try a JPG or PNG under 10MB.');
             return null;
         }
     };
@@ -258,49 +306,76 @@ export default function ProductsManager() {
     const handleSave = async (e: React.FormEvent) => {
         e.preventDefault();
         setSaving(true);
+        setSaveNotice('');
         try {
-            let imageUrl = formData.image || '';
-            if (imageFile) {
-                const imageRef = ref(storage, `products/${Date.now()}_main_${imageFile.name}`);
-                await uploadBytes(imageRef, imageFile);
-                imageUrl = await getDownloadURL(imageRef);
+            if (!auth.currentUser) {
+                throw new Error('You are not signed in. Log in at Force HQ and try again.');
             }
 
-            let imageBackUrl = formData.imageBack || '';
-            if (imageBackFile) {
-                const imageRef = ref(storage, `products/${Date.now()}_back_${imageBackFile.name}`);
-                await uploadBytes(imageRef, imageBackFile);
-                imageBackUrl = await getDownloadURL(imageRef);
-            }
+            const uploadOne = async (file: File, kind: string) => {
+                const imageRef = ref(storage, storagePath('products', kind, file));
+                await uploadBytes(imageRef, file, { contentType: file.type || 'image/jpeg' });
+                return getDownloadURL(imageRef);
+            };
 
-            let finalGalleryUrls = [...(formData.gallery || [])];
+            let imageUrl = httpAssetUrl(formData.image) || httpAssetUrl(imagePreview);
+            if (imageFile) imageUrl = await uploadOne(imageFile, 'main');
+
+            let imageBackUrl = httpAssetUrl(formData.imageBack) || httpAssetUrl(imageBackPreview);
+            if (imageBackFile) imageBackUrl = await uploadOne(imageBackFile, 'back');
+
+            const finalGalleryUrls = (formData.gallery || []).filter((url) => httpAssetUrl(url));
             if (galleryFiles.length > 0) {
                 for (const file of galleryFiles) {
-                    const imageRef = ref(storage, `products/${Date.now()}_gallery_${file.name}`);
-                    await uploadBytes(imageRef, file);
-                    const url = await getDownloadURL(imageRef);
-                    finalGalleryUrls.push(url);
+                    finalGalleryUrls.push(await uploadOne(file, 'gallery'));
                 }
             }
 
-            const payload: any = {
-                ...formData,
+            if (!imageUrl) {
+                setSaving(false);
+                setSaveNotice('Please upload a front image before saving.');
+                return;
+            }
+
+            const createdAt = formData.createdAt instanceof Timestamp || (formData.createdAt && typeof formData.createdAt.toMillis === 'function')
+                ? formData.createdAt
+                : serverTimestamp();
+
+            const payload = {
+                title: (formData.title || '').trim(),
+                category: formData.category || 'T-Shirts',
+                sport: formData.sport || 'All',
+                usageType: formData.usageType || 'General',
+                productCode: (formData.productCode || '').trim(),
+                description: (formData.description || '').trim(),
+                longDescription: (formData.longDescription || formData.description || '').trim(),
                 image: imageUrl,
-                imageBack: imageBackUrl,
+                imageBack: imageBackUrl || '',
                 gallery: finalGalleryUrls,
-                createdAt: formData.createdAt || serverTimestamp()
+                features: cleanStringArray(formData.features),
+                fabrics: cleanStringArray(formData.fabrics),
+                gsms: cleanStringArray(formData.gsms),
+                specs: cleanSpecs(formData.specs),
+                createdAt,
+                updatedAt: serverTimestamp(),
             };
-            
-            // Remove any undefined values
-            Object.keys(payload).forEach(key => payload[key] === undefined && delete payload[key]);
+
+            if (!payload.title) {
+                setSaving(false);
+                setSaveNotice('Please enter a product title.');
+                return;
+            }
 
             const docId = currentId || `prod-${Date.now()}`;
             await setDoc(doc(db, 'products', docId), payload);
 
+            setSelectedCategory(null);
+            setSelectedSport(null);
+            setSaveNotice('Product saved. It is now at the top of the list.');
             resetForm();
         } catch (error) {
             console.error('Error saving:', error);
-            alert('Error saving product.');
+            setSaveNotice(saveErrorMessage(error));
         } finally {
             setSaving(false);
         }
@@ -354,6 +429,17 @@ export default function ProductsManager() {
         delete newSpecs[key];
         setFormData({ ...formData, specs: newSpecs });
     };
+
+    const matchesHqFilters = (p: Product) => {
+        const categoryOk = !selectedCategory || p.category === selectedCategory;
+        const sportOk = !selectedSport || p.sport === selectedSport || p.sport === 'All' || !p.sport;
+        return categoryOk && sportOk;
+    };
+
+    const visibleProducts = products.filter(matchesHqFilters).sort((a, b) => {
+        if (selectedCategory === '3D Innovations') return compare3dInnovations(a, b);
+        return catalogRecencyMs(b) - catalogRecencyMs(a);
+    });
 
     if (loading) return <div className="flex justify-center p-20"><Loader2 className="w-8 h-8 animate-spin text-cyan-600" /></div>;
 
@@ -554,8 +640,14 @@ export default function ProductsManager() {
                         </div>
                     </div>
 
+                    {saveNotice && (
+                        <div className={`p-4 rounded-2xl text-sm font-bold ${saveNotice.startsWith('Product saved') ? 'bg-emerald-50 text-emerald-800 border border-emerald-100' : 'bg-red-50 text-red-700 border border-red-100'}`}>
+                            {saveNotice}
+                        </div>
+                    )}
+
                     <div className="pt-8 border-t border-slate-100 flex justify-end">
-                        <button type="submit" disabled={saving || (!imagePreview && !formData.image)} className="bg-slate-900 text-white px-8 py-4 rounded-xl font-black uppercase tracking-widest flex items-center gap-3 hover:bg-slate-800 disabled:opacity-50">
+                        <button type="submit" disabled={saving || (!imageFile && !httpAssetUrl(imagePreview) && !httpAssetUrl(formData.image))} className="bg-slate-900 text-white px-8 py-4 rounded-xl font-black uppercase tracking-widest flex items-center gap-3 hover:bg-slate-800 disabled:opacity-50">
                             {saving ? <Loader2 className="w-5 h-5 animate-spin" /> : <Save className="w-5 h-5" />}
                             {saving ? 'Saving...' : 'Save Product'}
                         </button>
@@ -571,9 +663,14 @@ export default function ProductsManager() {
                 <div>
                     <h1 className="text-3xl font-black text-slate-900 uppercase tracking-tight">Products Manager</h1>
                     <p className="text-slate-500 mt-1">Manage your active catalog · <span className="font-bold text-slate-700">{products.length} total products</span></p>
+                    {saveNotice && (
+                        <p className={`mt-3 text-sm font-bold ${saveNotice.startsWith('Product saved') ? 'text-emerald-700' : 'text-red-600'}`}>
+                            {saveNotice}
+                        </p>
+                    )}
                 </div>
                 <div className="flex gap-3">
-                    {products.filter(p => (!selectedCategory || p.category === selectedCategory) && (!selectedSport || p.sport === selectedSport)).length > 0 && (
+                    {visibleProducts.length > 0 && (
                         <button onClick={handleDeleteAllFiltered} className="bg-red-600 text-white px-6 py-3 rounded-xl font-black text-sm uppercase tracking-wider hover:bg-red-700 transition-colors flex items-center gap-2">
                             <Trash2 className="w-4 h-4" /> Delete All Filtered
                         </button>
@@ -600,7 +697,7 @@ export default function ProductsManager() {
                         { label: 'Caps',          key: 'Caps',            emoji: '🧢', color: 'bg-green-50 border-green-100 text-green-700' },
                         { label: '3D Innovations',key: '3D Innovations',  emoji: '🏅', color: 'bg-cyan-50 border-cyan-100 text-cyan-700' },
                     ].map(({ label, key, emoji, color }) => {
-                        const count = products.filter(p => p.category === key && (!selectedSport || p.sport === selectedSport)).length;
+                        const count = products.filter(p => p.category === key && (!selectedSport || p.sport === selectedSport || p.sport === 'All' || !p.sport)).length;
                         const isSelected = selectedCategory === key;
                         return (
                             <button key={key} onClick={() => setSelectedCategory(isSelected ? null : key)} className={`flex flex-col items-center justify-center p-4 rounded-2xl border transition-all hover:scale-105 ${isSelected ? 'ring-2 ring-cyan-500 shadow-md ' + color : color + ' opacity-80 hover:opacity-100'}`}>
@@ -643,7 +740,7 @@ export default function ProductsManager() {
             </div>
 
             <div className="bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm">
-                {products.filter(p => (!selectedCategory || p.category === selectedCategory) && (!selectedSport || p.sport === selectedSport)).length === 0 ? (
+                {visibleProducts.length === 0 ? (
                     <div className="p-12 text-center text-slate-400">
                         <ImageIcon className="w-16 h-16 mx-auto mb-4 opacity-20" />
                         <h3 className="text-lg font-bold text-slate-900 mb-2">No products found</h3>
@@ -660,7 +757,7 @@ export default function ProductsManager() {
                             <span className="text-right">Actions</span>
                         </div>
 
-                        {products.filter(p => (!selectedCategory || p.category === selectedCategory) && (!selectedSport || p.sport === selectedSport)).map(prod => (
+                        {visibleProducts.map(prod => (
                             <div key={prod.id} className="flex flex-col md:grid md:grid-cols-[90px_1.2fr_1fr_160px_120px] gap-4 px-4 sm:px-6 py-5 items-start hover:bg-slate-50/60 transition-colors group">
 
                                 {/* Images — front + back stacked */}

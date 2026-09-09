@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import { auth } from '../../lib/firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
-import { Loader2, LayoutDashboard, ShoppingBag, Users, Layers, MessageSquare, LogOut } from 'lucide-react';
+import { Loader2, LayoutDashboard, ShoppingBag, Users, Layers, MessageSquare, Star, LogOut } from 'lucide-react';
 import Link from 'next/link';
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -52,6 +52,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     const navItems = [
         { name: 'Dashboard', path: '/force-hq', icon: LayoutDashboard },
         { name: 'Leads', path: '/force-hq/leads', icon: MessageSquare },
+        { name: 'Testimonials', path: '/force-hq/testimonials', icon: Star },
         { name: 'Products', path: '/force-hq/products', icon: ShoppingBag },
         { name: 'Uniforms', path: '/force-hq/uniforms', icon: Users },
         { name: 'Fabrics', path: '/force-hq/fabrics', icon: Layers },

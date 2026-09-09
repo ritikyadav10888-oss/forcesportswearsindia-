@@ -6,12 +6,15 @@ import Link from 'next/link';
 import { Filter, X, Check, Activity, MessageCircle, Loader2, ChevronRight } from 'lucide-react';
 import { getCDNUrl } from '../../utils/cdnUtils';
 import SEO from '../../components/seo/SEO';
+import { SEO_KEYWORDS } from '../../data/seoKeywords';
 import { BRAND_DETAILS } from '../../data/brandData';
 import ProductCustomizeModal from '../../components/products/ProductCustomizeModal';
 import ProductCardDetails from '../../components/products/ProductCardDetails';
 import { getProductSportexFabric } from '../../utils/fabricMatching';
 import { SPORTEX_FABRICS } from '../../data/sportexFabrics';
-import { mergeProductWithLocal } from '../../utils/productUtils';
+import { mergeLiveProductCatalog, mergeProductWithLocal, productFromFirestore, is3dInnovation, compare3dInnovations } from '../../utils/productUtils';
+import { db } from '../../lib/firebase';
+import { collection, onSnapshot } from 'firebase/firestore';
 
 const Categories = ['T-Shirts', 'Track Pants', 'Shorts', 'Jackets', 'Bags', 'Caps', '3D Innovations'] as const;
 const Sports = ['Badminton', 'Cricket', 'Football', 'Volleyball', 'Kabaddi', 'Pickleball', 'Tennis'] as const;
@@ -36,33 +39,55 @@ const ProductPage = ({ initialSport }: ProductPageProps = {}) => {
     const [searchQuery, setSearchQuery] = useState('');
     const [customizingProduct, setCustomizingProduct] = useState<Product | null>(null);
     
-    // Live Database State
+    // Live catalog — Force HQ / Firestore first, then remaining static items
     const [liveProducts, setLiveProducts] = useState<Product[]>(() =>
         PRODUCTS.map((p) => mergeProductWithLocal(p))
     );
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
+    const [liveError, setLiveError] = useState('');
     useEffect(() => {
-        setLiveProducts(PRODUCTS.map((p) => mergeProductWithLocal(p)));
-        setLoading(false);
+        const unsubscribe = onSnapshot(
+            collection(db, 'products'),
+            (snapshot) => {
+                try {
+                    const remote = snapshot.docs.map((d) =>
+                        productFromFirestore(d.id, d.data() as Record<string, unknown>)
+                    );
+                    setLiveProducts(mergeLiveProductCatalog(remote));
+                    setLiveError('');
+                } catch (err) {
+                    console.error('Failed to merge live products', err);
+                    setLiveError('Could not merge the live catalog. Showing the last known list.');
+                }
+                setLoading(false);
+            },
+            (error) => {
+                console.error('Failed to load live products', error);
+                setLiveError('Could not load saved products from Force HQ.');
+                setLiveProducts(PRODUCTS.map((p) => mergeProductWithLocal(p)));
+                setLoading(false);
+            }
+        );
+        return () => unsubscribe();
     }, []);
     const filteredProducts = liveProducts.filter(p => {
-        const isSportKit = p.category === 'T-Shirts' && p.sport && [
-            'Cricket', 'Football', 'Volleyball', 'Kabaddi', 'Pickleball', 'Tennis', 'Badminton', 'Table Tennis'
-        ].includes(p.sport);
-
         const categoryMatch = selectedCategories.length === 0 || 
             selectedCategories.includes(p.category);
 
-        const sportMatch = selectedSports.length === 0 || 
-            (p.sport && (selectedSports.includes(p.sport) || p.sport === 'All')) || 
-            (p.category === 'Bags' && p.sport === 'Other') ||
-            (p.category === 'Caps') ||
-            (p.category === 'Track Pants') ||
-            (p.category === 'Shorts') ||
-            (p.category === '3D Innovations');
+        const sportMatch = selectedSports.length === 0 ||
+            !p.sport ||
+            p.sport === 'All' ||
+            selectedSports.includes(p.sport) ||
+            ['Bags', 'Caps', 'Track Pants', 'Shorts', 'Jackets', '3D Innovations'].includes(p.category);
         const usageMatch = selectedUsages.length === 0 || (p.usageType && selectedUsages.includes(p.usageType));
-        const textMatch = searchQuery === '' || p.title.toLowerCase().includes(searchQuery.toLowerCase()) || (p.productCode && p.productCode.toLowerCase().includes(searchQuery.toLowerCase()));
+        const q = searchQuery.trim().toLowerCase();
+        const textMatch = !q ||
+            (p.title || '').toLowerCase().includes(q) ||
+            (p.productCode || '').toLowerCase().includes(q);
         return categoryMatch && sportMatch && usageMatch && textMatch;
+    }).sort((a, b) => {
+        if (is3dInnovation(a) && is3dInnovation(b)) return compare3dInnovations(a, b);
+        return 0;
     });
 
     const openWhatsApp = (product: Product, displayCategory?: string) => {
@@ -77,6 +102,7 @@ const ProductPage = ({ initialSport }: ProductPageProps = {}) => {
             <SEO 
                 title="Our Products | Customized Sports Apparel & Gear"
                 description="Explore our range of premium sports apparel, including T-shirts, track pants, shorts, and jackets. 100% customizable for teams and individuals."
+                keywords={SEO_KEYWORDS.products}
             />
             {/* Header */}
             <section className="bg-slate-900 py-10 px-6 text-center relative overflow-hidden">
@@ -280,6 +306,10 @@ const ProductPage = ({ initialSport }: ProductPageProps = {}) => {
                             </button>
                         </div>
 
+                        {liveError && (
+                            <p className="text-xs font-bold text-red-500 mb-4">{liveError}</p>
+                        )}
+
                         {loading && (
                             <div className="flex items-center justify-center gap-3 py-16 text-slate-400">
                                 <Loader2 className="animate-spin text-cyan-500" size={24} />
@@ -296,8 +326,7 @@ const ProductPage = ({ initialSport }: ProductPageProps = {}) => {
 
                         {/* Grid */}
                         <div className="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-3 gap-6 lg:gap-8">
-                            <AnimatePresence>
-                                {!loading && filteredProducts.map((product) => {
+                            {!loading && filteredProducts.map((product) => {
                                     const sportexFabric = getProductSportexFabric(
                                         product.id,
                                         product.title,
@@ -321,11 +350,8 @@ const ProductPage = ({ initialSport }: ProductPageProps = {}) => {
                                     })();
 
                                     return (
-                                    <motion.div
-                                        key={product.id}
-                                        initial={{ opacity: 0, scale: 0.9 }}
-                                        animate={{ opacity: 1, scale: 1 }}
-                                        exit={{ opacity: 0, scale: 0.9 }}
+                                    <div
+                                        key={(product as { firestoreId?: string }).firestoreId || product.id}
                                         className="bg-white rounded-[2rem] overflow-hidden shadow-sm hover:shadow-2xl hover:shadow-slate-200 transition-all border border-slate-100 group flex flex-col h-full"
                                     >
                                         <div className="relative aspect-[4/5] bg-[radial-gradient(circle_at_top,rgba(6,182,212,0.08),transparent_60%)] flex items-center justify-center overflow-hidden p-5 sm:p-6 group/img">
@@ -433,10 +459,9 @@ const ProductPage = ({ initialSport }: ProductPageProps = {}) => {
                                                 <MessageCircle size={16} /> WhatsApp Quote
                                             </button>
                                         </div>
-                                    </motion.div>
+                                    </div>
                                     );
                                 })}
-                            </AnimatePresence>
                         </div>
 
                         {!loading && filteredProducts.length === 0 && (

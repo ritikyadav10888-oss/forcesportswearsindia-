@@ -5,20 +5,60 @@ import { Shield, Target, Award, Users, ChevronRight } from 'lucide-react';
 import { BRAND_DETAILS } from '../../data/brandData';
 import Link from 'next/link';
 import { getCDNUrl } from '../../utils/cdnUtils';
-
 import SEO from '../../components/seo/SEO';
+import FounderStory from '../../components/brand/FounderStory';
+import { SEO_KEYWORDS } from '../../data/seoKeywords';
+
+const ALPHA_FEATURES = [
+    {
+        icon: Target,
+        title: 'Total Customization',
+        desc: '100% customized sublimation printing. Your identity is integrated directly into the fabric.'
+    },
+    {
+        icon: Award,
+        title: 'Technical Fabrics',
+        desc: 'Advanced moisture-wicking and breathable fabrics (Dri-Fit, Dot Knit).'
+    },
+    {
+        icon: Users,
+        title: 'In-House Precision',
+        desc: 'Managing everything from digital design to final stitching in our Mumbai facility.'
+    },
+    {
+        icon: Shield,
+        title: 'Sport-Specific',
+        desc: 'Tailored movement analysis for sport-specific cuts like Kabaddi or Cricket.'
+    }
+];
+
+const GROUP = [
+    { name: 'Force Sports and Wears India', desc: 'Custom Sportswear Manufacturing', logo: '/force sport and wears india.png' },
+    { name: 'Force Playing Field India Private Limited', desc: 'Sports Infrastructure', logo: '/force group of company/force playing field logo .png' },
+    { name: 'FORCE1LIVE', desc: 'Sports Media & Broadcasting', logo: '/force group of company/force1live .png', live: true },
+    { name: 'Force Sports Infra', desc: 'Infrastructure & Development', logo: '/force group of company/force sport infra .png' },
+    { name: 'Sportex India', desc: 'Fabrics & Manufacturing Unit', logo: '/force group of company/Sportex india.png' },
+    { name: 'Fittooos', desc: 'Lifestyle & Streetwear', logo: '/force group of company/fittooos.png' },
+    { name: 'Fit Sutra', desc: 'Fitness & Wellness', logo: '/force group of company/fit sutra .png' },
+    { name: 'Shatak', desc: 'Premium Activewear', logo: '/force group of company/shatak logo.png' },
+    { name: 'Jabraat', desc: 'Pro Team Kits', logo: '/force group of company/jabraat logo.png' },
+    { name: 'Force Sports United', desc: 'Sports Event Management Company', logo: '/force group of company/force sports united logo.png' },
+];
+
 const AboutPage = () => {
     return (
         <div className="bg-white">
-            <SEO 
+            <SEO
                 title="About Force Sports and Wears India | Since 2007"
                 description="Learn about Force Sports and Wears India — Mumbai-based custom sportswear manufacturing, our heritage since 2007, and our mission to fuel champions."
+                keywords={SEO_KEYWORDS.about}
             />
-            {/* Hero Section */}
+
+            {/* Hero */}
             <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden bg-slate-900 pt-20 pb-16">
                 <div className="absolute inset-0 z-0">
                     <img
-                        src={getCDNUrl("/about-hero.png")}
+                        src={getCDNUrl('/about-hero.png')}
                         alt={`${BRAND_DETAILS.name} — custom sportswear manufacturing in Mumbai`}
                         className="w-full h-full object-cover object-center opacity-45"
                     />
@@ -59,82 +99,9 @@ const AboutPage = () => {
                 </div>
             </section>
 
-            {/* Core Story */}
-            <section className="max-w-7xl mx-auto px-6 py-16 md:py-24">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20 items-center">
-                    <motion.div
-                        initial={{ opacity: 0, x: -30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                    >
-                        <h2 className="text-3xl md:text-4xl font-black mb-8 border-l-4 border-cyan-500 pl-6 uppercase tracking-tighter text-slate-900">
-                            {BRAND_DETAILS.name}
-                        </h2>
-                        <p className="text-slate-600 text-lg md:text-xl leading-relaxed mb-6">
-                            {BRAND_DETAILS.aboutIntro}
-                        </p>
-                        <div className="mb-10">
-                            <h3 className="text-sm font-bold uppercase tracking-widest text-cyan-600 mb-2">Our Mission</h3>
-                            <p className="text-slate-600 text-lg md:text-xl leading-relaxed mb-6">
-                                {BRAND_DETAILS.aboutMission}
-                            </p>
-                            <h3 className="text-sm font-bold uppercase tracking-widest text-cyan-600 mb-2 mt-8">Our Vision</h3>
-                            <p className="text-slate-600 text-lg md:text-xl leading-relaxed">
-                                {BRAND_DETAILS.aboutVision}
-                            </p>
-                        </div>
+            <FounderStory />
 
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 p-8 bg-slate-50 rounded-2xl border border-slate-100">
-                            <div>
-                                <span className="block text-3xl md:text-4xl font-black text-slate-900">{BRAND_DETAILS.established}</span>
-                                <span className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-slate-400">Founded Year</span>
-                            </div>
-                            <div>
-                                <span className="block text-3xl md:text-4xl font-black text-slate-900">{BRAND_DETAILS.employeeStrength}</span>
-                                <span className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-slate-400">Staff Members</span>
-                            </div>
-                        </div>
-                    </motion.div>
-
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        className="relative"
-                    >
-                        <div className="relative bg-slate-900 rounded-3xl p-12 overflow-hidden shadow-2xl">
-                            <h3 className="text-2xl font-black mb-8 text-white uppercase tracking-tight">Our Heritage</h3>
-                            <p className="text-slate-400 leading-relaxed mb-6">
-                                Founded in {BRAND_DETAILS.established} by {BRAND_DETAILS.proprietor}, {BRAND_DETAILS.name} began as a vision to bridge the gap between premium quality and accessible sportswear in India.
-                            </p>
-                            <p className="text-slate-400 leading-relaxed">
-                                What started as a focused manufacturing unit in {BRAND_DETAILS.manufacturing.unitLocation} has grown into a vertically integrated powerhouse, trusted by schools, corporate teams, and professional sports organizations across the country.
-                            </p>
-                            <div className="mt-12 pt-8 border-t border-white/20 flex flex-col sm:flex-row sm:items-end justify-between gap-8">
-                                <div className="flex items-center gap-4">
-                                    <div className="w-14 h-14 bg-cyan-500/20 rounded-full flex items-center justify-center border border-cyan-400/40 shrink-0">
-                                        <Shield className="text-cyan-400" size={28} />
-                                    </div>
-                                    <div>
-                                        <span className="block text-slate-300 font-black uppercase tracking-widest text-[10px] mb-1">Founder & Proprietor</span>
-                                        <span className="text-cyan-400 font-bold text-lg tracking-tight">{BRAND_DETAILS.proprietor}</span>
-                                    </div>
-                                </div>
-                                <div className="sm:text-right pl-1 sm:pl-0">
-                                    <span className="block text-white font-serif text-2xl md:text-3xl italic leading-none mb-2">
-                                        Anand Sanghai
-                                    </span>
-                                    <span className="text-[9px] uppercase tracking-[0.25em] font-black text-cyan-400/90">
-                                        Digital Signature
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </motion.div>
-                </div>
-            </section>
-
-            {/* Why Alpha Section */}
+            {/* What Sets Us Alpha */}
             <section className="bg-slate-50 py-16 md:py-24">
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="text-center mb-20">
@@ -143,30 +110,9 @@ const AboutPage = () => {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                        {[
-                            {
-                                icon: Target,
-                                title: 'Total Customization',
-                                desc: '100% customized sublimation printing. Your identity is integrated directly into the fabric.'
-                            },
-                            {
-                                icon: Award,
-                                title: 'Technical Fabrics',
-                                desc: 'Advanced moisture-wicking and breathable fabrics (Dri-Fit, Dot Knit).'
-                            },
-                            {
-                                icon: Users,
-                                title: 'In-House Precision',
-                                desc: 'Managing everything from digital design to final stitching in our Mumbai facility.'
-                            },
-                            {
-                                icon: Shield,
-                                title: 'Sport-Specific',
-                                desc: 'Tailored movement analysis for sport-specific cuts like Kabaddi or Cricket.'
-                            }
-                        ].map((feature, idx) => (
+                        {ALPHA_FEATURES.map((feature, idx) => (
                             <motion.div
-                                key={idx}
+                                key={feature.title}
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 transition={{ delay: idx * 0.1 }}
@@ -184,9 +130,8 @@ const AboutPage = () => {
                 </div>
             </section>
 
-            {/* Manufacturing Powerhouse Section */}
+            {/* Manufacturing */}
             <section className="py-20 md:py-32 px-6 bg-slate-900 text-white overflow-hidden relative">
-                <div className="absolute top-0 right-0 w-1/2 h-full bg-cyan-500/5 skew-x-12 translate-x-1/4" />
                 <div className="max-w-7xl mx-auto relative z-10">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20 items-center">
                         <motion.div
@@ -195,14 +140,16 @@ const AboutPage = () => {
                             viewport={{ once: true }}
                         >
                             <span className="text-cyan-400 font-bold tracking-widest uppercase mb-4 block">Manufacturing Excellence</span>
-                            <h2 className="text-4xl md:text-5xl font-black mb-8 uppercase tracking-tighter">A Vertically <br /> Integrated Powerhouse</h2>
+                            <h2 className="text-4xl md:text-5xl font-black mb-8 uppercase tracking-tighter">
+                                A Vertically <br /> Integrated Powerhouse
+                            </h2>
                             <p className="text-slate-400 text-lg leading-relaxed mb-10">
                                 Based in the heart of Mumbai, {BRAND_DETAILS.name}&apos;s {BRAND_DETAILS.manufacturing.unitLocation} facility manages the entire production cycle. From digital layout to final hand-stitching, we ensure every jersey meets the Force standard.
                             </p>
 
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                                {BRAND_DETAILS.manufacturing.capabilities.slice(0, 4).map((cap, i) => (
-                                    <div key={i} className="flex items-center gap-3 p-4 bg-white/5 rounded-xl border border-white/10">
+                                {BRAND_DETAILS.manufacturing.capabilities.slice(0, 4).map((cap) => (
+                                    <div key={cap} className="flex items-center gap-3 p-4 bg-white/5 rounded-xl border border-white/10">
                                         <div className="w-2 h-2 bg-cyan-500 rounded-full" />
                                         <span className="text-sm font-bold uppercase tracking-wide">{cap}</span>
                                     </div>
@@ -223,47 +170,51 @@ const AboutPage = () => {
                             className="relative"
                         >
                             <img
-                                src={getCDNUrl("/manufacturing-detail.png")}
+                                src={getCDNUrl('/manufacturing-detail.png')}
                                 alt="Production Detail"
-                                className="rounded-3xl shadow-2xl"
+                                className="rounded-3xl shadow-2xl w-full object-cover"
                             />
                         </motion.div>
                     </div>
                 </div>
             </section>
 
+            {/* Force Group */}
             <section className="py-16 md:py-24 bg-slate-50">
                 <div className="max-w-6xl mx-auto px-6 text-center">
                     <span className="text-cyan-600 font-bold tracking-widest uppercase text-sm mb-3 block">Our Corporate Ecosystem</span>
                     <h2 className="text-4xl font-black mb-16 text-slate-900 uppercase tracking-tighter">Force Group of Companies</h2>
-                    
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
-                        {[
-                            { name: 'Force Sports and Wears India', desc: 'Custom Sportswear Manufacturing', logo: '/force sport and wears india.png' },
-                            { name: 'Force Playing Field India Private Limited', desc: 'Sports Infrastructure', logo: '/force group of company/force playing field logo .png' },
-                            { name: <span className="flex items-center justify-center gap-[2px]">FORCE<span className="text-[#F15A24] text-3xl md:text-4xl mx-[1px]">1</span>LIVE</span>, desc: 'Sports Media & Broadcasting', logo: '/force group of company/force1live .png' },
-                            { name: 'Force Sports Infra', desc: 'Infrastructure & Development', logo: '/force group of company/force sport infra .png' },
-                            { name: 'Sportex India', desc: 'Fabrics & Manufacturing Unit', logo: '/force group of company/Sportex india.png' },
-                            { name: 'Fittooos', desc: 'Lifestyle & Streetwear', logo: '/force group of company/fittooos.png' },
-                            { name: 'Fit Sutra', desc: 'Fitness & Wellness', logo: '/force group of company/fit sutra .png' },
-                            { name: 'Shatak', desc: 'Premium Activewear', logo: '/force group of company/shatak logo.png' },
-                            { name: 'Jabraat', desc: 'Pro Team Kits', logo: '/force group of company/jabraat logo.png' },
-                            { name: 'Force Sports United', desc: 'Sports Event Management Company', logo: '/force group of company/force sports united logo.png' }
-                        ].map((company, idx) => (
-                            <div key={idx} className="p-8 bg-white rounded-3xl shadow-sm border border-slate-100 hover:border-cyan-500 hover:shadow-xl transition-all group flex flex-col justify-center items-center text-center">
-                                {company.logo && (
-                                    <div className="flex-1 flex items-center justify-center mb-4 min-h-[80px]">
-                                        <img src={getCDNUrl(company.logo)} alt="Company Logo" className="max-h-20 max-w-full object-contain group-hover:scale-105 transition-transform" />
-                                    </div>
-                                )}
-                                <h4 className="text-lg md:text-xl font-black text-slate-900 mb-3 uppercase group-hover:text-cyan-600 transition-colors tracking-tight leading-tight flex items-center">{company.name}</h4>
-                                <p className="text-slate-500 text-[10px] md:text-xs leading-relaxed font-bold uppercase tracking-widest opacity-60 mt-auto">{company.desc}</p>
+
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+                        {GROUP.map((company) => (
+                            <div
+                                key={company.desc}
+                                className="p-8 bg-white rounded-3xl shadow-sm border border-slate-100 hover:border-cyan-500 hover:shadow-xl transition-all group flex flex-col justify-center items-center text-center"
+                            >
+                                <div className="flex-1 flex items-center justify-center mb-4 min-h-[80px]">
+                                    <img
+                                        src={getCDNUrl(company.logo)}
+                                        alt=""
+                                        className="max-h-20 max-w-full object-contain group-hover:scale-105 transition-transform"
+                                    />
+                                </div>
+                                <h4 className="text-lg md:text-xl font-black text-slate-900 mb-3 uppercase group-hover:text-cyan-600 transition-colors tracking-tight leading-tight flex items-center justify-center">
+                                    {company.live ? (
+                                        <span className="flex items-center justify-center gap-[2px]">
+                                            FORCE<span className="text-[#F15A24] text-3xl md:text-4xl mx-[1px]">1</span>LIVE
+                                        </span>
+                                    ) : (
+                                        company.name
+                                    )}
+                                </h4>
+                                <p className="text-slate-500 text-[10px] md:text-xs leading-relaxed font-bold uppercase tracking-widest opacity-60 mt-auto">
+                                    {company.desc}
+                                </p>
                             </div>
                         ))}
                     </div>
                 </div>
             </section>
-
         </div>
     );
 };

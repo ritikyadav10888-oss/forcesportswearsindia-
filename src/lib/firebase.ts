@@ -16,7 +16,7 @@ const sanitize = (value: string | undefined, fallback: string): string => {
 const firebaseConfig = {
   apiKey: sanitize(
     process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-    ''
+    'AIzaSyDYoXF1kRGqHD6J9UK5HpzdlVCMJBxNHdA'
   ),
   authDomain: sanitize(
     process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,

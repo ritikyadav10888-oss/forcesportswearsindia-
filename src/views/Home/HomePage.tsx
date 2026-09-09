@@ -15,6 +15,13 @@ import { getCDNUrl } from '../../utils/cdnUtils';
 import { getProductSportexFabric, fabricSlug } from '../../utils/fabricMatching';
 import SEO from '../../components/seo/SEO';
 import ProductCardDetails from '../../components/products/ProductCardDetails';
+import { db } from '../../lib/firebase';
+import { collection, onSnapshot, query, where } from 'firebase/firestore';
+import { findLiveProduct, mergeLiveProductCatalog, productFromFirestore } from '../../utils/productUtils';
+import { FALLBACK_TESTIMONIALS, Testimonial } from '../../data/testimonials';
+import TestimonialForm from '../../components/forms/TestimonialForm';
+import FounderStory from '../../components/brand/FounderStory';
+import { SEO_KEYWORDS } from '../../data/seoKeywords';
 
 const FEATURED_PRODUCT_IDS = ['force-3d-inv-01', 'force-stealth-joggers', 'force-plain-cap-black'];
 
@@ -97,9 +104,60 @@ const ClientMarqueeItem = ({ client, size = 'medium', logoMap = {} }: { client: 
 };
 
 const HomePage = () => {
-    const featuredProducts = PRODUCTS.filter((p) => FEATURED_PRODUCT_IDS.includes(p.id));
+    const [featuredProducts, setFeaturedProducts] = React.useState(() =>
+        PRODUCTS.filter((p) => FEATURED_PRODUCT_IDS.includes(p.id))
+    );
     const [featuredFabrics, setFeaturedFabrics] = React.useState<any[]>([]);
     const [logoMap, setLogoMap] = React.useState<Record<string, string>>({});
+    const [testimonials, setTestimonials] = React.useState<Testimonial[]>(
+        FALLBACK_TESTIMONIALS.map((t, i) => ({ ...t, id: `fallback-${i}`, status: 'approved' as const }))
+    );
+
+    React.useEffect(() => {
+        const unsubscribe = onSnapshot(
+            collection(db, 'products'),
+            (snapshot) => {
+                const remote = snapshot.docs.map((d) =>
+                    productFromFirestore(d.id, d.data() as Record<string, unknown>)
+                );
+                const live = mergeLiveProductCatalog(remote);
+                const featured = FEATURED_PRODUCT_IDS
+                    .map((id) => findLiveProduct(live, id))
+                    .filter((p): p is NonNullable<typeof p> => Boolean(p));
+                if (featured.length) setFeaturedProducts(featured);
+            },
+            (error) => console.error('Failed to load featured products', error)
+        );
+        return () => unsubscribe();
+    }, []);
+
+    React.useEffect(() => {
+        const q = query(collection(db, 'testimonials'), where('status', '==', 'approved'));
+        const unsubscribe = onSnapshot(
+            q,
+            (snapshot) => {
+                const live = snapshot.docs.map((d) => ({ id: d.id, ...d.data() })) as Testimonial[];
+                live.sort((a, b) => {
+                    const ms = (v: unknown) => {
+                        if (!v || typeof v !== 'object') return 0;
+                        const t = v as { toMillis?: () => number; seconds?: number };
+                        if (typeof t.toMillis === 'function') return t.toMillis();
+                        if (typeof t.seconds === 'number') return t.seconds * 1000;
+                        return 0;
+                    };
+                    return ms(b.createdAt) - ms(a.createdAt);
+                });
+                if (live.length) setTestimonials(live);
+                else {
+                    setTestimonials(
+                        FALLBACK_TESTIMONIALS.map((t, i) => ({ ...t, id: `fallback-${i}`, status: 'approved' as const }))
+                    );
+                }
+            },
+            (error) => console.error('Failed to load testimonials', error)
+        );
+        return () => unsubscribe();
+    }, []);
 
     React.useEffect(() => {
         setLogoMap({});
@@ -121,7 +179,7 @@ const HomePage = () => {
             <SEO
                 title="Force Sports and Wears India | Global Bulk T-Shirt Manufacturer"
                 description={`Top-rated global manufacturer and exporter of custom sportswear, bulk t-shirts, and team uniforms. Based in India, shipping premium quality worldwide. Worldwide sportswear partner, top global bulk t-shirt and sportswear manufacturer, international shipping wholesale.`}
-                keywords="global export & shipping, worldwide sportswear partner, top global bulk t-shirt manufacturer, international shipping, wholesale orders worldwide, reliable sportswear exporter online, export premium apparel worldwide"
+                keywords={SEO_KEYWORDS.home}
             />
 
             {/* Hero */}
@@ -248,6 +306,8 @@ const HomePage = () => {
                     ))}
                 </div>
             </section>
+
+            <FounderStory showAboutLink />
 
             {/* Customize your kit */}
             <section id="customize" className="py-16 md:py-24 bg-white scroll-mt-24">
@@ -576,23 +636,37 @@ const HomePage = () => {
                         <h2 className="text-3xl md:text-4xl font-black text-slate-900 uppercase tracking-tighter mb-4">What our clients say</h2>
                         <div className="inline-flex gap-1 text-yellow-500 items-center">
                             {[1, 2, 3, 4, 5].map((i) => <Star key={i} size={18} fill="currentColor" />)}
-                            <span className="ml-2 font-black text-slate-900 text-sm">4.9/5</span>
+                            <span className="ml-2 font-black text-slate-900 text-sm">
+                                {(
+                                    testimonials.reduce((sum, t) => sum + (t.rating || 5), 0) / Math.max(testimonials.length, 1)
+                                ).toFixed(1)}/5
+                            </span>
                         </div>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {[
-                            { name: 'Rajesh Kumar', role: 'Team Manager, HDFC Bank', quote: 'Force jerseys stayed vibrant after a full corporate league season — fabric and stitching are top tier.' },
-                            { name: 'Siddharth Mehta', role: 'Goregaon Sports Club', quote: 'Breathable Sportex fabrics and perfect fits for our club kits. Bulk order was seamless.' },
-                            { name: "Anil D'Souza", role: 'Elite Athlete', quote: 'Tracksuits and compression gear from Force Sports and Wears India are professional-grade.' },
-                        ].map((testi, idx) => (
-                            <div key={idx} className="p-8 rounded-3xl bg-slate-50 border border-slate-100">
+                        {testimonials.slice(0, 9).map((testi) => (
+                            <div key={testi.id} className="p-8 rounded-3xl bg-slate-50 border border-slate-100">
+                                <div className="flex gap-0.5 text-yellow-500 mb-4">
+                                    {Array.from({ length: Math.min(5, testi.rating || 5) }).map((_, i) => (
+                                        <Star key={i} size={14} fill="currentColor" />
+                                    ))}
+                                </div>
                                 <p className="text-slate-600 italic leading-relaxed mb-6">&ldquo;{testi.quote}&rdquo;</p>
                                 <div>
                                     <h4 className="font-black text-slate-900 text-sm uppercase">{testi.name}</h4>
-                                    <span className="text-cyan-600 text-[10px] font-bold uppercase tracking-widest">{testi.role}</span>
+                                    {testi.role && (
+                                        <span className="text-cyan-600 text-[10px] font-bold uppercase tracking-widest">{testi.role}</span>
+                                    )}
                                 </div>
                             </div>
                         ))}
+                    </div>
+                    <div className="max-w-2xl mx-auto mt-14">
+                        <div className="text-center mb-6">
+                            <h3 className="text-xl font-black uppercase tracking-tight text-slate-900">Share your review</h3>
+                            <p className="text-slate-500 text-sm mt-2">It goes live on this page after we approve it.</p>
+                        </div>
+                        <TestimonialForm compact />
                     </div>
                 </div>
             </section>

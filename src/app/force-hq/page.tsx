@@ -1,25 +1,27 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
-import { Users, ShoppingBag, Layers, MessageSquare, TrendingUp } from 'lucide-react';
+import { Users, ShoppingBag, Layers, MessageSquare, TrendingUp, Star } from 'lucide-react';
 import Link from 'next/link';
 import { db } from '../../lib/firebase';
 import { collection, onSnapshot } from 'firebase/firestore';
 
 export default function AdminDashboard() {
-    const [counts, setCounts] = useState({ leads: 0, products: 0, uniforms: 0, fabrics: 0 });
+    const [counts, setCounts] = useState({ leads: 0, products: 0, uniforms: 0, fabrics: 0, testimonials: 0 });
 
     useEffect(() => {
         const unsubLeads = onSnapshot(collection(db, 'leads'), snap => setCounts(c => ({ ...c, leads: snap.size })));
         const unsubProducts = onSnapshot(collection(db, 'products'), snap => setCounts(c => ({ ...c, products: snap.size })));
         const unsubUniforms = onSnapshot(collection(db, 'uniforms'), snap => setCounts(c => ({ ...c, uniforms: snap.size })));
         const unsubFabrics = onSnapshot(collection(db, 'fabrics'), snap => setCounts(c => ({ ...c, fabrics: snap.size })));
+        const unsubTestimonials = onSnapshot(collection(db, 'testimonials'), snap => setCounts(c => ({ ...c, testimonials: snap.size })));
         
         return () => {
             unsubLeads();
             unsubProducts();
             unsubUniforms();
             unsubFabrics();
+            unsubTestimonials();
         };
     }, []);
 
@@ -28,6 +30,7 @@ export default function AdminDashboard() {
         { name: 'Products', value: counts.products, icon: ShoppingBag, color: 'text-cyan-500', bg: 'bg-cyan-500/10' },
         { name: 'Uniforms', value: counts.uniforms, icon: Users, color: 'text-purple-500', bg: 'bg-purple-500/10' },
         { name: 'Fabrics', value: counts.fabrics, icon: Layers, color: 'text-amber-500', bg: 'bg-amber-500/10' },
+        { name: 'Testimonials', value: counts.testimonials, icon: Star, color: 'text-yellow-500', bg: 'bg-yellow-500/10' },
     ];
 
     return (
@@ -38,7 +41,7 @@ export default function AdminDashboard() {
             </div>
 
             {/* Stats Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
                 {stats.map((stat) => {
                     const Icon = stat.icon;
                     return (

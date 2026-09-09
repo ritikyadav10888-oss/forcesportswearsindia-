@@ -1,12 +1,12 @@
 "use client";
 import React from 'react';
-import { Mail, Phone, MapPin, Instagram, Facebook, ShoppingBag } from 'lucide-react';
+import { Mail, Phone, MapPin, Instagram, Facebook, ShoppingBag, Youtube } from 'lucide-react';
 import { BRAND_DETAILS } from '../../data/brandData';
 import { getCDNUrl } from '../../utils/cdnUtils';
 
 const Footer = () => {
     return (
-        <footer className="bg-slate-900 text-white pt-20 pb-10 overflow-hidden relative isolate">
+        <footer className="bg-slate-900 text-white pt-20 pb-10 relative z-10">
             <div className="max-w-7xl mx-auto px-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
                     <div className="col-span-1 sm:col-span-2 lg:col-span-2">
@@ -33,6 +33,9 @@ const Footer = () => {
                             </a>
                             <a href={BRAND_DETAILS.social.facebook} target="_blank" rel="noopener noreferrer" title="Facebook" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-cyan-500 cursor-pointer transition-all border border-white/5 hover:border-cyan-400 shadow-lg">
                                 <Facebook size={18} />
+                            </a>
+                            <a href={BRAND_DETAILS.social.youtube} target="_blank" rel="noopener noreferrer" title="YouTube" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-cyan-500 cursor-pointer transition-all border border-white/5 hover:border-cyan-400 shadow-lg">
+                                <Youtube size={18} />
                             </a>
                             <a href={BRAND_DETAILS.social.indiamart} target="_blank" rel="noopener noreferrer" title="IndiaMart Store" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-cyan-500 cursor-pointer transition-all border border-white/5 hover:border-cyan-400 shadow-lg text-[10px] font-black">
                                 <ShoppingBag size={17} />
@@ -86,6 +89,7 @@ const Footer = () => {
                             <li><a href="/catalog" className="hover:text-cyan-400 transition-colors">Digital Catalog</a></li>
                             <li><a href="/about" className="hover:text-cyan-400 transition-colors">Our Story</a></li>
                             <li><a href="/inquiry" className="hover:text-cyan-400 transition-colors">Get A Quote</a></li>
+                            <li><a href="/testimonial" className="hover:text-cyan-400 transition-colors">Write a Review</a></li>
                             <li><a href="/faq" className="hover:text-cyan-400 transition-colors">FAQ</a></li>
                         </ul>
                     </div>

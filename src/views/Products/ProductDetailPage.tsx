@@ -10,11 +10,13 @@ import { PRODUCTS, Product } from '../../data/products';
 import { BRAND_DETAILS } from '../../data/brandData';
 import { getProductSportexFabric, fabricSlug } from '../../utils/fabricMatching';
 import { SPORTEX_FABRICS } from '../../data/sportexFabrics';
-import { mergeProductWithLocal } from '../../utils/productUtils';
+import { findLiveProduct, mergeLiveProductCatalog, mergeProductWithLocal, productFromFirestore } from '../../utils/productUtils';
 import { getCDNUrl } from '../../utils/cdnUtils';
 import SEO from '../../components/seo/SEO';
 import SizeChartModal from '../../components/SizeChartModal';
 import { Ruler } from 'lucide-react';
+import { db } from '../../lib/firebase';
+import { collection, onSnapshot } from 'firebase/firestore';
 
 const DEFAULT_SIZE_CHARTS: Record<string, { label: string; values: Record<string, string>[] }[]> = {
     tshirt: [
@@ -82,11 +84,12 @@ const ProductDetailPage = () => {
     const { productId } = useParams();
     const router = useRouter();
     
-    const localProduct = PRODUCTS.find((p) => p.id === productId);
+    const rawProductId = Array.isArray(productId) ? productId[0] : productId;
+    const localProduct = PRODUCTS.find((p) => p.id === rawProductId);
     const [product, setProduct] = useState<Product | undefined>(
         localProduct ? mergeProductWithLocal(localProduct) : undefined
     );
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(!localProduct);
     const [images, setImages] = useState<string[]>([]);
     const [activeImageIndex, setActiveImageIndex] = useState(0);
     const [prevProductId, setPrevProductId] = useState(productId);
@@ -132,10 +135,42 @@ const ProductDetailPage = () => {
 
 
     useEffect(() => {
-        const local = PRODUCTS.find((p) => p.id === productId);
-        if (local) setProduct(mergeProductWithLocal(local));
-        else setProduct(undefined);
-        setLoading(false);
+        const id = Array.isArray(productId) ? productId[0] : productId;
+        if (!id) {
+            setProduct(undefined);
+            setLoading(false);
+            return;
+        }
+
+        const local = PRODUCTS.find((p) => p.id === id);
+        if (local) {
+            setProduct(mergeProductWithLocal(local));
+            setLoading(false);
+        }
+
+        const unsubscribe = onSnapshot(
+            collection(db, 'products'),
+            (snapshot) => {
+                const remote = snapshot.docs.map((d) =>
+                    productFromFirestore(d.id, d.data() as Record<string, unknown>)
+                );
+                const live = mergeLiveProductCatalog(remote);
+                const found = findLiveProduct(live, id);
+                if (found) {
+                    setProduct(found);
+                } else if (!local) {
+                    setProduct(undefined);
+                }
+                setLoading(false);
+            },
+            (error) => {
+                console.error('Failed to load product', error);
+                setProduct(local ? mergeProductWithLocal(local) : undefined);
+                setLoading(false);
+            }
+        );
+
+        return () => unsubscribe();
     }, [productId]);
 
     useEffect(() => {
@@ -149,8 +184,8 @@ const ProductDetailPage = () => {
             if (!uniq.includes(src)) uniq.push(src);
         };
         push(front);
-        for (const g of gallery) push(g);
         if (back) push(back);
+        for (const g of gallery) push(g);
         setImages(uniq);
     }, [product]);
 
@@ -185,7 +220,8 @@ const ProductDetailPage = () => {
     }
 
     const activeImage = getCDNUrl(images[activeImageIndex] || product.image);
-    const isBackView = Boolean(product.category !== 'Caps' && product.category !== 'Bags' && product.imageBack && activeImage === product.imageBack);
+    const activeRaw = images[activeImageIndex] || product.image;
+    const isBackView = Boolean(product.category !== 'Caps' && product.category !== 'Bags' && product.imageBack && activeRaw === product.imageBack);
     const sportexGsm = fabricDetails?.gsm || SPORTEX_FABRICS.find((f) => f.name.toLowerCase().trim() === sportexFabric.toLowerCase().trim())?.gsm;
 
     const openWhatsApp = () => {
@@ -200,6 +236,7 @@ const ProductDetailPage = () => {
                 title={`${product.title} | ${product.category}`}
                 description={`${product.description} | Product Code: ${product.productCode}. Custom manufactured by Force Sports India.`}
                 image={getCDNUrl(product.image)}
+                keywords={`${product.title}, custom ${product.category}, bulk ${product.category} India, Force Sports Mumbai`}
             />
             {/* Breadcrumbs & Back Nav */}
             <div className="max-w-7xl mx-auto px-6 py-8">
@@ -257,7 +294,7 @@ const ProductDetailPage = () => {
                                         className={`relative w-12 h-12 md:w-14 md:h-14 rounded-lg flex-shrink-0 overflow-hidden border-2 transition-all p-1 bg-slate-50 ${activeImageIndex === idx ? 'border-cyan-500 shadow-lg shadow-cyan-100' : 'border-transparent opacity-60 hover:opacity-100'
                                             }`}
                                     >
-                                        {product.category !== 'Caps' && product.category !== 'Bags' && product.imageBack && (
+                                        {product.category !== 'Caps' && product.category !== 'Bags' && product.imageBack && (img === product.image || img === product.imageBack) && (
                                             <span
                                                 data-testid={img === product.imageBack ? 'thumb-badge-back' : 'thumb-badge-front'}
                                                 className={`absolute bottom-1 left-1/2 -translate-x-1/2 z-10 px-1.5 py-0.5 rounded-full text-[7px] font-black uppercase tracking-wider shadow-sm ${
@@ -455,7 +492,7 @@ const ProductDetailPage = () => {
                                         }`}
                                         aria-label={`Select image ${idx + 1}`}
                                     >
-                                        {product.imageBack && (
+                                        {product.imageBack && (img === product.image || img === product.imageBack) && (
                                             <span
                                                 data-testid={img === product.imageBack ? 'zoom-thumb-badge-back' : 'zoom-thumb-badge-front'}
                                                 className={`absolute top-2 left-2 z-10 px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-widest ${
@@ -643,9 +680,7 @@ const ProductDetailPage = () => {
 
             {/* Customization Promo */}
             <section className="py-24 px-6 max-w-7xl mx-auto">
-                <div className="bg-slate-900 rounded-[3rem] p-12 md:p-20 relative overflow-hidden text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-12">
-                    <div className="absolute top-0 right-0 w-1/2 h-full bg-cyan-500/5 -skew-x-12 translate-x-1/4" />
-
+                <div className="bg-slate-900 rounded-[3rem] p-12 md:p-20 relative overflow-hidden isolate text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-12">
                     <div className="relative z-10 max-w-xl">
                         <h2 className="text-3xl md:text-4xl font-black text-white uppercase tracking-tighter mb-6">Need 100% Unique Design?</h2>
                         <p className="text-slate-400 text-lg leading-relaxed">

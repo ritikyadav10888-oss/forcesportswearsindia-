@@ -8,6 +8,7 @@ export interface UniformProduct {
     description: string;
     longDescription?: string;
     image: string;
+    imageBack?: string;
     gallery?: string[];
     features: string[];
     specs: Record<string, string>;

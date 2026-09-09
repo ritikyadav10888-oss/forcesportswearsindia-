@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
 
 import { motion } from 'framer-motion';
-import { ArrowLeft, ChevronRight, Zap, CheckCircle2, MessageCircle, Ruler } from 'lucide-react';
+import { ArrowLeft, ChevronRight, Zap, CheckCircle2, MessageCircle, Ruler, Loader2 } from 'lucide-react';
 import { UNIFORMS, UniformProduct } from '../../data/uniforms';
 import { BRAND_DETAILS } from '../../data/brandData';
 import { getUniformSportexFabric, fabricSlug } from '../../utils/fabricMatching';
@@ -12,31 +12,89 @@ import { SPORTEX_FABRICS } from '../../data/sportexFabrics';
 import SEO from '../../components/seo/SEO';
 import { getCDNUrl } from '../../utils/cdnUtils';
 import SizeChartModal from '../../components/SizeChartModal';
+import { findLiveUniform, mergeLiveUniformCatalog, mergeUniformWithLocal, uniformFromFirestore } from '../../utils/uniformUtils';
+import { db } from '../../lib/firebase';
+import { collection, onSnapshot } from 'firebase/firestore';
 
 const UniformDetailPage = () => {
     const { uniformId } = useParams();
     const router = useRouter();
 
-    const localProduct = UNIFORMS.find(u => u.id === uniformId);
-    const [product, setProduct] = useState<UniformProduct | undefined>(localProduct);
+    const rawUniformId = Array.isArray(uniformId) ? uniformId[0] : uniformId;
+    const localProduct = UNIFORMS.find(u => u.id === rawUniformId);
+    const [product, setProduct] = useState<UniformProduct | undefined>(
+        localProduct ? mergeUniformWithLocal(localProduct) : undefined
+    );
     const [loading, setLoading] = useState(!localProduct);
     const [isSizeChartOpen, setIsSizeChartOpen] = useState(false);
-
-    useEffect(() => {
-        if (localProduct) setProduct(localProduct);
-        setLoading(false);
-    }, [uniformId]);
-
-    const images = product ? [
-        product.image,
-        ...(product.gallery ?? [])
-    ] : [];
-
+    const [images, setImages] = useState<string[]>([]);
     const [activeImageIndex, setActiveImageIndex] = useState(0);
 
     useEffect(() => {
+        const id = Array.isArray(uniformId) ? uniformId[0] : uniformId;
+        if (!id) {
+            setProduct(undefined);
+            setLoading(false);
+            return;
+        }
+
+        const local = UNIFORMS.find((u) => u.id === id);
+        if (local) {
+            setProduct(mergeUniformWithLocal(local));
+            setLoading(false);
+        }
+
+        const unsubscribe = onSnapshot(
+            collection(db, 'uniforms'),
+            (snapshot) => {
+                const remote = snapshot.docs.map((d) =>
+                    uniformFromFirestore(d.id, d.data() as Record<string, unknown>)
+                );
+                const live = mergeLiveUniformCatalog(remote);
+                const found = findLiveUniform(live, id);
+                if (found) {
+                    setProduct(found);
+                } else if (!local) {
+                    setProduct(undefined);
+                }
+                setLoading(false);
+            },
+            (error) => {
+                console.error('Failed to load uniform', error);
+                setProduct(local ? mergeUniformWithLocal(local) : undefined);
+                setLoading(false);
+            }
+        );
+
+        return () => unsubscribe();
+    }, [uniformId]);
+
+    useEffect(() => {
+        if (!product) return;
+        const uniq: string[] = [];
+        const push = (src?: string) => {
+            if (!src) return;
+            if (!uniq.includes(src)) uniq.push(src);
+        };
+        push(product.image);
+        if (product.imageBack) push(product.imageBack);
+        for (const g of product.gallery ?? []) push(g);
+        setImages(uniq);
+    }, [product]);
+
+    useEffect(() => {
+        setActiveImageIndex(0);
         window.scrollTo(0, 0);
     }, [uniformId]);
+
+    if (loading) {
+        return (
+            <div className="min-h-screen flex flex-col items-center justify-center bg-slate-50 px-6 pt-20">
+                <Loader2 className="animate-spin text-cyan-500 mb-4" size={32} />
+                <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Loading uniform…</p>
+            </div>
+        );
+    }
 
     if (!product) {
         return (
@@ -72,6 +130,7 @@ const UniformDetailPage = () => {
                 title={`${product.title} | ${product.category}`}
                 description={`${product.description}. Professional uniform solution by Force Sports India.`}
                 image={getCDNUrl(product.image)}
+                keywords={`${product.title}, custom ${product.category}, uniform manufacturer Mumbai, Force Sports India`}
             />
             {/* Breadcrumbs & Back Nav */}
             <div className="max-w-7xl mx-auto px-6 py-8">
@@ -94,15 +153,27 @@ const UniformDetailPage = () => {
                     >
                         <div className="relative rounded-[2rem] md:rounded-[2.5rem] overflow-hidden bg-slate-50 aspect-square shadow-2xl p-6 md:p-12 border border-slate-100">
                              <img src={activeImage} alt={product.title} className="w-full h-full object-contain mix-blend-multiply" />
+                             {product.imageBack && (
+                                <div className="absolute top-6 left-6 z-20 px-3 py-1 rounded-full bg-slate-900/90 text-white text-[10px] font-black uppercase tracking-widest">
+                                    {(images[activeImageIndex] || product.image) === product.imageBack ? 'Back' : 'Front'}
+                                </div>
+                             )}
                         </div>
                             <div className="flex flex-wrap gap-2 md:gap-3 mt-4">
                                 {images.map((img, idx) => (
                                     <button
                                         key={idx}
                                         onClick={() => setActiveImageIndex(idx)}
-                                        className={`w-16 h-16 md:w-20 md:h-20 rounded-xl md:rounded-2xl overflow-hidden aspect-square border-2 transition-all p-1.5 md:p-2 bg-slate-50 ${activeImageIndex === idx ? 'border-cyan-500 shadow-lg shadow-cyan-100' : 'border-transparent opacity-60 hover:opacity-100'
+                                        className={`relative w-16 h-16 md:w-20 md:h-20 rounded-xl md:rounded-2xl overflow-hidden aspect-square border-2 transition-all p-1.5 md:p-2 bg-slate-50 ${activeImageIndex === idx ? 'border-cyan-500 shadow-lg shadow-cyan-100' : 'border-transparent opacity-60 hover:opacity-100'
                                             }`}
                                     >
+                                        {product.imageBack && (img === product.image || img === product.imageBack) && (
+                                            <span className={`absolute bottom-1 left-1/2 -translate-x-1/2 z-10 px-1.5 py-0.5 rounded-full text-[7px] font-black uppercase tracking-wider shadow-sm ${
+                                                img === product.imageBack ? 'bg-slate-900 text-white' : 'bg-white text-slate-700 border border-slate-200'
+                                            }`}>
+                                                {img === product.imageBack ? 'Back' : 'Front'}
+                                            </span>
+                                        )}
                                         <img src={getCDNUrl(img)} alt={`View ${idx + 1}`} className="w-full h-full object-contain mix-blend-multiply" />
                                     </button>
                                 ))}
@@ -266,9 +337,7 @@ const UniformDetailPage = () => {
 
             {/* Customization Promo */}
             <section className="py-24 px-6 max-w-7xl mx-auto">
-                <div className="bg-slate-900 rounded-[3rem] p-12 md:p-20 relative overflow-hidden text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-12">
-                    <div className="absolute top-0 right-0 w-1/2 h-full bg-cyan-500/5 -skew-x-12 translate-x-1/4" />
-
+                <div className="bg-slate-900 rounded-[3rem] p-12 md:p-20 relative overflow-hidden isolate text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-12">
                     <div className="relative z-10 max-w-xl">
                         <h2 className="text-3xl md:text-4xl font-black text-white uppercase tracking-tighter mb-6">Need Your Own Branding?</h2>
                         <p className="text-slate-400 text-lg leading-relaxed">

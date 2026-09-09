@@ -8,6 +8,9 @@ import { Filter, Check, Briefcase, Activity, MessageCircle, Info, X } from 'luci
 import { BRAND_DETAILS } from '../../data/brandData';
 import { getCDNUrl } from '../../utils/cdnUtils';
 import { UNIFORMS, UniformProduct, UniformCategories } from '../../data/uniforms';
+import { mergeLiveUniformCatalog, mergeUniformWithLocal, uniformFromFirestore } from '../../utils/uniformUtils';
+import { db } from '../../lib/firebase';
+import { collection, onSnapshot } from 'firebase/firestore';
 
 const UniformsPage = () => {
     const router = useRouter();
@@ -15,13 +18,30 @@ const UniformsPage = () => {
     const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
     const [selectedSubcategories, setSelectedSubcategories] = useState<string[]>([]);
 
-    // Live Database State
-    const [liveUniforms, setLiveUniforms] = useState<UniformProduct[]>(UNIFORMS); // Fallback to local
-    const [loading, setLoading] = useState(true);
+    // Live catalog — Force HQ / Firestore first, then remaining static items
+    const [liveUniforms, setLiveUniforms] = useState<UniformProduct[]>(() =>
+        UNIFORMS.map((u) => mergeUniformWithLocal(u))
+    );
 
     useEffect(() => {
-        setLiveUniforms(UNIFORMS);
-        setLoading(false);
+        const unsubscribe = onSnapshot(
+            collection(db, 'uniforms'),
+            (snapshot) => {
+                try {
+                    const remote = snapshot.docs.map((d) =>
+                        uniformFromFirestore(d.id, d.data() as Record<string, unknown>)
+                    );
+                    setLiveUniforms(mergeLiveUniformCatalog(remote));
+                } catch (err) {
+                    console.error('Failed to merge live uniforms', err);
+                }
+            },
+            (error) => {
+                console.error('Failed to load live uniforms', error);
+                setLiveUniforms(UNIFORMS.map((u) => mergeUniformWithLocal(u)));
+            }
+        );
+        return () => unsubscribe();
     }, []);
 
     const filteredUniforms = liveUniforms.filter(u => {
@@ -227,24 +247,36 @@ const UniformsPage = () => {
                                         className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl hover:shadow-slate-200 transition-all border border-slate-100 group flex flex-col h-full cursor-pointer"
                                         onClick={() => router.push(`/uniforms/${uniform.id}`)}
                                     >
-                                        <div className="h-72 bg-slate-100 overflow-hidden relative">
+                                        <div className="h-72 bg-slate-100 overflow-hidden relative group/img">
                                             <img
                                                 src={getCDNUrl(uniform.image, { width: 800 })}
                                                 alt={uniform.title}
                                                 loading="lazy"
-                                                className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700"
+                                                className={`w-full h-full object-contain transition-all duration-700 ${
+                                                    uniform.imageBack ? 'group-hover/img:opacity-0 group-hover/img:scale-110' : 'group-hover:scale-110'
+                                                }`}
                                             />
-                                            <div className="absolute top-6 left-6 flex flex-col gap-2">
+                                            {uniform.imageBack && (
+                                                <img
+                                                    src={getCDNUrl(uniform.imageBack, { width: 800 })}
+                                                    alt={`${uniform.title} - Back View`}
+                                                    loading="lazy"
+                                                    className="absolute inset-0 w-full h-full object-contain opacity-0 group-hover/img:opacity-100 transition-all duration-700 scale-110 group-hover/img:scale-100"
+                                                />
+                                            )}
+                                            <div className="absolute top-6 left-6 flex flex-col gap-2 z-10">
                                                 <div className="bg-slate-900/90 backdrop-blur px-3 py-1 rounded-full text-[9px] font-black text-white uppercase tracking-widest">
                                                     {uniform.category}
                                                 </div>
                                             </div>
+                                            {!uniform.imageBack && (
                                             <div className="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                                                 <div className="bg-white/20 backdrop-blur-md px-6 py-3 rounded-full border border-white/30 flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-transform">
                                                     <Info size={16} className="text-white" />
                                                     <span className="text-[10px] font-black text-white uppercase tracking-widest">View Deep Details</span>
                                                 </div>
                                             </div>
+                                            )}
                                         </div>
                                         <div className="p-8 flex flex-col flex-1">
                                             <div className="mb-4">

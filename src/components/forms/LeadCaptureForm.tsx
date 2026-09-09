@@ -11,6 +11,7 @@ export default function LeadCaptureForm() {
         fullName: '',
         email: '',
         phone: '',
+        website_hp: ''
     });
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -26,6 +27,7 @@ export default function LeadCaptureForm() {
                     fullName: formData.fullName,
                     email: formData.email,
                     phone: formData.phone,
+                    website_hp: formData.website_hp,
                     productType: 'Lead Capture Form',
                     message: 'Customer requested contact via the inline lead capture section.',
                     source: 'Inline Lead Capture Section'
@@ -37,7 +39,7 @@ export default function LeadCaptureForm() {
             }
 
             setStatus('success');
-            setFormData({ fullName: '', email: '', phone: '' });
+            setFormData({ fullName: '', email: '', phone: '', website_hp: '' });
 
         } catch (error) {
             console.error('Lead capture error:', error);
@@ -94,6 +96,17 @@ export default function LeadCaptureForm() {
                     <div className="bg-white rounded-3xl p-8 shadow-2xl">
                         <h3 className="text-xl font-black text-slate-900 mb-6 uppercase tracking-tight">Request Pricing</h3>
                         <form onSubmit={handleSubmit} className="space-y-4">
+                            {/* Honeypot field */}
+                            <div style={{ display: 'none', opacity: 0, position: 'absolute', left: '-9999px' }} aria-hidden="true">
+                                <input
+                                    type="text"
+                                    name="website_hp"
+                                    tabIndex={-1}
+                                    autoComplete="off"
+                                    value={formData.website_hp}
+                                    onChange={e => setFormData({ ...formData, website_hp: e.target.value })}
+                                />
+                            </div>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <input 
                                     required

@@ -12,6 +12,10 @@ dist
 dist-ssr
 .next
 *.local
+.env
+.env.*
+*.env
+server/.env
 firebase-debug.log
 firebase-debug.*.log
 

@@ -6,16 +6,34 @@ const Schema = () => {
         '@context': 'https://schema.org',
         '@type': 'Organization',
         'name': 'Force Sports & Wears India',
+        'alternateName': ['Force Sports', 'Force Sports India', 'Force Sports and Wears India'],
         'url': 'https://www.forcesportsindia.com',
         'logo': 'https://www.forcesportsindia.com/brand-logo.png',
         'description': 'Premium manufacturer of customized sports jerseys and athletic apparel in Mumbai.',
         'founder': 'Anand Sanghai',
         'foundingDate': '2007',
         'slogan': 'Fueling Champions Since 2007',
-        'knowsAbout': ['Custom Sportswear Manufacturing', 'Bulk T-Shirts', 'Corporate Uniforms', 'Team Jerseys', 'Sportex Fabrics'],
+        'knowsAbout': [
+            'Force Sports',
+            'Force Sports India',
+            'Force Sports and Wears India',
+            'Custom Sportswear Manufacturing',
+            'Force Sports Jerseys',
+            'Force Sports Uniforms',
+            'Bulk T-Shirts',
+            'Corporate Uniforms',
+            'Team Jerseys',
+            'Sportex Fabrics',
+            'Sublimation Printing',
+            'Cricket Jerseys',
+            'Football Kits',
+            'Kabaddi Uniforms',
+            'School Sports Uniforms'
+        ],
         'sameAs': [
-            'https://www.facebook.com/forcesportsindia',
+            'https://www.facebook.com/ForceSportsandWearsIndia/',
             'https://www.instagram.com/forcesports_india',
+            'https://www.youtube.com/@forcesportsindia',
             'https://www.indiamart.com/forcesportswearindia/'
         ]
     };

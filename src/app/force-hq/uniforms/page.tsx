@@ -7,6 +7,7 @@ import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { Loader2, Plus, Edit2, Trash2, Image as ImageIcon, X, Save, ArrowLeft, UploadCloud } from 'lucide-react';
 import imageCompression from 'browser-image-compression';
 import { getCDNUrl } from '../../../utils/cdnUtils';
+import { catalogRecencyMs } from '../../../utils/uniformUtils';
 
 interface Uniform {
     id: string;
@@ -67,8 +68,12 @@ export default function UniformsManager() {
     useEffect(() => {
         const q = query(collection(db, 'uniforms'));
         const unsubscribe = onSnapshot(q, (snapshot) => {
-            const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })) as Uniform[];
+            const data = snapshot.docs.map(d => ({ ...d.data(), id: d.id })) as Uniform[];
+            data.sort((a, b) => catalogRecencyMs(b) - catalogRecencyMs(a));
             setUniforms(data);
+            setLoading(false);
+        }, (error) => {
+            console.error('Failed to load HQ uniforms', error);
             setLoading(false);
         });
 
@@ -208,21 +213,21 @@ export default function UniformsManager() {
         e.preventDefault();
         setSaving(true);
         try {
-            let imageUrl = formData.image || '';
+            let imageUrl = formData.image && !formData.image.startsWith('blob:') ? formData.image : '';
             if (imageFile) {
                 const imageRef = ref(storage, `uniforms/${Date.now()}_main_${imageFile.name}`);
                 await uploadBytes(imageRef, imageFile);
                 imageUrl = await getDownloadURL(imageRef);
             }
 
-            let imageBackUrl = formData.imageBack || '';
+            let imageBackUrl = formData.imageBack && !formData.imageBack.startsWith('blob:') ? formData.imageBack : '';
             if (imageBackFile) {
                 const imageRef = ref(storage, `uniforms/${Date.now()}_back_${imageBackFile.name}`);
                 await uploadBytes(imageRef, imageBackFile);
                 imageBackUrl = await getDownloadURL(imageRef);
             }
 
-            let finalGalleryUrls = [...(formData.gallery || [])];
+            let finalGalleryUrls = [...(formData.gallery || [])].filter((url) => url && !url.startsWith('blob:'));
             if (galleryFiles.length > 0) {
                 for (const file of galleryFiles) {
                     const imageRef = ref(storage, `uniforms/${Date.now()}_gallery_${file.name}`);
@@ -232,15 +237,28 @@ export default function UniformsManager() {
                 }
             }
 
-            const payload: any = {
+            if (!imageUrl) {
+                alert('Please upload a front image before saving.');
+                setSaving(false);
+                return;
+            }
+
+            const payload: Record<string, unknown> = {
                 ...formData,
+                title: (formData.title || '').trim(),
                 image: imageUrl,
                 imageBack: imageBackUrl,
                 gallery: finalGalleryUrls,
-                createdAt: formData.createdAt || serverTimestamp()
+                features: (formData.features || []).map((s) => s.trim()).filter(Boolean),
+                fabrics: (formData.fabrics || []).map((s) => s.trim()).filter(Boolean),
+                gsms: (formData.gsms || []).map((s) => s.trim()).filter(Boolean),
+                createdAt: formData.createdAt || serverTimestamp(),
+                updatedAt: serverTimestamp(),
             };
 
-            Object.keys(payload).forEach(key => payload[key] === undefined && delete payload[key]);
+            delete payload.id;
+            delete payload.firestoreId;
+            Object.keys(payload).forEach((key) => payload[key] === undefined && delete payload[key]);
 
             const docId = currentId || `uni-${Date.now()}`;
             await setDoc(doc(db, 'uniforms', docId), payload);

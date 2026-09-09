@@ -94,7 +94,11 @@ function itemText(
     features: string[],
     specs: Record<string, string>
 ): string {
-    return [title, description, ...features, ...Object.values(specs)].join(' ').toLowerCase();
+    const featureList = Array.isArray(features) ? features.map(String) : [];
+    const specValues = specs && typeof specs === 'object'
+        ? Object.values(specs).map((v) => String(v ?? ''))
+        : [];
+    return [title || '', description || '', ...featureList, ...specValues].join(' ').toLowerCase();
 }
 
 function matchFabricFromText(text: string): string | null {
@@ -139,9 +143,9 @@ export function getUniformSportexFabric(
 }
 
 function resolveProductFabric(id: string, text: string): string {
-    if (PRODUCT_FABRIC[id]) return PRODUCT_FABRIC[id];
-    if (id.startsWith('force-elite-')) return 'Dryfit';
-    if (id.includes('mesh-cap') || id.includes('pro-mesh')) return 'Mesh';
+    if (id && PRODUCT_FABRIC[id]) return PRODUCT_FABRIC[id];
+    if (id?.startsWith('force-elite-')) return 'Dryfit';
+    if (id?.includes('mesh-cap') || id?.includes('pro-mesh')) return 'Mesh';
     return matchFabricFromText(text) ?? 'Polyester';
 }
 

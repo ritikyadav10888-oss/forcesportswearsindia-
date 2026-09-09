@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, MessageCircle } from 'lucide-react';
+import SEO from '../../components/seo/SEO';
+import { SEO_KEYWORDS } from '../../data/seoKeywords';
 
 const faqs = [
     {
@@ -63,6 +65,11 @@ const FAQPage = () => {
 
     return (
         <div className="pb-20 min-h-screen bg-slate-50">
+            <SEO
+                title="FAQ | Custom Sportswear Orders, MOQ & Delivery"
+                description="Answers on minimum order quantity, production time, sublimation printing, fabrics, and bulk custom jersey orders from Force Sports Mumbai."
+                keywords={SEO_KEYWORDS.faq}
+            />
             {/* Header Section */}
             <div className="bg-slate-900 text-white py-20 relative overflow-hidden">
                 <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-cyan-400 via-slate-900 to-slate-900"></div>

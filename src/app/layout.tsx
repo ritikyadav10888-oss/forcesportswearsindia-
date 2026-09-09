@@ -24,6 +24,22 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: "Force Sports & Wears India | Global Bulk T-Shirt & Custom Sportswear Manufacturer",
   description: "Leading global manufacturer and wholesale exporter of customized sports apparel, bulk t-shirts, and team uniforms. Based in India, shipping worldwide.",
+  keywords: [
+    "Force Sports",
+    "Force Sports India",
+    "Force Sports and Wears India",
+    "Force Sports & Wears India",
+    "Force Sports Mumbai",
+    "Force Sports Goregaon",
+    "Force Sports manufacturer",
+    "Force Sports custom jersey",
+    "Force Sports teamwear",
+    "Force Sports bulk order",
+    "Force Sports cricket jersey",
+    "Force Sports football jersey",
+    "Force Sports kabaddi kit",
+    "Force Sports school uniform",
+  ],
   icons: {
     icon: "/brand-logo.png",
     apple: "/brand-logo.png",

@@ -13,13 +13,14 @@ export const BRAND_DETAILS = {
         "Custom athletic jerseys and technical apparel engineered for peak performance and relentless durability.",
     trustedTeamsLabel: "Trusted by 1,000+ Teams",
     aboutIntro:
-        "At Force Sports and Wears India, we don't just make apparel; we engineer performance. Based in the heart of Mumbai, we have spent over 18+ years perfecting the art of sports manufacturing and custom teamwear.",
+        "At Force Sports and Wears India, we don't just make apparel — we engineer performance. From the heart of Mumbai, 18+ years of in-house manufacturing have shaped every custom kit we produce.",
     aboutMission:
-        "From local clubs to international arenas, our mission has always been clear: to provide athletes with high-quality, customized gear that empowers them to push past their limits.",
+        "From local clubs to international arenas, we kit athletes with custom gear built to push past their limits.",
     aboutVision:
-        "Our vision is to position India as the global hub for premium custom sportswear manufacturing, delivering cutting-edge technical fabrics and innovative designs to teams worldwide.",
+        "To make India the global hub for premium custom sportswear — technical fabrics and designs for teams worldwide.",
     established: 2007,
     proprietor: "Mr. Anand Sanghai",
+    proprietorPhoto: "/anand-sanghai.png?v=2",
     headquarters: "Goregaon West, Mumbai",
     location: "Mumbai, India",
     experience: "18+ years",
@@ -46,7 +47,8 @@ export const BRAND_DETAILS = {
     social: {
         instagram: "https://www.instagram.com/forcesports_india?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
         facebook: "https://www.facebook.com/ForceSportsandWearsIndia/",
-        indiamart: "https://www.indiamart.com/forcesportswearindia/"
+        indiamart: "https://www.indiamart.com/forcesportswearindia/",
+        youtube: "https://www.youtube.com/@forcesportsindia"
     },
     manufacturing: {
         type: "Vertically Integrated powerhouse",

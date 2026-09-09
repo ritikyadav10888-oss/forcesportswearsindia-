@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import SEO from '../../components/seo/SEO';
+import { SEO_KEYWORDS } from '../../data/seoKeywords';
 import { Mail, Phone, MapPin, Send, MessageCircle, Upload, X, Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
 import { useSearchParams } from 'next/navigation';
 import { BRAND_DETAILS } from '../../data/brandData';
@@ -94,7 +95,8 @@ const InquiryPage = () => {
         email: '',
         phone: '',
         quantity: prefilledQuantity || '',
-        message: buildPrefilledMessage()
+        message: buildPrefilledMessage(),
+        website_hp: '' // Honeypot field for bot detection
     });
 
     const [image, setImage] = useState<File | null>(null);
@@ -144,6 +146,7 @@ const InquiryPage = () => {
                     quantity: formData.quantity,
                     productType: formData.productType,
                     message: formData.message,
+                    website_hp: formData.website_hp,
                     imageUrl: imageUrl,
                     product: prefilledProduct || null,
                     productCode: prefilledCode || null,
@@ -162,7 +165,7 @@ const InquiryPage = () => {
             setThankYouMsg(THANK_YOU_MESSAGES[Math.floor(Math.random() * THANK_YOU_MESSAGES.length)]);
             setStatus('success');
             setStatusMsg('Thank you! Your inquiry has been received. Our team will contact you shortly.');
-            setFormData({ productType: '', fullName: '', email: '', phone: '', quantity: '', message: '' });
+            setFormData({ productType: '', fullName: '', email: '', phone: '', quantity: '', message: '', website_hp: '' });
             setImage(null);
             setImagePreview(null);
             
@@ -178,6 +181,7 @@ const InquiryPage = () => {
             <SEO 
                 title="Get a Quote | Custom Teamwear Manufacturing"
                 description="Contact Force Sports & Wears India for a custom quote on sports jerseys, uniforms, and athletic gear. Premium quality, best prices, manufactured in Mumbai."
+                keywords={SEO_KEYWORDS.inquiry}
             />
             <section className="bg-slate-900 py-20 px-6 text-center">
                 <motion.h1 initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="text-4xl md:text-5xl font-black text-white uppercase tracking-tighter">Get A Quote</motion.h1>
@@ -373,6 +377,17 @@ const InquiryPage = () => {
                         </div>
 
                         <form onSubmit={handleSubmit} className="space-y-6">
+                            {/* Honeypot field - hidden from humans, filled by spam bots */}
+                            <div style={{ display: 'none', opacity: 0, position: 'absolute', left: '-9999px' }} aria-hidden="true">
+                                <input
+                                    type="text"
+                                    name="website_hp"
+                                    tabIndex={-1}
+                                    autoComplete="off"
+                                    value={formData.website_hp}
+                                    onChange={handleChange}
+                                />
+                            </div>
                             
                             {/* Pre-filled context badge */}
                             {(prefilledProduct || prefilledFabric) && (

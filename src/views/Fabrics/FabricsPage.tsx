@@ -5,6 +5,7 @@ import { Layers, Loader2, ArrowRight, Filter, X, Check, Search } from 'lucide-re
 import Link from 'next/link';
 import { fabricSlug } from '../../utils/fabricMatching';
 import SEO from '../../components/seo/SEO';
+import { SEO_KEYWORDS } from '../../data/seoKeywords';
 import { SPORTEX_FABRICS } from '../../data/sportexFabrics';
 import { getCDNUrl } from '../../utils/cdnUtils';
 
@@ -233,6 +234,7 @@ const FabricsPage = () => {
             <SEO
                 title="Sportex Fabric Library | All Fabrics with GSM"
                 description="Browse Sportex India fabrics with GSM weights for custom sports uniforms."
+                keywords={SEO_KEYWORDS.fabrics}
             />
 
             <section className="bg-slate-900 py-10 md:py-14 px-6 text-center relative overflow-hidden">
