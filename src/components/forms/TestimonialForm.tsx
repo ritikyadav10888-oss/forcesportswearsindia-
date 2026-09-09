@@ -58,9 +58,9 @@ export default function TestimonialForm({ compact = false }: { compact?: boolean
         return (
             <div className={`rounded-3xl border border-emerald-100 bg-emerald-50 text-center ${compact ? 'p-8' : 'p-10'}`}>
                 <CheckCircle2 className="w-12 h-12 text-emerald-600 mx-auto mb-4" />
-                <h3 className="text-xl font-black uppercase tracking-tight text-slate-900 mb-2">Thank You!</h3>
-                <p className="text-slate-600 text-sm">
-                    Thank you for sharing your review with us. We appreciate your feedback!
+                <h3 className="text-xl font-black uppercase tracking-tight text-slate-900 mb-2">We Are Truly Humbled & Grateful!</h3>
+                <p className="text-slate-600 text-sm leading-relaxed max-w-md mx-auto">
+                    Thank you so much for taking the time to share your experience with Force Sports. Your trust and support inspire our team to keep crafting champion-quality gear every day.
                 </p>
             </div>
         );
