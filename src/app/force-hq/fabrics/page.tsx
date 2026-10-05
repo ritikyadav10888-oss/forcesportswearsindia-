@@ -183,7 +183,7 @@ export default function FabricsManager() {
         }
     };
 
-    if (loading) return <div className="flex justify-center p-20"><Loader2 className="w-8 h-8 animate-spin text-cyan-600" /></div>;
+    if (loading) return <div className="flex justify-center p-20"><Loader2 className="w-8 h-8 animate-spin text-brand-600" /></div>;
 
     if (view === 'form') {
         return (
@@ -199,23 +199,23 @@ export default function FabricsManager() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="space-y-2">
                             <label className="text-xs font-black uppercase tracking-widest text-slate-400">Fabric Name *</label>
-                            <input required type="text" className="w-full p-4 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-cyan-500 text-slate-900" value={formData.name || ''} onChange={e => setFormData({...formData, name: e.target.value})} placeholder="e.g., Polyester" />
+                            <input required type="text" className="w-full p-4 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-brand-500 text-slate-900" value={formData.name || ''} onChange={e => setFormData({...formData, name: e.target.value})} placeholder="e.g., Polyester" />
                         </div>
                         <div className="space-y-2">
                             <label className="text-xs font-black uppercase tracking-widest text-slate-400">GSM *</label>
-                            <input required type="text" className="w-full p-4 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-cyan-500 text-slate-900" value={formData.gsm || ''} onChange={e => setFormData({...formData, gsm: e.target.value})} placeholder="e.g., 180" />
+                            <input required type="text" className="w-full p-4 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-brand-500 text-slate-900" value={formData.gsm || ''} onChange={e => setFormData({...formData, gsm: e.target.value})} placeholder="e.g., 180" />
                         </div>
                     </div>
 
                     <div className="space-y-6">
                         <div className="space-y-2">
                             <label className="text-xs font-black uppercase tracking-widest text-slate-400">Short Description *</label>
-                            <textarea required className="w-full p-4 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-cyan-500 text-slate-900 h-24" value={formData.desc || ''} onChange={e => setFormData({...formData, desc: e.target.value})} placeholder="Brief overview..." />
+                            <textarea required className="w-full p-4 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-brand-500 text-slate-900 h-24" value={formData.desc || ''} onChange={e => setFormData({...formData, desc: e.target.value})} placeholder="Brief overview..." />
                         </div>
                         <div className="space-y-2 relative">
                             <label className="text-xs font-black uppercase tracking-widest text-slate-400">Best Uses *</label>
                             <div className="relative group/uses">
-                                <div className="w-full min-h-[56px] p-4 bg-slate-50 border border-slate-200 rounded-xl focus-within:border-cyan-500 text-slate-900 cursor-pointer flex flex-wrap gap-2 items-center">
+                                <div className="w-full min-h-[56px] p-4 bg-slate-50 border border-slate-200 rounded-xl focus-within:border-brand-500 text-slate-900 cursor-pointer flex flex-wrap gap-2 items-center">
                                     {formData.use ? formData.use.split(', ').filter(Boolean).map(usage => (
                                         <span key={usage} className="bg-amber-100 text-amber-800 px-2 py-1 rounded text-xs font-bold flex items-center gap-1">
                                             {usage}
@@ -257,11 +257,11 @@ export default function FabricsManager() {
                         <div className="space-y-2 md:col-span-2 relative">
                             <label className="text-xs font-black uppercase tracking-widest text-slate-400">Supported Printing Methods</label>
                             <div className="relative group">
-                                <div className="w-full min-h-[56px] p-4 bg-slate-50 border border-slate-200 rounded-xl focus-within:border-cyan-500 text-slate-900 cursor-pointer flex flex-wrap gap-2 items-center">
+                                <div className="w-full min-h-[56px] p-4 bg-slate-50 border border-slate-200 rounded-xl focus-within:border-brand-500 text-slate-900 cursor-pointer flex flex-wrap gap-2 items-center">
                                     {formData.printing ? formData.printing.split(', ').filter(Boolean).map(method => (
-                                        <span key={method} className="bg-cyan-100 text-cyan-800 px-2 py-1 rounded text-xs font-bold flex items-center gap-1">
+                                        <span key={method} className="bg-brand-100 text-brand-800 px-2 py-1 rounded text-xs font-bold flex items-center gap-1">
                                             {method}
-                                            <X className="w-3 h-3 hover:text-cyan-900 cursor-pointer" onClick={(e) => {
+                                            <X className="w-3 h-3 hover:text-brand-900 cursor-pointer" onClick={(e) => {
                                                 e.stopPropagation();
                                                 const current = formData.printing ? formData.printing.split(', ').filter(Boolean) : [];
                                                 setFormData({ ...formData, printing: current.filter(m => m !== method).join(', ') });
@@ -287,7 +287,7 @@ export default function FabricsManager() {
                                                         }
                                                         setFormData({ ...formData, printing: next.join(', ') });
                                                     }}
-                                                    className="w-4 h-4 text-cyan-500 rounded border-slate-300 focus:ring-cyan-500"
+                                                    className="w-4 h-4 text-brand-500 rounded border-slate-300 focus:ring-brand-500"
                                                 />
                                                 <span className="text-sm font-bold text-slate-700">{method}</span>
                                             </label>
@@ -344,7 +344,7 @@ export default function FabricsManager() {
             <div>
                 <div className="flex justify-between items-center mb-3">
                     <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Filter By Best Use</p>
-                    {selectedUse && <button onClick={() => setSelectedUse(null)} className="text-[10px] font-black uppercase text-cyan-600 hover:text-cyan-700">Clear</button>}
+                    {selectedUse && <button onClick={() => setSelectedUse(null)} className="text-[10px] font-black uppercase text-brand-600 hover:text-brand-700">Clear</button>}
                 </div>
                 <div className="flex flex-wrap gap-2">
                     {BEST_USES.map(use => {
@@ -364,14 +364,14 @@ export default function FabricsManager() {
             <div>
                 <div className="flex justify-between items-center mb-3">
                     <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Filter By Printing Method</p>
-                    {selectedPrinting && <button onClick={() => setSelectedPrinting(null)} className="text-[10px] font-black uppercase text-cyan-600 hover:text-cyan-700">Clear</button>}
+                    {selectedPrinting && <button onClick={() => setSelectedPrinting(null)} className="text-[10px] font-black uppercase text-brand-600 hover:text-brand-700">Clear</button>}
                 </div>
                 <div className="flex flex-wrap gap-2">
                     {PRINTING_METHODS.map(method => {
                         const count = fabrics.filter(f => (f.printing || '').includes(method) && (!selectedUse || (f.use || '').includes(selectedUse))).length;
                         const isSelected = selectedPrinting === method;
                         return (
-                            <button key={method} onClick={() => setSelectedPrinting(isSelected ? null : method)} className={`flex items-center gap-2 px-4 py-2 rounded-xl border transition-all hover:scale-105 ${isSelected ? 'ring-2 ring-cyan-500 shadow-md bg-cyan-50 border-cyan-100 text-cyan-700' : 'bg-slate-50 border-slate-200 text-slate-700 opacity-80 hover:opacity-100'}`}>
+                            <button key={method} onClick={() => setSelectedPrinting(isSelected ? null : method)} className={`flex items-center gap-2 px-4 py-2 rounded-xl border transition-all hover:scale-105 ${isSelected ? 'ring-2 ring-brand-500 shadow-md bg-brand-50 border-brand-100 text-brand-700' : 'bg-slate-50 border-slate-200 text-slate-700 opacity-80 hover:opacity-100'}`}>
                                 <span className="text-xs font-black uppercase tracking-widest">{method}</span>
                                 <span className="bg-white text-slate-900 text-[10px] px-2 py-0.5 rounded-full font-bold">{count}</span>
                             </button>
@@ -409,7 +409,7 @@ export default function FabricsManager() {
                                     </div>
                                     <p className="text-xs text-slate-500 font-medium mb-3">{fab.desc}</p>
                                     <p className="text-[10px] uppercase tracking-widest text-slate-400 font-bold border-t border-slate-200 pt-3">
-                                        <span className="text-cyan-600">Uses:</span> {fab.use}
+                                        <span className="text-brand-600">Uses:</span> {fab.use}
                                     </p>
                                 </div>
                             </div>

@@ -107,7 +107,7 @@ const ProductPage = ({ initialSport }: ProductPageProps = {}) => {
             {/* Header */}
             <section className="bg-slate-900 py-10 px-6 text-center relative overflow-hidden">
                 <div className="absolute inset-0 opacity-10">
-                    <div className="absolute top-0 left-0 w-64 h-64 bg-cyan-500 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2"></div>
+                    <div className="absolute top-0 left-0 w-64 h-64 bg-brand-500 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2"></div>
                     <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-600 rounded-full blur-[150px] translate-x-1/2 translate-y-1/2"></div>
                 </div>
                 <motion.h1
@@ -115,7 +115,7 @@ const ProductPage = ({ initialSport }: ProductPageProps = {}) => {
                     animate={{ opacity: 1, y: 0 }}
                     className="text-3xl md:text-5xl font-black text-white uppercase tracking-tighter relative z-10"
                 >
-                    Gear Up <span className="text-cyan-500">Pro</span>
+                    Gear Up <span className="text-brand-500">Pro</span>
                 </motion.h1>
                 <p className="text-slate-400 mt-4 max-w-2xl mx-auto uppercase tracking-[0.3em] text-[10px] font-black relative z-10">
                     Premium Sports Apparel & Custom Solutions
@@ -142,7 +142,7 @@ const ProductPage = ({ initialSport }: ProductPageProps = {}) => {
                     >
                                 <div className="lg:hidden flex items-center justify-between mb-8">
                                     <h3 className="text-sm font-black text-slate-900 uppercase tracking-widest flex items-center gap-2">
-                                        <Filter size={18} className="text-cyan-600" /> Filters
+                                        <Filter size={18} className="text-brand-600" /> Filters
                                     </h3>
                                     <button 
                                         onClick={() => setIsMobileFiltersOpen(false)}
@@ -160,7 +160,7 @@ const ProductPage = ({ initialSport }: ProductPageProps = {}) => {
                                     <div className="space-y-6">
                                         <div>
                                             <h3 className="text-[11px] font-black text-slate-400 uppercase tracking-widest mb-6 flex items-center gap-2">
-                                                <Filter size={14} className="text-cyan-600" /> Filters
+                                                <Filter size={14} className="text-brand-600" /> Filters
                                             </h3>
 
                                             {/* Search Bar */}
@@ -170,7 +170,7 @@ const ProductPage = ({ initialSport }: ProductPageProps = {}) => {
                                                     placeholder="Search products or codes..."
                                                     value={searchQuery}
                                                     onChange={(e) => setSearchQuery(e.target.value)}
-                                                    className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl text-xs font-bold focus:ring-2 focus:ring-cyan-500 outline-none text-slate-900 placeholder:text-slate-400"
+                                                    className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl text-xs font-bold focus:ring-2 focus:ring-brand-500 outline-none text-slate-900 placeholder:text-slate-400"
                                                 />
                                             </div>
 
@@ -190,7 +190,7 @@ const ProductPage = ({ initialSport }: ProductPageProps = {}) => {
                                                                     );
                                                                 }}
                                                             />
-                                                            <div className={`w-4 h-4 rounded border flex items-center justify-center transition-all ${selectedCategories.includes(cat) ? 'bg-cyan-600 border-cyan-600' : 'bg-white border-slate-300 group-hover:border-cyan-400'}`}>
+                                                            <div className={`w-4 h-4 rounded border flex items-center justify-center transition-all ${selectedCategories.includes(cat) ? 'bg-brand-600 border-brand-600' : 'bg-white border-slate-300 group-hover:border-brand-400'}`}>
                                                                 {selectedCategories.includes(cat) && <Check size={10} className="text-white" />}
                                                             </div>
                                                             <span className={`text-[10px] uppercase font-black tracking-widest transition-colors ${selectedCategories.includes(cat) ? 'text-slate-900' : 'text-slate-500 group-hover:text-slate-800'}`}>
@@ -218,7 +218,7 @@ const ProductPage = ({ initialSport }: ProductPageProps = {}) => {
                                                                         );
                                                                     }}
                                                                 />
-                                                                <div className={`w-4 h-4 rounded border flex items-center justify-center transition-all ${selectedSports.includes(sport) ? 'bg-cyan-600 border-cyan-600' : 'bg-white border-slate-300 group-hover:border-cyan-400'}`}>
+                                                                <div className={`w-4 h-4 rounded border flex items-center justify-center transition-all ${selectedSports.includes(sport) ? 'bg-brand-600 border-brand-600' : 'bg-white border-slate-300 group-hover:border-brand-400'}`}>
                                                                     {selectedSports.includes(sport) && <Check size={10} className="text-white" />}
                                                                 </div>
                                                                 <span className={`text-[10px] uppercase font-black tracking-widest transition-colors ${selectedSports.includes(sport) ? 'text-slate-900' : 'text-slate-500 group-hover:text-slate-800'}`}>
@@ -249,7 +249,7 @@ const ProductPage = ({ initialSport }: ProductPageProps = {}) => {
                                                                                         );
                                                                                     }}
                                                                                 />
-                                                                                <div className={`w-3 h-3 rounded-[3px] border flex items-center justify-center transition-all ${selectedUsages.includes(usage) ? 'bg-cyan-600 border-cyan-600' : 'bg-white border-slate-300 group-hover:border-cyan-400'}`}>
+                                                                                <div className={`w-3 h-3 rounded-[3px] border flex items-center justify-center transition-all ${selectedUsages.includes(usage) ? 'bg-brand-600 border-brand-600' : 'bg-white border-slate-300 group-hover:border-brand-400'}`}>
                                                                                     {selectedUsages.includes(usage) && <Check size={8} className="text-white" />}
                                                                                 </div>
                                                                                 <span className={`text-[9px] uppercase font-black tracking-widest transition-colors ${selectedUsages.includes(usage) ? 'text-slate-900' : 'text-slate-400 group-hover:text-slate-600'}`}>
@@ -266,13 +266,13 @@ const ProductPage = ({ initialSport }: ProductPageProps = {}) => {
                                             </div>
                                         </div>
 
-                                        <div className="p-8 bg-cyan-600 rounded-[2.5rem] text-white relative overflow-hidden group mb-6">
+                                        <div className="p-8 bg-brand-600 rounded-[2.5rem] text-white relative overflow-hidden group mb-6">
                                             <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-700"></div>
                                             <h4 className="text-xl font-black uppercase tracking-tighter mb-4 relative z-10">Custom Design?</h4>
-                                            <p className="text-cyan-100 text-[10px] font-bold uppercase tracking-wider leading-relaxed mb-6 relative z-10 opacity-80">
+                                            <p className="text-brand-100 text-[10px] font-bold uppercase tracking-wider leading-relaxed mb-6 relative z-10 opacity-80">
                                                 Create your unique team identity.
                                             </p>
-                                            <Link href="/inquiry" onClick={() => setIsMobileFiltersOpen(false)} className="inline-block px-6 py-3 bg-white text-cyan-600 rounded-xl text-[9px] font-black uppercase tracking-widest relative z-10 hover:scale-105 transition-transform text-center font-black">
+                                            <Link href="/inquiry" onClick={() => setIsMobileFiltersOpen(false)} className="inline-block px-6 py-3 bg-white text-brand-600 rounded-xl text-[9px] font-black uppercase tracking-widest relative z-10 hover:scale-105 transition-transform text-center font-black">
                                                 Start Now
                                             </Link>
                                         </div>
@@ -301,7 +301,7 @@ const ProductPage = ({ initialSport }: ProductPageProps = {}) => {
                                 onClick={() => setIsMobileFiltersOpen(true)}
                                 className="w-full py-5 bg-white rounded-2xl border border-slate-100 shadow-sm shadow-slate-200/50 flex items-center justify-center gap-3 text-slate-900 font-black uppercase tracking-widest text-[11px] active:scale-95 transition-all"
                             >
-                                <Filter size={18} className="text-cyan-600" />
+                                <Filter size={18} className="text-brand-600" />
                                 Refine Your Gear
                             </button>
                         </div>
@@ -312,7 +312,7 @@ const ProductPage = ({ initialSport }: ProductPageProps = {}) => {
 
                         {loading && (
                             <div className="flex items-center justify-center gap-3 py-16 text-slate-400">
-                                <Loader2 className="animate-spin text-cyan-500" size={24} />
+                                <Loader2 className="animate-spin text-brand-500" size={24} />
                                 <span className="text-[10px] font-black uppercase tracking-widest">Loading catalog…</span>
                             </div>
                         )}
@@ -354,7 +354,7 @@ const ProductPage = ({ initialSport }: ProductPageProps = {}) => {
                                         key={(product as { firestoreId?: string }).firestoreId || product.id}
                                         className="bg-white rounded-[2rem] overflow-hidden shadow-sm hover:shadow-2xl hover:shadow-slate-200 transition-all border border-slate-100 group flex flex-col h-full"
                                     >
-                                        <div className="relative aspect-[4/5] bg-[radial-gradient(circle_at_top,rgba(6,182,212,0.08),transparent_60%)] flex items-center justify-center overflow-hidden p-5 sm:p-6 group/img">
+                                        <div className="relative aspect-[4/5] bg-[radial-gradient(circle_at_top,rgba(241,90,36,0.08),transparent_60%)] flex items-center justify-center overflow-hidden p-5 sm:p-6 group/img">
                                             <div className="absolute inset-0 bg-gradient-to-b from-white via-white/40 to-slate-50" />
                                             {product.image ? (
                                                 <img
@@ -378,7 +378,7 @@ const ProductPage = ({ initialSport }: ProductPageProps = {}) => {
                                             <div className="absolute top-4 left-4 sm:top-6 sm:left-6 flex flex-col gap-2 z-20">
                                                 <div className="flex gap-2">
                                                     {product.sport && !['Other', 'Activity', 'General', 'All'].includes(product.sport) && (
-                                                        <div className="bg-cyan-500 text-white px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest shadow-xl shadow-cyan-900/20">
+                                                        <div className="bg-brand-500 text-white px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest shadow-xl shadow-brand-900/20">
                                                             {product.sport}
                                                         </div>
                                                     )}
@@ -417,7 +417,7 @@ const ProductPage = ({ initialSport }: ProductPageProps = {}) => {
                                                 </p>
                                                 <div className="mt-2 flex flex-wrap gap-2">
                                                     {product.brand && (
-                                                        <span className="text-[9px] font-black text-cyan-700 uppercase tracking-widest px-2 py-0.5 bg-cyan-50 rounded-md">
+                                                        <span className="text-[9px] font-black text-brand-700 uppercase tracking-widest px-2 py-0.5 bg-brand-50 rounded-md">
                                                             {product.brand}
                                                         </span>
                                                     )}
@@ -439,7 +439,7 @@ const ProductPage = ({ initialSport }: ProductPageProps = {}) => {
                                             <div className="grid grid-cols-2 gap-3 md:gap-4 mt-auto">
                                                 <button
                                                     onClick={() => setCustomizingProduct(product)}
-                                                    className="py-4 bg-slate-900 text-white text-[11px] font-black uppercase tracking-widest rounded-2xl hover:bg-cyan-600 transition-all"
+                                                    className="py-4 bg-slate-900 text-white text-[11px] font-black uppercase tracking-widest rounded-2xl hover:bg-brand-600 transition-all"
                                                 >
                                                     Customize
                                                 </button>

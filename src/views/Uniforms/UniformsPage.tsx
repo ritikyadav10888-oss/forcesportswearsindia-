@@ -74,7 +74,7 @@ const UniformsPage = () => {
             {/* Header */}
             <section className="bg-slate-900 py-20 px-6 text-center relative overflow-hidden">
                 <div className="absolute inset-0 opacity-10">
-                    <div className="absolute top-0 left-0 w-64 h-64 bg-cyan-500 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2"></div>
+                    <div className="absolute top-0 left-0 w-64 h-64 bg-brand-500 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2"></div>
                     <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-600 rounded-full blur-[150px] translate-x-1/2 translate-y-1/2"></div>
                 </div>
                 <motion.h1
@@ -82,7 +82,7 @@ const UniformsPage = () => {
                     animate={{ opacity: 1, y: 0 }}
                     className="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter relative z-10"
                 >
-                    Professional <span className="text-cyan-500">Uniforms</span>
+                    Professional <span className="text-brand-500">Uniforms</span>
                 </motion.h1>
                 <p className="text-slate-400 mt-6 max-w-2xl mx-auto uppercase tracking-[0.3em] text-[10px] font-black relative z-10">
                     Schools • Delivery • Corporates • Hospitality
@@ -109,7 +109,7 @@ const UniformsPage = () => {
                     >
                                 <div className="lg:hidden flex items-center justify-between mb-8">
                                     <h3 className="text-sm font-black text-slate-900 uppercase tracking-widest flex items-center gap-2">
-                                        <Filter size={18} className="text-cyan-600" /> Filters
+                                        <Filter size={18} className="text-brand-600" /> Filters
                                     </h3>
                                     <button 
                                         onClick={() => setIsMobileFiltersOpen(false)}
@@ -123,7 +123,7 @@ const UniformsPage = () => {
                                     <div className="lg:sticky lg:top-32 space-y-6">
                                         <div>
                                             <h3 className="text-[11px] font-black text-slate-400 uppercase tracking-widest mb-6 flex items-center gap-2">
-                                                <Briefcase size={14} className="text-cyan-600" /> Industry Needs
+                                                <Briefcase size={14} className="text-brand-600" /> Industry Needs
                                             </h3>
 
                                             {/* Categories Filter */}
@@ -153,7 +153,7 @@ const UniformsPage = () => {
                                                                             });
                                                                         }}
                                                                     />
-                                                                    <div className={`w-4 h-4 rounded border flex items-center justify-center transition-all ${isSelected ? 'bg-cyan-600 border-cyan-600' : 'bg-white border-slate-300 group-hover:border-cyan-400'}`}>
+                                                                    <div className={`w-4 h-4 rounded border flex items-center justify-center transition-all ${isSelected ? 'bg-brand-600 border-brand-600' : 'bg-white border-slate-300 group-hover:border-brand-400'}`}>
                                                                         {isSelected && <Check size={10} className="text-white" />}
                                                                     </div>
                                                                     <span className={`text-[10px] uppercase font-black tracking-widest transition-colors ${isSelected ? 'text-slate-900' : 'text-slate-500 group-hover:text-slate-800'}`}>
@@ -193,14 +193,14 @@ const UniformsPage = () => {
                                             </div>
                                         </div>
 
-                                        <div className="p-8 bg-cyan-600 rounded-[2rem] text-white relative overflow-hidden group mb-6">
+                                        <div className="p-8 bg-brand-600 rounded-[2rem] text-white relative overflow-hidden group mb-6">
                                             <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-700"></div>
                                             <h4 className="text-xl font-black uppercase tracking-tighter mb-4 relative z-10">Bulk Uniforms?</h4>
-                                            <p className="text-cyan-100 text-[10px] font-bold uppercase tracking-wider leading-relaxed mb-6 relative z-10 opacity-80">
+                                            <p className="text-brand-100 text-[10px] font-bold uppercase tracking-wider leading-relaxed mb-6 relative z-10 opacity-80">
                                                 Get specialized quotes for bulk orders.
                                             </p>
                                             <div className="flex flex-col gap-3">
-                                                <Link href="/inquiry" onClick={() => setIsMobileFiltersOpen(false)} className="inline-block px-6 py-3 bg-white text-cyan-600 rounded-xl text-[9px] font-black uppercase tracking-widest relative z-10 hover:scale-105 transition-transform text-center font-black">
+                                                <Link href="/inquiry" onClick={() => setIsMobileFiltersOpen(false)} className="inline-block px-6 py-3 bg-white text-brand-600 rounded-xl text-[9px] font-black uppercase tracking-widest relative z-10 hover:scale-105 transition-transform text-center font-black">
                                                     Email Inquiry
                                                 </Link>
                                             </div>
@@ -230,7 +230,7 @@ const UniformsPage = () => {
                                 onClick={() => setIsMobileFiltersOpen(true)}
                                 className="w-full py-5 bg-white rounded-2xl border border-slate-100 shadow-sm shadow-slate-200/50 flex items-center justify-center gap-3 text-slate-900 font-black uppercase tracking-widest text-[11px] active:scale-95 transition-all"
                             >
-                                <Filter size={18} className="text-cyan-600" />
+                                <Filter size={18} className="text-brand-600" />
                                 Customise Your Search
                             </button>
                         </div>
@@ -293,7 +293,7 @@ const UniformsPage = () => {
                                                         e.stopPropagation();
                                                         router.push(`/uniforms/${uniform.id}`);
                                                     }}
-                                                    className="flex-1 py-3 md:py-4 bg-slate-50 text-slate-900 text-[9px] md:text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-cyan-600 hover:text-white transition-all border border-slate-100 text-center"
+                                                    className="flex-1 py-3 md:py-4 bg-slate-50 text-slate-900 text-[9px] md:text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-brand-600 hover:text-white transition-all border border-slate-100 text-center"
                                                 >
                                                     View Specs
                                                 </button>

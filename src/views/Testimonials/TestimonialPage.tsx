@@ -16,7 +16,7 @@ export default function TestimonialPage() {
             />
             <section className="bg-slate-900 py-12 px-6 text-center">
                 <h1 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tighter">
-                    Write a <span className="text-cyan-500">testimonial</span>
+                    Write a <span className="text-brand-500">testimonial</span>
                 </h1>
                 <p className="text-slate-400 mt-4 max-w-xl mx-auto text-sm">
                     Tell teams across India how your Force kits performed. We publish reviews after a quick check.
@@ -26,7 +26,7 @@ export default function TestimonialPage() {
                 <TestimonialForm />
                 <p className="text-center text-slate-400 text-sm mt-8">
                     Looking for bulk pricing instead?{' '}
-                    <Link href="/inquiry" className="text-cyan-600 font-bold hover:underline">Get a quote</Link>
+                    <Link href="/inquiry" className="text-brand-600 font-bold hover:underline">Get a quote</Link>
                 </p>
             </div>
         </div>

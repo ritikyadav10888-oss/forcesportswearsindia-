@@ -321,7 +321,7 @@ export default function UniformsManager() {
         setFormData({ ...formData, specs: newSpecs });
     };
 
-    if (loading) return <div className="flex justify-center p-20"><Loader2 className="w-8 h-8 animate-spin text-cyan-600" /></div>;
+    if (loading) return <div className="flex justify-center p-20"><Loader2 className="w-8 h-8 animate-spin text-brand-600" /></div>;
 
     if (view === 'form') {
         return (
@@ -337,17 +337,17 @@ export default function UniformsManager() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="space-y-2">
                             <label className="text-xs font-black uppercase tracking-widest text-slate-400">Title *</label>
-                            <input required type="text" className="w-full p-4 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-cyan-500 text-slate-900" value={formData.title || ''} onChange={e => setFormData({...formData, title: e.target.value})} placeholder="e.g., Corporate Polo" />
+                            <input required type="text" className="w-full p-4 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-brand-500 text-slate-900" value={formData.title || ''} onChange={e => setFormData({...formData, title: e.target.value})} placeholder="e.g., Corporate Polo" />
                         </div>
                         <div className="space-y-2">
                             <label className="text-xs font-black uppercase tracking-widest text-slate-400">Category *</label>
-                            <select className="w-full p-4 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-cyan-500 text-slate-900" value={formData.category} onChange={e => setFormData({...formData, category: e.target.value})}>
+                            <select className="w-full p-4 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-brand-500 text-slate-900" value={formData.category} onChange={e => setFormData({...formData, category: e.target.value})}>
                                 {CATEGORIES.map(c => <option key={c} value={c}>{c}</option>)}
                             </select>
                         </div>
                         <div className="space-y-2">
                             <label className="text-xs font-black uppercase tracking-widest text-slate-400">Subcategory *</label>
-                            <select className="w-full p-4 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-cyan-500 text-slate-900" value={formData.subcategory} onChange={e => setFormData({...formData, subcategory: e.target.value})}>
+                            <select className="w-full p-4 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-brand-500 text-slate-900" value={formData.subcategory} onChange={e => setFormData({...formData, subcategory: e.target.value})}>
                                 {SUBCATEGORIES.map(s => <option key={s} value={s}>{s}</option>)}
                             </select>
                         </div>
@@ -356,11 +356,11 @@ export default function UniformsManager() {
                     <div className="space-y-6">
                         <div className="space-y-2">
                             <label className="text-xs font-black uppercase tracking-widest text-slate-400">Short Description *</label>
-                            <textarea required className="w-full p-4 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-cyan-500 text-slate-900 h-24" value={formData.description || ''} onChange={e => setFormData({...formData, description: e.target.value})} placeholder="Brief overview..." />
+                            <textarea required className="w-full p-4 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-brand-500 text-slate-900 h-24" value={formData.description || ''} onChange={e => setFormData({...formData, description: e.target.value})} placeholder="Brief overview..." />
                         </div>
                         <div className="space-y-2">
                             <label className="text-xs font-black uppercase tracking-widest text-slate-400">Long Description</label>
-                            <textarea className="w-full p-4 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-cyan-500 text-slate-900 h-32" value={formData.longDescription || ''} onChange={e => setFormData({...formData, longDescription: e.target.value})} placeholder="Detailed explanation..." />
+                            <textarea className="w-full p-4 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-brand-500 text-slate-900 h-32" value={formData.longDescription || ''} onChange={e => setFormData({...formData, longDescription: e.target.value})} placeholder="Detailed explanation..." />
                         </div>
                     </div>
 
@@ -372,7 +372,7 @@ export default function UniformsManager() {
                             {/* Main Image */}
                             <div className="space-y-2">
                                 <label className="text-xs font-black uppercase tracking-widest text-slate-400">Main Front Image *</label>
-                                <div onClick={() => fileInputRef.current?.click()} className="border-2 border-dashed border-slate-300 rounded-2xl p-6 text-center cursor-pointer hover:border-cyan-500 hover:bg-cyan-50 transition-all flex flex-col items-center justify-center min-h-[150px]">
+                                <div onClick={() => fileInputRef.current?.click()} className="border-2 border-dashed border-slate-300 rounded-2xl p-6 text-center cursor-pointer hover:border-brand-500 hover:bg-brand-50 transition-all flex flex-col items-center justify-center min-h-[150px]">
                                     {imagePreview ? (
                                         <img src={imagePreview} alt="Preview" className="h-32 object-contain rounded-lg" />
                                     ) : (
@@ -385,7 +385,7 @@ export default function UniformsManager() {
                             {/* Back Image */}
                             <div className="space-y-2">
                                 <label className="text-xs font-black uppercase tracking-widest text-slate-400">Back Image (Optional)</label>
-                                <div onClick={() => backFileInputRef.current?.click()} className="border-2 border-dashed border-slate-300 rounded-2xl p-6 text-center cursor-pointer hover:border-cyan-500 hover:bg-cyan-50 transition-all flex flex-col items-center justify-center min-h-[150px]">
+                                <div onClick={() => backFileInputRef.current?.click()} className="border-2 border-dashed border-slate-300 rounded-2xl p-6 text-center cursor-pointer hover:border-brand-500 hover:bg-brand-50 transition-all flex flex-col items-center justify-center min-h-[150px]">
                                     {imageBackPreview ? (
                                         <img src={imageBackPreview} alt="Back Preview" className="h-32 object-contain rounded-lg" />
                                     ) : (
@@ -400,7 +400,7 @@ export default function UniformsManager() {
                         <div className="space-y-2">
                             <div className="flex justify-between items-center">
                                 <label className="text-xs font-black uppercase tracking-widest text-slate-400">Gallery Images (Optional)</label>
-                                <button type="button" onClick={() => galleryInputRef.current?.click()} className="text-cyan-600 hover:text-cyan-700 text-xs font-bold uppercase flex items-center gap-1">
+                                <button type="button" onClick={() => galleryInputRef.current?.click()} className="text-brand-600 hover:text-brand-700 text-xs font-bold uppercase flex items-center gap-1">
                                     <Plus className="w-3 h-3" /> Add Photos
                                 </button>
                                 <input type="file" ref={galleryInputRef} onChange={handleGalleryChange} accept="image/*" multiple className="hidden" />
@@ -415,14 +415,14 @@ export default function UniformsManager() {
                                                 <X className="w-3 h-3" />
                                             </button>
                                             <div className="flex gap-1 p-1 bg-slate-50 border-t border-slate-200">
-                                                <button type="button" onClick={() => setGalleryAsFront(idx)} className="flex-1 py-1 px-1 bg-white hover:bg-cyan-50 text-[9px] font-black uppercase text-cyan-700 border border-slate-200 rounded text-center transition-colors">Set Front</button>
+                                                <button type="button" onClick={() => setGalleryAsFront(idx)} className="flex-1 py-1 px-1 bg-white hover:bg-brand-50 text-[9px] font-black uppercase text-brand-700 border border-slate-200 rounded text-center transition-colors">Set Front</button>
                                                 <button type="button" onClick={() => setGalleryAsBack(idx)} className="flex-1 py-1 px-1 bg-white hover:bg-slate-100 text-[9px] font-black uppercase text-slate-700 border border-slate-200 rounded text-center transition-colors">Set Back</button>
                                             </div>
                                         </div>
                                     ))}
                                 </div>
                             ) : (
-                                <div onClick={() => galleryInputRef.current?.click()} className="border-2 border-dashed border-slate-300 rounded-2xl p-6 text-center cursor-pointer hover:border-cyan-500 hover:bg-cyan-50 transition-all flex flex-col items-center justify-center">
+                                <div onClick={() => galleryInputRef.current?.click()} className="border-2 border-dashed border-slate-300 rounded-2xl p-6 text-center cursor-pointer hover:border-brand-500 hover:bg-brand-50 transition-all flex flex-col items-center justify-center">
                                     <ImageIcon className="w-8 h-8 text-slate-300 mb-2" />
                                     <p className="text-xs font-bold text-slate-500">Click to upload multiple gallery images</p>
                                 </div>
@@ -436,7 +436,7 @@ export default function UniformsManager() {
                         <div className="space-y-4">
                             <div className="flex justify-between items-center">
                                 <label className="text-xs font-black uppercase tracking-widest text-slate-400">Fabric Materials</label>
-                                <button type="button" onClick={addFabric} className="text-cyan-600 hover:text-cyan-700 text-xs font-bold uppercase flex items-center gap-1">
+                                <button type="button" onClick={addFabric} className="text-brand-600 hover:text-brand-700 text-xs font-bold uppercase flex items-center gap-1">
                                     <Plus className="w-3 h-3" /> Add Fabric
                                 </button>
                             </div>
@@ -445,7 +445,7 @@ export default function UniformsManager() {
                                     <select
                                         value={fabric}
                                         onChange={(e) => handleFabricChange(index, e.target.value)}
-                                        className="flex-1 p-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-cyan-500 font-medium text-slate-900 text-sm"
+                                        className="flex-1 p-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-brand-500 font-medium text-slate-900 text-sm"
                                     >
                                         <option value="">Select Fabric...</option>
                                         {availableFabrics.map(f => <option key={f} value={f}>{f}</option>)}
@@ -460,13 +460,13 @@ export default function UniformsManager() {
                         <div className="space-y-4">
                             <div className="flex justify-between items-center">
                                 <label className="text-xs font-black uppercase tracking-widest text-slate-400">Available GSM Options</label>
-                                <button type="button" onClick={addGsm} className="text-cyan-600 hover:text-cyan-700 text-xs font-bold uppercase flex items-center gap-1">
+                                <button type="button" onClick={addGsm} className="text-brand-600 hover:text-brand-700 text-xs font-bold uppercase flex items-center gap-1">
                                     <Plus className="w-3 h-3" /> Add GSM
                                 </button>
                             </div>
                             {(formData.gsms || []).map((gsm, idx) => (
                                 <div key={idx} className="flex gap-2">
-                                    <select className="flex-1 p-3 bg-slate-50 border border-slate-200 rounded-lg outline-none focus:border-cyan-500 text-slate-900 text-sm" value={gsm} onChange={e => handleGsmChange(idx, e.target.value)}>
+                                    <select className="flex-1 p-3 bg-slate-50 border border-slate-200 rounded-lg outline-none focus:border-brand-500 text-slate-900 text-sm" value={gsm} onChange={e => handleGsmChange(idx, e.target.value)}>
                                         <option value="">Select GSM...</option>
                                         {COMMON_GSMS.map(g => <option key={g} value={g}>{g} GSM</option>)}
                                     </select>
@@ -480,11 +480,11 @@ export default function UniformsManager() {
                         <div className="space-y-4">
                             <div className="flex justify-between items-center">
                                 <label className="text-xs font-black uppercase tracking-widest text-slate-400">Features List</label>
-                                <button type="button" onClick={addFeature} className="text-cyan-600 hover:text-cyan-700 text-xs font-bold uppercase flex items-center gap-1"><Plus className="w-3 h-3" /> Add Feature</button>
+                                <button type="button" onClick={addFeature} className="text-brand-600 hover:text-brand-700 text-xs font-bold uppercase flex items-center gap-1"><Plus className="w-3 h-3" /> Add Feature</button>
                             </div>
                             {(formData.features || []).map((feat, idx) => (
                                 <div key={idx} className="flex gap-2">
-                                    <input type="text" className="flex-1 p-3 bg-slate-50 border border-slate-200 rounded-lg outline-none focus:border-cyan-500 text-slate-900 text-sm" value={feat} onChange={e => handleFeatureChange(idx, e.target.value)} />
+                                    <input type="text" className="flex-1 p-3 bg-slate-50 border border-slate-200 rounded-lg outline-none focus:border-brand-500 text-slate-900 text-sm" value={feat} onChange={e => handleFeatureChange(idx, e.target.value)} />
                                     <button type="button" onClick={() => removeFeature(idx)} className="p-3 text-red-400 hover:bg-red-50 rounded-lg"><X className="w-4 h-4" /></button>
                                 </div>
                             ))}
@@ -493,12 +493,12 @@ export default function UniformsManager() {
                         <div className="space-y-4">
                             <div className="flex justify-between items-center">
                                 <label className="text-xs font-black uppercase tracking-widest text-slate-400">Specifications</label>
-                                <button type="button" onClick={addSpec} className="text-cyan-600 hover:text-cyan-700 text-xs font-bold uppercase flex items-center gap-1"><Plus className="w-3 h-3" /> Add Spec</button>
+                                <button type="button" onClick={addSpec} className="text-brand-600 hover:text-brand-700 text-xs font-bold uppercase flex items-center gap-1"><Plus className="w-3 h-3" /> Add Spec</button>
                             </div>
                             {Object.entries(formData.specs || {}).map(([key, val], idx) => (
                                 <div key={idx} className="flex gap-2">
-                                    <input type="text" className="w-1/3 p-3 bg-slate-50 border border-slate-200 rounded-lg outline-none focus:border-cyan-500 text-slate-900 text-sm font-bold" value={key} onChange={e => handleSpecChange(key, e.target.value, val)} />
-                                    <input type="text" className="flex-1 p-3 bg-slate-50 border border-slate-200 rounded-lg outline-none focus:border-cyan-500 text-slate-900 text-sm" value={val} onChange={e => handleSpecChange(key, key, e.target.value)} />
+                                    <input type="text" className="w-1/3 p-3 bg-slate-50 border border-slate-200 rounded-lg outline-none focus:border-brand-500 text-slate-900 text-sm font-bold" value={key} onChange={e => handleSpecChange(key, e.target.value, val)} />
+                                    <input type="text" className="flex-1 p-3 bg-slate-50 border border-slate-200 rounded-lg outline-none focus:border-brand-500 text-slate-900 text-sm" value={val} onChange={e => handleSpecChange(key, key, e.target.value)} />
                                     <button type="button" onClick={() => removeSpec(key)} className="p-3 text-red-400 hover:bg-red-50 rounded-lg"><X className="w-4 h-4" /></button>
                                 </div>
                             ))}
@@ -531,7 +531,7 @@ export default function UniformsManager() {
             <div>
                 <div className="flex justify-between items-center mb-3">
                     <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Filter By Category</p>
-                    {selectedCategory && <button onClick={() => setSelectedCategory(null)} className="text-[10px] font-black uppercase text-cyan-600 hover:text-cyan-700">Clear</button>}
+                    {selectedCategory && <button onClick={() => setSelectedCategory(null)} className="text-[10px] font-black uppercase text-brand-600 hover:text-brand-700">Clear</button>}
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
                     {CATEGORIES.map(cat => {
@@ -551,7 +551,7 @@ export default function UniformsManager() {
             <div>
                 <div className="flex justify-between items-center mb-3">
                     <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Filter By Subcategory</p>
-                    {selectedSubcategory && <button onClick={() => setSelectedSubcategory(null)} className="text-[10px] font-black uppercase text-cyan-600 hover:text-cyan-700">Clear</button>}
+                    {selectedSubcategory && <button onClick={() => setSelectedSubcategory(null)} className="text-[10px] font-black uppercase text-brand-600 hover:text-brand-700">Clear</button>}
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
                     {SUBCATEGORIES.map(subcat => {

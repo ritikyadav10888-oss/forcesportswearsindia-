@@ -11,6 +11,7 @@ import Link from 'next/link';
 import { PRODUCTS } from '../../data/products';
 import { SPORTEX_FABRICS } from '../../data/sportexFabrics';
 import { BRAND_DETAILS } from '../../data/brandData';
+import { ISPO_EVENT } from '../../data/ispoData';
 import { getCDNUrl } from '../../utils/cdnUtils';
 import { getProductSportexFabric, fabricSlug } from '../../utils/fabricMatching';
 import SEO from '../../components/seo/SEO';
@@ -46,7 +47,7 @@ const CLIENTS = [
     { name: "J.P.MORGAN", logo: "/client logo/jp morgan.jpg", icon: Landmark, color: "bg-slate-800" },
     { name: "RELIANCE INDUSTRIES", logo: "/client logo/reliance.jpg", icon: Factory, color: "bg-blue-800" },
     { name: "TOYOTA", logo: "/client logo/toyota.jpg", icon: CarFront, color: "bg-red-700" },
-    { name: "DECATHLON", logo: "/client logo/decathlon.png", icon: Bike, color: "bg-cyan-600" },
+    { name: "DECATHLON", logo: "/client logo/decathlon.png", icon: Bike, color: "bg-brand-600" },
     { name: "AIRTEL", logo: "/client logo/airtel.jpg", icon: Signal, color: "bg-red-600" },
     { name: "ASIAN PAINTS", logo: "/client logo/asianpaints.jpg", icon: Palette, color: "bg-yellow-500" },
     { name: "BAJAJ ALLIANZ", logo: "/client logo/bajaj allianz.png", icon: ShieldCheck, color: "bg-blue-600" },
@@ -182,110 +183,113 @@ const HomePage = () => {
             />
 
             {/* Hero */}
-            <section className="relative min-h-[92vh] flex items-center justify-center overflow-hidden bg-slate-900 pt-20">
-                <div className="absolute inset-0 z-0">
-                    <img
-                        src={getCDNUrl("/hero-montage-2.jpg")}
-                        alt={BRAND_DETAILS.name}
-                        className="w-full h-full object-cover opacity-60 scale-105 animate-[slow-zoom_20s_ease-in-out_infinite_alternate]"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/75 to-slate-900/40" />
-                </div>
-
-                <div className="relative z-20 text-center px-6 max-w-5xl mx-auto flex flex-col items-center">
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                        animate={{ opacity: 1, scale: 1, y: 0 }}
-                        transition={{ duration: 0.8, ease: 'easeOut' }}
-                    >
-                        <span className="inline-block py-1.5 px-4 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 font-bold tracking-[0.2em] uppercase text-[10px] sm:text-xs mb-6">
+            <section className="relative bg-white border-b border-slate-100">
+                <div className="max-w-7xl mx-auto px-6 pt-14 pb-16 md:pt-20 md:pb-24 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+                    <div className="lg:col-span-6 flex flex-col items-start">
+                        <motion.span
+                            initial={{ opacity: 0, y: 12 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6 }}
+                            className="text-brand-600 font-semibold tracking-[0.18em] uppercase text-xs mb-6"
+                        >
                             {BRAND_DETAILS.tagline}
-                        </span>
-                    </motion.div>
+                        </motion.span>
 
-                    <motion.h1
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.15, ease: 'easeOut' }}
-                        className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[5.5rem] font-black text-white tracking-tighter mb-4 uppercase leading-[0.95] xl:whitespace-nowrap"
-                    >
-                        {BRAND_DETAILS.navDisplayName}
-                    </motion.h1>
-
-                    <motion.p
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 1, delay: 0.35 }}
-                        className="text-slate-300 max-w-2xl mx-auto mb-12 text-base md:text-xl leading-relaxed font-medium"
-                    >
-                        {BRAND_DETAILS.heroSubtitle}
-                    </motion.p>
-
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.5 }}
-                        className="flex flex-col sm:flex-row gap-4 sm:gap-5 items-center justify-center"
-                    >
-                        <Link
-                            href="/products"
-                            className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-slate-900 font-black uppercase tracking-widest text-sm rounded-full overflow-hidden transition-all hover:scale-105 hover:shadow-[0_0_40px_rgba(255,255,255,0.3)]"
+                        <motion.h1
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.7, delay: 0.1 }}
+                            className="text-5xl sm:text-6xl xl:text-7xl text-slate-900 uppercase leading-[0.95] mb-6"
                         >
-                            <span className="relative z-10 flex items-center gap-2">
-                                Explore Products <ChevronRight size={18} strokeWidth={3} className="group-hover:translate-x-1 transition-transform" />
-                            </span>
-                            <div className="absolute inset-0 bg-cyan-400 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out" />
-                        </Link>
-                        <Link
-                            href="/catalog"
-                            className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-slate-800/50 backdrop-blur-sm border border-white/10 text-white font-black uppercase tracking-widest text-sm rounded-full transition-all hover:scale-105 hover:bg-slate-700/50"
-                        >
-                            <BookOpen size={18} /> View Digital Catalog
-                        </Link>
-                    </motion.div>
+                            Custom teamwear,<br />made in Mumbai.<br /><span className="text-slate-500">Shipped worldwide.</span>
+                        </motion.h1>
 
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 1, delay: 0.75 }}
-                        className="mt-12 flex items-center gap-3 py-2.5 px-5 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10"
-                    >
-                        <div className="flex -space-x-2">
-                            {[1, 2, 3, 4].map((i) => (
-                                <div
-                                    key={i}
-                                    className="w-8 h-8 rounded-full border-2 border-slate-900 bg-slate-800 overflow-hidden"
-                                >
-                                    <img
-                                        src={`https://i.pravatar.cc/100?u=force-team-${i}`}
-                                        alt=""
-                                        className="w-full h-full object-cover"
-                                    />
-                                </div>
-                            ))}
-                        </div>
-                        <div className="flex flex-col items-start leading-none">
-                            <div className="flex text-yellow-400 mb-1">
+                        <motion.p
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.8, delay: 0.25 }}
+                            className="text-slate-500 max-w-xl mb-10 text-lg leading-relaxed"
+                        >
+                            {BRAND_DETAILS.heroSubtitle}
+                        </motion.p>
+
+                        <motion.div
+                            initial={{ opacity: 0, y: 12 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: 0.35 }}
+                            className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto"
+                        >
+                            <Link
+                                href="/products"
+                                className="inline-flex items-center justify-center gap-2 px-7 py-4 bg-slate-900 text-white font-semibold rounded-full hover:bg-brand-600 transition-colors"
+                            >
+                                Explore Products <ChevronRight size={18} />
+                            </Link>
+                            <Link
+                                href="/catalog"
+                                className="inline-flex items-center justify-center gap-2 px-7 py-4 border border-slate-300 text-slate-900 font-semibold rounded-full hover:border-slate-900 transition-colors"
+                            >
+                                <BookOpen size={18} /> View Digital Catalog
+                            </Link>
+                        </motion.div>
+
+                        <div className="mt-10 flex items-center gap-3 text-sm text-slate-500">
+                            <div className="flex text-amber-500">
                                 {[1, 2, 3, 4, 5].map((i) => (
-                                    <Star key={i} size={12} fill="currentColor" />
+                                    <Star key={i} size={14} fill="currentColor" />
                                 ))}
                             </div>
-                            <span className="text-white/60 text-[10px] font-bold uppercase tracking-widest">
-                                {BRAND_DETAILS.trustedTeamsLabel}
-                            </span>
+                            {BRAND_DETAILS.trustedTeamsLabel}
                         </div>
-                    </motion.div>
+                    </div>
 
-                    <motion.a
-                        href="#customize"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.9 }}
-                        className="mt-8 text-slate-500 hover:text-cyan-400 text-[10px] font-black uppercase tracking-widest transition-colors inline-flex items-center gap-1"
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.98 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.8, delay: 0.15 }}
+                        className="lg:col-span-6 relative"
                     >
-                        <Palette size={12} /> Customize your kit below
-                        <ChevronRight size={12} />
-                    </motion.a>
+                        <div className="aspect-[4/3] rounded-3xl overflow-hidden bg-slate-100">
+                            <img
+                                src={getCDNUrl("/hero-montage-2.jpg")}
+                                alt={`${BRAND_DETAILS.name} custom teamwear`}
+                                className="w-full h-full object-cover"
+                            />
+                        </div>
+                        <a
+                            href="#customize"
+                            className="absolute -bottom-5 left-6 inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white border border-slate-200 shadow-sm text-sm font-medium text-slate-700 hover:text-slate-900"
+                        >
+                            <Palette size={16} className="text-brand-600" /> Customize your kit
+                            <ChevronRight size={14} />
+                        </a>
+                    </motion.div>
+                </div>
+            </section>
+
+            {/* ISPO banner */}
+            <section className="bg-white">
+                <div className="max-w-7xl mx-auto px-6 pt-10">
+                    <Link
+                        href="/ispo"
+                        className="group flex flex-col md:flex-row md:items-center justify-between gap-5 rounded-2xl border border-brand-200 bg-brand-50 px-6 py-6 md:px-8 hover:border-brand-400 transition-colors"
+                    >
+                        <div className="flex items-start gap-4">
+                            <span className="mt-1.5 w-2.5 h-2.5 rounded-full bg-brand-500 shrink-0" aria-hidden="true" />
+                            <div>
+                                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-700 mb-1">Meet us in Amsterdam</p>
+                                <p className="font-display text-2xl md:text-3xl font-semibold uppercase text-slate-900 leading-tight">
+                                    {ISPO_EVENT.name} · {ISPO_EVENT.dates}
+                                </p>
+                                <p className="text-slate-600 mt-1">
+                                    {ISPO_EVENT.venue} · {ISPO_EVENT.hall} · {ISPO_EVENT.booth} — free giveaways &amp; daily lucky draw
+                                </p>
+                            </div>
+                        </div>
+                        <span className="inline-flex items-center gap-2 self-start md:self-auto px-5 py-3 rounded-full bg-slate-900 text-white text-sm font-semibold group-hover:bg-brand-600 transition-colors whitespace-nowrap">
+                            See ISPO details <ChevronRight size={16} />
+                        </span>
+                    </Link>
                 </div>
             </section>
 
@@ -310,7 +314,7 @@ const HomePage = () => {
             <section id="customize" className="py-16 md:py-24 bg-white scroll-mt-24">
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="text-center max-w-3xl mx-auto mb-14">
-                        <span className="text-cyan-600 font-bold tracking-widest uppercase text-xs mb-3 block">100% customizable</span>
+                        <span className="text-brand-600 font-bold tracking-widest uppercase text-xs mb-3 block">100% customizable</span>
                         <h2 className="text-3xl md:text-5xl font-black text-slate-900 uppercase tracking-tighter mb-4">
                             Build your custom kit
                         </h2>
@@ -326,12 +330,12 @@ const HomePage = () => {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 transition={{ delay: idx * 0.1 }}
                                 viewport={{ once: true }}
-                                className="relative p-8 rounded-3xl bg-slate-50 border border-slate-100 hover:border-cyan-300 transition-colors text-center md:text-left"
+                                className="relative p-8 rounded-3xl bg-slate-50 border border-slate-100 hover:border-brand-300 transition-colors text-center md:text-left"
                             >
-                                <span className="text-[10px] font-black text-cyan-600 uppercase tracking-widest mb-4 block">
+                                <span className="text-[10px] font-black text-brand-600 uppercase tracking-widest mb-4 block">
                                     Step {item.step}
                                 </span>
-                                <div className="w-14 h-14 rounded-2xl bg-cyan-600 text-white flex items-center justify-center mx-auto md:mx-0 mb-5">
+                                <div className="w-14 h-14 rounded-2xl bg-brand-600 text-white flex items-center justify-center mx-auto md:mx-0 mb-5">
                                     <item.icon size={26} />
                                 </div>
                                 <h3 className="font-black text-slate-900 uppercase tracking-tight text-lg mb-2">{item.title}</h3>
@@ -342,13 +346,13 @@ const HomePage = () => {
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Link
                             href="/products"
-                            className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-slate-900 text-white font-black uppercase tracking-widest text-xs rounded-full hover:bg-cyan-600 transition-colors"
+                            className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-slate-900 text-white font-black uppercase tracking-widest text-xs rounded-full hover:bg-brand-600 transition-colors"
                         >
                             <Palette size={16} /> Start customizing <ChevronRight size={16} />
                         </Link>
                         <Link
                             href="/uniforms"
-                            className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white border-2 border-slate-200 text-slate-900 font-black uppercase tracking-widest text-xs rounded-full hover:border-cyan-500 transition-colors"
+                            className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white border-2 border-slate-200 text-slate-900 font-black uppercase tracking-widest text-xs rounded-full hover:border-brand-500 transition-colors"
                         >
                             Browse uniforms <ChevronRight size={16} />
                         </Link>
@@ -361,10 +365,10 @@ const HomePage = () => {
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-6">
                         <div>
-                            <span className="text-cyan-600 font-bold tracking-widest uppercase text-xs mb-2 block">Custom gear</span>
+                            <span className="text-brand-600 font-bold tracking-widest uppercase text-xs mb-2 block">Custom gear</span>
                             <h2 className="text-3xl md:text-5xl font-black text-slate-900 uppercase tracking-tighter">Featured Products</h2>
                         </div>
-                        <Link href="/products" className="font-black uppercase tracking-widest text-xs flex items-center gap-2 text-slate-900 hover:text-cyan-600">
+                        <Link href="/products" className="font-black uppercase tracking-widest text-xs flex items-center gap-2 text-slate-900 hover:text-brand-600">
                             Full catalog <ChevronRight size={16} />
                         </Link>
                     </div>
@@ -388,7 +392,7 @@ const HomePage = () => {
                                     viewport={{ once: true }}
                                     className="bg-white rounded-[2rem] border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl flex flex-col"
                                 >
-                                    <div className="relative aspect-[4/5] bg-[radial-gradient(circle_at_top,rgba(6,182,212,0.08),transparent_60%)] py-10 px-6 sm:py-12 sm:px-8">
+                                    <div className="relative aspect-[4/5] bg-[radial-gradient(circle_at_top,rgba(241,90,36,0.08),transparent_60%)] py-10 px-6 sm:py-12 sm:px-8">
                                         <img
                                             src={getCDNUrl(product.image, { width: 600 })}
                                             alt={product.title}
@@ -411,7 +415,7 @@ const HomePage = () => {
                                         <div className="grid grid-cols-2 gap-2 mt-5">
                                             <Link
                                                 href={`/products/${product.id}`}
-                                                className="py-3.5 bg-cyan-600 text-white text-center text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-slate-900 transition-colors flex items-center justify-center gap-1"
+                                                className="py-3.5 bg-brand-600 text-white text-center text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-slate-900 transition-colors flex items-center justify-center gap-1"
                                             >
                                                 <Palette size={12} /> Customize
                                             </Link>
@@ -430,7 +434,7 @@ const HomePage = () => {
                     <div className="mt-12 text-center">
                         <a
                             href="#explore-more"
-                            className="inline-flex items-center gap-2 text-slate-600 font-black uppercase tracking-widest text-xs hover:text-cyan-600 transition-colors"
+                            className="inline-flex items-center gap-2 text-slate-600 font-black uppercase tracking-widest text-xs hover:text-brand-600 transition-colors"
                         >
                             <Compass size={16} /> Want to explore more? See everything we offer
                             <ChevronRight size={14} />
@@ -440,14 +444,13 @@ const HomePage = () => {
             </section>
 
             {/* Explore more — after custom section */}
-            <section id="explore-more" className="py-16 md:py-24 bg-slate-900 text-white scroll-mt-24 relative overflow-hidden">
-                <div className="absolute inset-0 opacity-30 bg-[radial-gradient(ellipse_at_top,_rgba(6,182,212,0.25)_0%,transparent_55%)]" />
+            <section id="explore-more" className="py-16 md:py-24 bg-white border-t border-slate-100 scroll-mt-24 relative">
                 <div className="max-w-7xl mx-auto px-6 relative z-10">
                     <div className="text-center max-w-3xl mx-auto mb-14">
-                        <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-black uppercase tracking-widest text-[10px] mb-6">
+                        <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-200 text-slate-600 font-semibold uppercase tracking-widest text-[11px] mb-6">
                             <Compass size={14} /> Keep exploring
                         </span>
-                        <h2 className="text-3xl md:text-6xl font-black uppercase tracking-tighter mb-4">
+                        <h2 className="text-4xl md:text-6xl text-slate-900 uppercase mb-4">
                             There&apos;s more to discover
                         </h2>
                         <p className="text-slate-400 text-base md:text-lg leading-relaxed">
@@ -467,15 +470,15 @@ const HomePage = () => {
                                     href={item.href}
                                     className={`group flex gap-4 p-6 rounded-2xl border transition-all h-full ${
                                         item.highlight
-                                            ? 'bg-cyan-600 border-cyan-500 hover:bg-cyan-500 shadow-lg shadow-cyan-900/30'
-                                            : 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-cyan-500/40'
+                                            ? 'bg-slate-900 border-slate-900 hover:bg-brand-600 hover:border-brand-600'
+                                            : 'bg-white border-slate-200 hover:border-slate-900'
                                     }`}
                                 >
                                     <div
                                         className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-colors ${
                                             item.highlight
-                                                ? 'bg-white/20 text-white'
-                                                : 'bg-cyan-500/10 text-cyan-400 group-hover:bg-cyan-500 group-hover:text-white'
+                                                ? 'bg-white/15 text-white'
+                                                : 'bg-brand-50 text-brand-600'
                                         }`}
                                     >
                                         <item.icon size={22} />
@@ -483,13 +486,13 @@ const HomePage = () => {
                                     <div>
                                         <h3
                                             className={`font-black uppercase tracking-tight text-sm mb-1 flex items-center gap-2 ${
-                                                item.highlight ? 'text-white' : 'text-white group-hover:text-cyan-300'
+                                                item.highlight ? 'text-white' : 'text-slate-900'
                                             }`}
                                         >
                                             {item.label}
                                             <ChevronRight size={14} className="opacity-60 group-hover:translate-x-0.5 transition-transform" />
                                         </h3>
-                                        <p className={`text-xs leading-relaxed ${item.highlight ? 'text-cyan-50' : 'text-slate-400'}`}>
+                                        <p className={`text-xs leading-relaxed ${item.highlight ? 'text-slate-300' : 'text-slate-500'}`}>
                                             {item.desc}
                                         </p>
                                     </div>
@@ -505,7 +508,7 @@ const HomePage = () => {
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="flex flex-col md:flex-row justify-between items-end gap-6 mb-10">
                         <div>
-                            <span className="text-cyan-600 font-bold tracking-widest uppercase text-xs mb-2 block">Sportex India</span>
+                            <span className="text-brand-600 font-bold tracking-widest uppercase text-xs mb-2 block">Sportex India</span>
                             <h2 className="text-3xl md:text-5xl font-black text-slate-900 uppercase tracking-tighter">
                                 Technical Fabric Library
                             </h2>
@@ -513,7 +516,7 @@ const HomePage = () => {
                                 {SPORTEX_FABRICS.length}+ premium materials with GSM weights — sublimation, screen print, DTF & embroidery ready.
                             </p>
                         </div>
-                        <Link href="/fabrics" className="text-slate-900 font-black uppercase tracking-widest text-xs flex items-center gap-2 hover:text-cyan-600">
+                        <Link href="/fabrics" className="text-slate-900 font-black uppercase tracking-widest text-xs flex items-center gap-2 hover:text-brand-600">
                             View all fabrics <ChevronRight size={16} />
                         </Link>
                     </div>
@@ -522,7 +525,7 @@ const HomePage = () => {
                             <Link
                                 key={fabric.name}
                                 href={`/fabrics#fabric-${fabricSlug(fabric.name)}`}
-                                className="group bg-white rounded-2xl border border-slate-200 overflow-hidden hover:border-cyan-400 hover:shadow-md transition-all"
+                                className="group bg-white rounded-2xl border border-slate-200 overflow-hidden hover:border-brand-400 hover:shadow-md transition-all"
                             >
                                 <div className="aspect-square bg-white p-3 border-b border-slate-100">
                                     <img
@@ -534,7 +537,7 @@ const HomePage = () => {
                                 </div>
                                 <div className="p-3">
                                     <h3 className="text-[10px] font-black uppercase text-slate-900 tracking-tight">{fabric.name}</h3>
-                                    <p className="text-[9px] font-bold text-cyan-700 mt-0.5">
+                                    <p className="text-[9px] font-bold text-brand-700 mt-0.5">
                                         {/\d/.test(fabric.gsm) ? `${fabric.gsm} GSM` : fabric.gsm}
                                     </p>
                                 </div>
@@ -549,14 +552,14 @@ const HomePage = () => {
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                         <div>
-                            <span className="text-cyan-600 font-bold tracking-widest uppercase text-xs mb-3 block">In-house manufacturing</span>
+                            <span className="text-brand-600 font-bold tracking-widest uppercase text-xs mb-3 block">In-house manufacturing</span>
                             <h2 className="text-3xl md:text-4xl font-black text-slate-900 uppercase tracking-tighter mb-6">
                                 {BRAND_DETAILS.manufacturing.type}
                             </h2>
                             <p className="text-slate-600 leading-relaxed mb-8">
                                 Our {BRAND_DETAILS.manufacturing.unitLocation} facility handles design, printing, and stitching under one roof — so your team kits ship on spec and on time.
                             </p>
-                            <Link href="/about" className="text-cyan-600 font-black uppercase tracking-widest text-xs inline-flex items-center gap-2 hover:text-slate-900">
+                            <Link href="/about" className="text-brand-600 font-black uppercase tracking-widest text-xs inline-flex items-center gap-2 hover:text-slate-900">
                                 Our story & heritage <ChevronRight size={14} />
                             </Link>
                         </div>
@@ -566,7 +569,7 @@ const HomePage = () => {
                                     key={cap}
                                     className="flex items-center gap-3 p-4 rounded-xl bg-white border border-slate-200 text-sm font-bold uppercase tracking-wide text-slate-800 shadow-sm"
                                 >
-                                    <CheckCircle2 size={18} className="text-cyan-600 shrink-0" />
+                                    <CheckCircle2 size={18} className="text-brand-600 shrink-0" />
                                     {cap}
                                 </li>
                             ))}
@@ -588,8 +591,8 @@ const HomePage = () => {
                             { icon: Users, title: 'In-house production', desc: `Design to stitch at our ${BRAND_DETAILS.manufacturing.unitLocation} unit.` },
                             { icon: Shield, title: 'Sport-specific fits', desc: 'Cuts engineered for cricket, football, kabaddi & corporate wear.' },
                         ].map((item, idx) => (
-                            <div key={idx} className="p-8 rounded-3xl bg-slate-50 border border-slate-100 hover:border-cyan-300 transition-colors">
-                                <div className="w-12 h-12 rounded-xl bg-cyan-100 text-cyan-600 flex items-center justify-center mb-5">
+                            <div key={idx} className="p-8 rounded-3xl bg-slate-50 border border-slate-100 hover:border-brand-300 transition-colors">
+                                <div className="w-12 h-12 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center mb-5">
                                     <item.icon size={24} />
                                 </div>
                                 <h3 className="font-black uppercase text-sm text-slate-900 mb-2">{item.title}</h3>
@@ -604,7 +607,7 @@ const HomePage = () => {
             <section className="py-14 md:py-20 bg-slate-50">
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="text-center mb-10">
-                        <span className="text-cyan-600 font-bold tracking-widest uppercase text-xs mb-2 block">The journey</span>
+                        <span className="text-brand-600 font-bold tracking-widest uppercase text-xs mb-2 block">The journey</span>
                         <h2 className="text-3xl md:text-5xl font-black text-slate-900 uppercase tracking-tighter">How we craft perfection</h2>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -615,7 +618,7 @@ const HomePage = () => {
                             { icon: Truck, title: 'Delivery', desc: 'Bulk packing and on-time dispatch across India.' },
                         ].map((step, idx) => (
                             <div key={idx} className="text-center p-8 rounded-2xl bg-white border border-slate-100 shadow-sm">
-                                <div className="w-14 h-14 bg-slate-50 rounded-2xl flex items-center justify-center mx-auto mb-5 text-cyan-600">
+                                <div className="w-14 h-14 bg-slate-50 rounded-2xl flex items-center justify-center mx-auto mb-5 text-brand-600">
                                     <step.icon size={26} />
                                 </div>
                                 <h4 className="font-black text-slate-900 uppercase tracking-widest text-xs mb-2">{step.title}</h4>
@@ -652,7 +655,7 @@ const HomePage = () => {
                                 <div>
                                     <h4 className="font-black text-slate-900 text-sm uppercase">{testi.name}</h4>
                                     {testi.role && (
-                                        <span className="text-cyan-600 text-[10px] font-bold uppercase tracking-widest">{testi.role}</span>
+                                        <span className="text-brand-600 text-[10px] font-bold uppercase tracking-widest">{testi.role}</span>
                                     )}
                                 </div>
                             </div>

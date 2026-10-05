@@ -7,6 +7,20 @@ export default {
     theme: {
         extend: {
             colors: {
+                /* Brand orange — from the Force bull logo (#F15A24). 600+ pass AA on white. */
+                brand: {
+                    50: "#FFF5F0",
+                    100: "#FFE6D9",
+                    200: "#FFCAB0",
+                    300: "#FFA67D",
+                    400: "#F97C45",
+                    500: "#F15A24",
+                    600: "#C9410D",
+                    700: "#A3340B",
+                    800: "#7E290A",
+                    900: "#5A1E08",
+                    950: "#361205",
+                },
                 force: {
                     primary: "#00FFCC",
                     dark: "#0F172A",
@@ -19,8 +33,9 @@ export default {
                 }
             },
             fontFamily: {
-                sans: ['var(--font-roboto)', 'Roboto', 'sans-serif'],
-                serif: ['var(--font-serif)', 'Playfair Display', 'Georgia', 'serif'],
+                sans: ['Barlow', 'system-ui', 'sans-serif'],
+                display: ['"Barlow Condensed"', 'Barlow', 'system-ui', 'sans-serif'],
+                serif: ['Georgia', 'serif'],
             },
             animation: {
                 'marquee': 'marquee 30s linear infinite',

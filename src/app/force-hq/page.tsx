@@ -27,7 +27,7 @@ export default function AdminDashboard() {
 
     const stats = [
         { name: 'Total Leads', value: counts.leads, icon: MessageSquare, color: 'text-blue-500', bg: 'bg-blue-500/10' },
-        { name: 'Products', value: counts.products, icon: ShoppingBag, color: 'text-cyan-500', bg: 'bg-cyan-500/10' },
+        { name: 'Products', value: counts.products, icon: ShoppingBag, color: 'text-brand-500', bg: 'bg-brand-500/10' },
         { name: 'Uniforms', value: counts.uniforms, icon: Users, color: 'text-purple-500', bg: 'bg-purple-500/10' },
         { name: 'Fabrics', value: counts.fabrics, icon: Layers, color: 'text-amber-500', bg: 'bg-amber-500/10' },
         { name: 'Testimonials', value: counts.testimonials, icon: Star, color: 'text-yellow-500', bg: 'bg-yellow-500/10' },
@@ -60,12 +60,12 @@ export default function AdminDashboard() {
 
             {/* Quick Actions */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-gradient-to-br from-cyan-600 to-blue-700 rounded-3xl p-8 text-white shadow-xl shadow-blue-900/20 relative overflow-hidden">
+                <div className="bg-gradient-to-br from-brand-600 to-blue-700 rounded-3xl p-8 text-white shadow-xl shadow-blue-900/20 relative overflow-hidden">
                     <div className="absolute top-0 right-0 p-8 opacity-10 pointer-events-none">
                         <MessageSquare className="w-32 h-32" />
                     </div>
                     <h2 className="text-2xl font-black uppercase tracking-wide mb-2 relative z-10">New Leads Waiting</h2>
-                    <p className="text-cyan-100 mb-6 relative z-10 max-w-sm">
+                    <p className="text-brand-100 mb-6 relative z-10 max-w-sm">
                         You have new customer inquiries from the website. Follow up to convert these into sales.
                     </p>
                     <Link href="/force-hq/leads" className="inline-flex items-center gap-2 bg-white text-blue-600 px-6 py-3 rounded-xl font-black text-sm uppercase tracking-wider hover:scale-105 transition-transform relative z-10">

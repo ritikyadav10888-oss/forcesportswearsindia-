@@ -52,7 +52,7 @@ export default function LeadCaptureForm() {
         return (
             <section className="bg-slate-900 py-16 px-6 overflow-hidden">
                 <div className="max-w-3xl mx-auto bg-slate-800/50 rounded-3xl p-10 text-center border border-slate-700 shadow-xl">
-                    <CheckCircle2 className="w-16 h-16 text-cyan-400 mx-auto mb-6" />
+                    <CheckCircle2 className="w-16 h-16 text-brand-400 mx-auto mb-6" />
                     <h3 className="text-3xl font-black text-white mb-3 tracking-tighter uppercase">Request Received!</h3>
                     <p className="text-slate-400 text-lg">Thank you. Our sports apparel experts will review your request and reach out to you shortly to discuss pricing and designs.</p>
                 </div>
@@ -67,14 +67,14 @@ export default function LeadCaptureForm() {
                 {/* Left Side: Text */}
                 <div className="md:w-1/2 text-center md:text-left">
                     <h2 className="text-3xl md:text-5xl font-black text-white mb-4 tracking-tighter uppercase leading-tight">
-                        Need a <span className="text-cyan-400">Custom Quote?</span>
+                        Need a <span className="text-brand-400">Custom Quote?</span>
                     </h2>
                     <p className="text-slate-400 text-lg mb-4 leading-relaxed">
                         Whether you need 50 jerseys or 5,000, {BRAND_DETAILS.name} delivers premium quality at competitive wholesale prices. Drop your details below.
                     </p>
                     <p className="text-slate-500 text-sm mb-8">
                         Need fabric, quantity & design details?{' '}
-                        <Link href="/inquiry" className="text-cyan-400 font-bold hover:text-cyan-300 underline-offset-2 hover:underline">
+                        <Link href="/inquiry" className="text-brand-400 font-bold hover:text-brand-300 underline-offset-2 hover:underline">
                             Use the full inquiry form
                         </Link>
                     </p>
@@ -112,7 +112,7 @@ export default function LeadCaptureForm() {
                                     required
                                     type="text" 
                                     placeholder="Full Name *"
-                                    className="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 text-slate-900"
+                                    className="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 text-slate-900"
                                     value={formData.fullName}
                                     onChange={e => setFormData({...formData, fullName: e.target.value})}
                                 />
@@ -120,7 +120,7 @@ export default function LeadCaptureForm() {
                                     required
                                     type="tel" 
                                     placeholder="Phone Number *"
-                                    className="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 text-slate-900"
+                                    className="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 text-slate-900"
                                     value={formData.phone}
                                     onChange={e => setFormData({...formData, phone: e.target.value})}
                                 />
@@ -129,7 +129,7 @@ export default function LeadCaptureForm() {
                                 required
                                 type="email" 
                                 placeholder="Email Address *"
-                                className="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 text-slate-900"
+                                className="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 text-slate-900"
                                 value={formData.email}
                                 onChange={e => setFormData({...formData, email: e.target.value})}
                             />
@@ -137,7 +137,7 @@ export default function LeadCaptureForm() {
                             <button 
                                 disabled={status === 'submitting'}
                                 type="submit"
-                                className="w-full bg-slate-900 hover:bg-cyan-600 text-white font-black uppercase tracking-wider text-sm py-5 rounded-xl transition-colors flex items-center justify-center gap-3 mt-2 shadow-lg shadow-slate-200"
+                                className="w-full bg-slate-900 hover:bg-brand-600 text-white font-black uppercase tracking-wider text-sm py-5 rounded-xl transition-colors flex items-center justify-center gap-3 mt-2 shadow-lg shadow-slate-200"
                             >
                                 {status === 'submitting' ? (
                                     <Loader2 className="w-5 h-5 animate-spin" />

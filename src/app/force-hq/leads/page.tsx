@@ -65,7 +65,7 @@ export default function LeadsManager() {
     if (loading) {
         return (
             <div className="flex justify-center items-center h-64">
-                <Loader2 className="w-8 h-8 text-cyan-500 animate-spin" />
+                <Loader2 className="w-8 h-8 text-brand-500 animate-spin" />
             </div>
         );
     }
@@ -106,7 +106,7 @@ export default function LeadsManager() {
                                     onClick={() => setSelectedLead(lead)}
                                     className={`w-full text-left p-4 rounded-2xl transition-all ${
                                         selectedLead?.id === lead.id 
-                                        ? 'bg-cyan-50 border-cyan-200 shadow-sm' 
+                                        ? 'bg-brand-50 border-brand-200 shadow-sm' 
                                         : 'hover:bg-slate-50 border-transparent border'
                                     }`}
                                 >
@@ -141,10 +141,10 @@ export default function LeadsManager() {
                                 <div>
                                     <h2 className="text-2xl font-black text-slate-900 mb-2">{selectedLead.fullName}</h2>
                                     <div className="flex gap-4">
-                                        <a href={`mailto:${selectedLead.email}`} className="flex items-center gap-2 text-sm text-cyan-600 hover:text-cyan-700 font-medium">
+                                        <a href={`mailto:${selectedLead.email}`} className="flex items-center gap-2 text-sm text-brand-600 hover:text-brand-700 font-medium">
                                             <Mail className="w-4 h-4" /> {selectedLead.email}
                                         </a>
-                                        <a href={`tel:${selectedLead.phone}`} className="flex items-center gap-2 text-sm text-cyan-600 hover:text-cyan-700 font-medium">
+                                        <a href={`tel:${selectedLead.phone}`} className="flex items-center gap-2 text-sm text-brand-600 hover:text-brand-700 font-medium">
                                             <Phone className="w-4 h-4" /> {selectedLead.phone}
                                         </a>
                                     </div>

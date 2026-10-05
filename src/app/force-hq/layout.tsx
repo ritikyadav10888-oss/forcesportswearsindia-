@@ -37,7 +37,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     if (loading) {
         return (
             <div className="min-h-screen bg-slate-50 flex items-center justify-center">
-                <Loader2 className="w-8 h-8 text-cyan-600 animate-spin" />
+                <Loader2 className="w-8 h-8 text-brand-600 animate-spin" />
             </div>
         );
     }
@@ -63,7 +63,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             {/* Sidebar */}
             <aside className="w-64 bg-slate-900 text-white flex flex-col fixed inset-y-0 left-0 z-50">
                 <div className="p-6">
-                    <h1 className="text-xl font-black uppercase tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
+                    <h1 className="text-xl font-black uppercase tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-blue-500">
                         Force Admin
                     </h1>
                 </div>
@@ -78,7 +78,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                                 href={item.path}
                                 className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
                                     isActive 
-                                    ? 'bg-cyan-600 text-white shadow-lg shadow-cyan-900/20' 
+                                    ? 'bg-brand-600 text-white shadow-lg shadow-brand-900/20' 
                                     : 'text-slate-400 hover:bg-slate-800 hover:text-white'
                                 }`}
                             >

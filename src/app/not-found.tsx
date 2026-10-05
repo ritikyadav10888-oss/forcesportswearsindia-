@@ -10,7 +10,7 @@ export default function NotFound() {
         <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center relative overflow-hidden px-6">
             {/* Background Effects */}
             <div className="absolute inset-0 z-0">
-                <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-600 rounded-full blur-[150px] opacity-20 mix-blend-screen" />
+                <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-600 rounded-full blur-[150px] opacity-20 mix-blend-screen" />
                 <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-600 rounded-full blur-[150px] opacity-20 mix-blend-screen" />
                 <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:64px_64px]" />
             </div>
@@ -23,7 +23,7 @@ export default function NotFound() {
                     transition={{ duration: 0.8, ease: "easeOut" }}
                     className="relative mb-8"
                 >
-                    <h1 className="text-[150px] md:text-[250px] font-black leading-none tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-cyan-400 to-blue-600 drop-shadow-2xl">
+                    <h1 className="text-[150px] md:text-[250px] font-black leading-none tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-brand-400 to-blue-600 drop-shadow-2xl">
                         404
                     </h1>
                     <motion.div 
@@ -57,7 +57,7 @@ export default function NotFound() {
                 >
                     <Link
                         href="/"
-                        className="px-8 py-4 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black uppercase tracking-widest text-xs rounded-full transition-all shadow-[0_0_40px_-10px_rgba(6,182,212,0.5)] hover:shadow-[0_0_60px_-10px_rgba(6,182,212,0.6)] flex items-center justify-center gap-2 active:scale-95"
+                        className="px-8 py-4 bg-brand-500 hover:bg-brand-400 text-slate-950 font-black uppercase tracking-widest text-xs rounded-full transition-all shadow-[0_0_40px_-10px_rgba(241,90,36,0.5)] hover:shadow-[0_0_60px_-10px_rgba(241,90,36,0.6)] flex items-center justify-center gap-2 active:scale-95"
                     >
                         <ArrowLeft size={16} strokeWidth={3} /> Return Home
                     </Link>

@@ -17,9 +17,9 @@ const CallToActionBanner: React.FC<CallToActionBannerProps> = ({
     return (
         <section className="relative py-24 overflow-hidden bg-slate-900 mt-20">
             {/* Background Effects */}
-            <div className="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-cyan-400 via-slate-900 to-slate-900"></div>
+            <div className="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-brand-400 via-slate-900 to-slate-900"></div>
             <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 blur-[100px] rounded-full pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-96 h-96 bg-cyan-500/10 blur-[100px] rounded-full pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand-500/10 blur-[100px] rounded-full pointer-events-none" />
 
             <div className="max-w-4xl mx-auto px-6 relative z-10 text-center">
                 <motion.div
@@ -28,7 +28,7 @@ const CallToActionBanner: React.FC<CallToActionBannerProps> = ({
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.6 }}
                 >
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-[10px] font-black uppercase tracking-widest mb-8">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-400 text-[10px] font-black uppercase tracking-widest mb-8">
                         <Zap size={14} className="animate-pulse" />
                         <span>Fast Turnaround</span>
                     </div>
@@ -42,7 +42,7 @@ const CallToActionBanner: React.FC<CallToActionBannerProps> = ({
                     </p>
 
                     <Link href="/inquiry" className="group relative inline-flex items-center justify-center">
-                        <div className="absolute -inset-1 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full blur opacity-30 group-hover:opacity-100 transition duration-500"></div>
+                        <div className="absolute -inset-1 bg-gradient-to-r from-brand-400 to-blue-500 rounded-full blur opacity-30 group-hover:opacity-100 transition duration-500"></div>
                         <div className="relative flex items-center gap-3 px-8 py-5 bg-white text-slate-900 rounded-full font-black uppercase tracking-widest text-sm transition-transform hover:scale-105 active:scale-95 shadow-2xl">
                             {buttonText}
                             <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />

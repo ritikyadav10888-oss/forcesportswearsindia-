@@ -1,25 +1,16 @@
 import type { Metadata } from "next";
-import { Roboto, Playfair_Display } from "next/font/google";
+import "@fontsource/barlow/400.css";
+import "@fontsource/barlow/500.css";
+import "@fontsource/barlow/600.css";
+import "@fontsource/barlow/700.css";
+import "@fontsource/barlow-condensed/500.css";
+import "@fontsource/barlow-condensed/600.css";
+import "@fontsource/barlow-condensed/700.css";
 import "../index.css";
 import PublicLayoutWrapper from "../components/layout/PublicLayoutWrapper";
 import { Analytics } from "@vercel/analytics/react";
 import Schema from "../components/seo/Schema";
 import Script from "next/script";
-
-const roboto = Roboto({
-  weight: ['300', '400', '500', '700', '900'],
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-roboto',
-});
-
-const playfair = Playfair_Display({
-  weight: ['400', '600', '700'],
-  style: ['normal', 'italic'],
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-serif',
-});
 
 export const metadata: Metadata = {
   title: "Force Sports & Wears India | Global Bulk T-Shirt & Custom Sportswear Manufacturer",
@@ -39,6 +30,7 @@ export const metadata: Metadata = {
     "Force Sports football jersey",
     "Force Sports kabaddi kit",
     "Force Sports school uniform",
+    "Force Sports ISPO Amsterdam",
   ],
   icons: {
     icon: "/brand-logo.png",
@@ -48,7 +40,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${roboto.variable} ${playfair.variable} font-sans scroll-smooth`}>
+    <html lang="en" className="font-sans scroll-smooth">
       <body className="font-sans">
         <PublicLayoutWrapper>
           {children}

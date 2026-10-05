@@ -33,7 +33,7 @@ export default function ProductCardDetails({
                 <Link
                     href={`/fabrics#fabric-${fabricSlug(sportexFabric)}`}
                     onClick={(e) => e.stopPropagation()}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900 text-cyan-400 text-[9px] font-black uppercase tracking-widest hover:bg-cyan-600 hover:text-white transition-colors"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900 text-brand-400 text-[9px] font-black uppercase tracking-widest hover:bg-brand-600 hover:text-white transition-colors"
                 >
                     <Layers size={10} />
                     Sportex {sportexFabric}
@@ -46,14 +46,14 @@ export default function ProductCardDetails({
                     </span>
                 )}
                 {product.sizeCharts && Object.keys(product.sizeCharts).length > 0 && (
-                    <span className="px-2.5 py-1.5 rounded-full bg-cyan-50 text-cyan-800 text-[9px] font-black uppercase tracking-widest border border-cyan-100">
+                    <span className="px-2.5 py-1.5 rounded-full bg-brand-50 text-brand-800 text-[9px] font-black uppercase tracking-widest border border-brand-100">
                         Size chart
                     </span>
                 )}
             </div>
 
             {detailed && product.longDescription && product.longDescription !== product.description && (
-                <p className="text-slate-600 text-xs leading-relaxed line-clamp-3 border-l-2 border-cyan-200 pl-3">
+                <p className="text-slate-600 text-xs leading-relaxed line-clamp-3 border-l-2 border-brand-200 pl-3">
                     {product.longDescription}
                 </p>
             )}
@@ -95,7 +95,7 @@ export default function ProductCardDetails({
                             {gsms.map((g) => (
                                 <span
                                     key={g}
-                                    className="px-2 py-0.5 rounded-md bg-cyan-50 border border-cyan-100 text-[9px] font-bold text-cyan-800 uppercase"
+                                    className="px-2 py-0.5 rounded-md bg-brand-50 border border-brand-100 text-[9px] font-bold text-brand-800 uppercase"
                                 >
                                     {g} GSM
                                 </span>
@@ -112,7 +112,7 @@ export default function ProductCardDetails({
                             key={feature}
                             className="text-[10px] font-medium text-slate-600 flex items-start gap-1.5"
                         >
-                            <CheckCircle2 size={12} className="text-cyan-500 shrink-0 mt-0.5" />
+                            <CheckCircle2 size={12} className="text-brand-500 shrink-0 mt-0.5" />
                             <span className={detailed ? 'line-clamp-2' : 'line-clamp-1'}>{feature}</span>
                         </li>
                     ))}
@@ -121,11 +121,11 @@ export default function ProductCardDetails({
 
             {customization.length > 0 && (
                 <div className="flex flex-wrap gap-1 items-center">
-                    <Palette size={10} className="text-cyan-600" />
+                    <Palette size={10} className="text-brand-600" />
                     {customization.map((opt) => (
                         <span
                             key={opt}
-                            className="px-2 py-0.5 rounded-full bg-cyan-50 text-[9px] font-bold text-cyan-800 uppercase border border-cyan-100"
+                            className="px-2 py-0.5 rounded-full bg-brand-50 text-[9px] font-bold text-brand-800 uppercase border border-brand-100"
                         >
                             {opt}
                         </span>
