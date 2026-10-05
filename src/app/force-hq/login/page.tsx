@@ -45,7 +45,7 @@ export default function AdminLogin() {
     if (checkingAuth) {
         return (
             <div className="min-h-screen bg-slate-900 flex items-center justify-center">
-                <Loader2 className="w-8 h-8 text-cyan-500 animate-spin" />
+                <Loader2 className="w-8 h-8 text-brand-500 animate-spin" />
             </div>
         );
     }
@@ -54,7 +54,7 @@ export default function AdminLogin() {
         <div className="min-h-screen bg-slate-900 flex items-center justify-center p-6 relative overflow-hidden">
             {/* Background elements */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
-                <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-cyan-600/20 rounded-full blur-[120px]"></div>
+                <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-brand-600/20 rounded-full blur-[120px]"></div>
                 <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-600/20 rounded-full blur-[120px]"></div>
             </div>
 
@@ -66,7 +66,7 @@ export default function AdminLogin() {
                 <div className="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-3xl p-8 shadow-2xl">
                     <div className="text-center mb-8">
                         <div className="w-16 h-16 bg-slate-800 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-inner border border-slate-700">
-                            <Lock className="text-cyan-400 w-8 h-8" />
+                            <Lock className="text-brand-400 w-8 h-8" />
                         </div>
                         <h1 className="text-2xl font-black text-white uppercase tracking-wider mb-2">Admin Portal</h1>
                         <p className="text-slate-400 text-sm">Sign in to manage your CMS</p>
@@ -89,7 +89,7 @@ export default function AdminLogin() {
                                     type="email"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
-                                    className="block w-full pl-11 pr-4 py-3 bg-slate-900/50 border border-slate-700 rounded-xl !text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all"
+                                    className="block w-full pl-11 pr-4 py-3 bg-slate-900/50 border border-slate-700 rounded-xl !text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all"
                                     placeholder="admin@forcesports.com"
                                     required
                                 />
@@ -106,7 +106,7 @@ export default function AdminLogin() {
                                     type="password"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
-                                    className="block w-full pl-11 pr-4 py-3 bg-slate-900/50 border border-slate-700 rounded-xl !text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all"
+                                    className="block w-full pl-11 pr-4 py-3 bg-slate-900/50 border border-slate-700 rounded-xl !text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all"
                                     placeholder="••••••••"
                                     required
                                 />
@@ -116,7 +116,7 @@ export default function AdminLogin() {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="w-full flex items-center justify-center gap-2 py-3.5 px-4 border border-transparent rounded-xl shadow-sm text-sm font-black uppercase tracking-wider text-white bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 focus:ring-offset-slate-900 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="w-full flex items-center justify-center gap-2 py-3.5 px-4 border border-transparent rounded-xl shadow-sm text-sm font-black uppercase tracking-wider text-white bg-gradient-to-r from-brand-600 to-blue-600 hover:from-brand-500 hover:to-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500 focus:ring-offset-slate-900 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                             {loading ? (
                                 <Loader2 className="w-5 h-5 animate-spin" />

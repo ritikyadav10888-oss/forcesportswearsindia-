@@ -70,7 +70,7 @@ export default function TestimonialForm({ compact = false }: { compact?: boolean
         <form onSubmit={handleSubmit} className={`bg-white border border-slate-200 shadow-sm ${compact ? 'rounded-3xl p-6' : 'rounded-[2rem] p-8 md:p-10'} space-y-5`}>
             {!compact && (
                 <div>
-                    <p className="text-[10px] font-black uppercase tracking-widest text-cyan-600 mb-2">Share your experience</p>
+                    <p className="text-[10px] font-black uppercase tracking-widest text-brand-600 mb-2">Share your experience</p>
                     <h3 className="text-2xl font-black uppercase tracking-tight text-slate-900">Write a testimonial</h3>
                     <p className="text-slate-500 text-sm mt-2">Tell us about your experience with Force Sports & Wears India.</p>
                 </div>
@@ -84,7 +84,7 @@ export default function TestimonialForm({ compact = false }: { compact?: boolean
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         maxLength={80}
-                        className="w-full p-4 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-cyan-500 text-slate-900"
+                        className="w-full p-4 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-brand-500 text-slate-900"
                         placeholder="e.g. Priya Sharma"
                     />
                 </div>
@@ -94,7 +94,7 @@ export default function TestimonialForm({ compact = false }: { compact?: boolean
                         value={role}
                         onChange={(e) => setRole(e.target.value)}
                         maxLength={80}
-                        className="w-full p-4 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-cyan-500 text-slate-900"
+                        className="w-full p-4 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-brand-500 text-slate-900"
                         placeholder="e.g. Cricket Club Captain"
                     />
                 </div>
@@ -107,7 +107,7 @@ export default function TestimonialForm({ compact = false }: { compact?: boolean
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     maxLength={120}
-                    className="w-full p-4 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-cyan-500 text-slate-900"
+                    className="w-full p-4 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-brand-500 text-slate-900"
                     placeholder="you@email.com"
                 />
             </div>
@@ -143,7 +143,7 @@ export default function TestimonialForm({ compact = false }: { compact?: boolean
                     onChange={(e) => setQuote(e.target.value)}
                     maxLength={600}
                     rows={compact ? 4 : 5}
-                    className="w-full p-4 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-cyan-500 text-slate-900 resize-y"
+                    className="w-full p-4 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-brand-500 text-slate-900 resize-y"
                     placeholder="Tell others about the kits, fabric, delivery, or service…"
                 />
                 <p className="text-[10px] text-slate-400 mt-1 text-right">{quote.length}/600</p>
@@ -156,7 +156,7 @@ export default function TestimonialForm({ compact = false }: { compact?: boolean
             <button
                 type="submit"
                 disabled={status === 'sending'}
-                className="w-full md:w-auto px-8 py-4 bg-slate-900 text-white rounded-xl font-black uppercase tracking-widest text-xs flex items-center justify-center gap-2 hover:bg-cyan-600 disabled:opacity-50"
+                className="w-full md:w-auto px-8 py-4 bg-slate-900 text-white rounded-xl font-black uppercase tracking-widest text-xs flex items-center justify-center gap-2 hover:bg-brand-600 disabled:opacity-50"
             >
                 {status === 'sending' ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
                 {status === 'sending' ? 'Sending…' : 'Submit review'}

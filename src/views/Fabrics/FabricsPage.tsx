@@ -123,14 +123,14 @@ const FabricsPage = () => {
         <div className="space-y-8">
             <div>
                 <h4 className="text-[10px] font-black text-slate-800 uppercase tracking-widest mb-3 flex items-center gap-2">
-                    <Search size={12} className="text-cyan-600" /> Search
+                    <Search size={12} className="text-brand-600" /> Search
                 </h4>
                 <input
                     type="text"
                     placeholder="Fabric name, GSM, use…"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-xs font-bold focus:ring-2 focus:ring-cyan-500 outline-none text-slate-900 placeholder:text-slate-400"
+                    className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-xs font-bold focus:ring-2 focus:ring-brand-500 outline-none text-slate-900 placeholder:text-slate-400"
                 />
             </div>
 
@@ -148,8 +148,8 @@ const FabricsPage = () => {
                             <div
                                 className={`mt-0.5 w-4 h-4 rounded border flex items-center justify-center shrink-0 transition-all ${
                                     selectedGsmBands.includes(band.id)
-                                        ? 'bg-cyan-600 border-cyan-600'
-                                        : 'bg-white border-slate-300 group-hover:border-cyan-400'
+                                        ? 'bg-brand-600 border-brand-600'
+                                        : 'bg-white border-slate-300 group-hover:border-brand-400'
                                 }`}
                             >
                                 {selectedGsmBands.includes(band.id) && (
@@ -187,8 +187,8 @@ const FabricsPage = () => {
                             <div
                                 className={`w-4 h-4 rounded border flex items-center justify-center transition-all ${
                                     selectedPrinting.includes(method)
-                                        ? 'bg-cyan-600 border-cyan-600'
-                                        : 'bg-white border-slate-300 group-hover:border-cyan-400'
+                                        ? 'bg-brand-600 border-brand-600'
+                                        : 'bg-white border-slate-300 group-hover:border-brand-400'
                                 }`}
                             >
                                 {selectedPrinting.includes(method) && (
@@ -213,7 +213,7 @@ const FabricsPage = () => {
                 <button
                     type="button"
                     onClick={clearFilters}
-                    className="w-full py-3 text-[10px] font-black uppercase tracking-widest text-cyan-700 bg-cyan-50 border border-cyan-100 rounded-xl hover:bg-cyan-100 transition-colors"
+                    className="w-full py-3 text-[10px] font-black uppercase tracking-widest text-brand-700 bg-brand-50 border border-brand-100 rounded-xl hover:bg-brand-100 transition-colors"
                 >
                     Clear all filters
                 </button>
@@ -224,7 +224,7 @@ const FabricsPage = () => {
     if (loading) {
         return (
             <div className="min-h-screen bg-white pt-20 flex items-center justify-center">
-                <Loader2 className="w-12 h-12 text-cyan-500 animate-spin" />
+                <Loader2 className="w-12 h-12 text-brand-500 animate-spin" />
             </div>
         );
     }
@@ -239,15 +239,15 @@ const FabricsPage = () => {
 
             <section className="bg-slate-900 py-10 md:py-14 px-6 text-center relative overflow-hidden">
                 <div className="absolute inset-0 opacity-10">
-                    <div className="absolute top-0 left-0 w-64 h-64 bg-cyan-500 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2" />
+                    <div className="absolute top-0 left-0 w-64 h-64 bg-brand-500 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2" />
                     <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-600 rounded-full blur-[150px] translate-x-1/2 translate-y-1/2" />
                 </div>
                 <div className="max-w-7xl mx-auto relative z-10">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 font-bold tracking-[0.2em] uppercase text-xs mb-6">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-400 font-bold tracking-[0.2em] uppercase text-xs mb-6">
                         <Layers size={14} /> Sportex India — The Fabric Store
                     </div>
                     <h1 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tighter leading-[0.9] mb-4">
-                        All <span className="text-cyan-400">Fabrics</span>
+                        All <span className="text-brand-400">Fabrics</span>
                     </h1>
                     <p className="text-slate-400 text-sm md:text-base max-w-2xl mx-auto">
                         {fabrics.length} premium Sportex materials — filter by GSM, printing method, or name.
@@ -273,7 +273,7 @@ const FabricsPage = () => {
                     >
                         <div className="lg:hidden flex items-center justify-between mb-6">
                             <h3 className="text-sm font-black text-slate-900 uppercase tracking-widest flex items-center gap-2">
-                                <Filter size={18} className="text-cyan-600" /> Filters
+                                <Filter size={18} className="text-brand-600" /> Filters
                             </h3>
                             <button
                                 type="button"
@@ -284,7 +284,7 @@ const FabricsPage = () => {
                             </button>
                         </div>
                         <h3 className="hidden lg:flex text-[11px] font-black text-slate-400 uppercase tracking-widest mb-6 items-center gap-2">
-                            <Filter size={14} className="text-cyan-600" /> Refine fabrics
+                            <Filter size={14} className="text-brand-600" /> Refine fabrics
                         </h3>
                         <div className="flex-1 overflow-y-auto pr-1">
                             <FilterPanel />
@@ -298,10 +298,10 @@ const FabricsPage = () => {
                                 onClick={() => setIsMobileFiltersOpen(true)}
                                 className="w-full py-4 bg-white rounded-2xl border border-slate-200 shadow-sm flex items-center justify-center gap-3 text-slate-900 font-black uppercase tracking-widest text-[11px]"
                             >
-                                <Filter size={18} className="text-cyan-600" />
+                                <Filter size={18} className="text-brand-600" />
                                 Filter fabrics
                                 {hasActiveFilters && (
-                                    <span className="px-2 py-0.5 rounded-full bg-cyan-600 text-white text-[9px]">
+                                    <span className="px-2 py-0.5 rounded-full bg-brand-600 text-white text-[9px]">
                                         Active
                                     </span>
                                 )}
@@ -321,7 +321,7 @@ const FabricsPage = () => {
                                 <button
                                     type="button"
                                     onClick={clearFilters}
-                                    className="text-cyan-600 text-[10px] font-black uppercase tracking-widest hover:underline"
+                                    className="text-brand-600 text-[10px] font-black uppercase tracking-widest hover:underline"
                                 >
                                     Clear filters
                                 </button>
@@ -336,7 +336,7 @@ const FabricsPage = () => {
                                         whileInView={{ opacity: 1, y: 0 }}
                                         transition={{ delay: (idx % 3) * 0.04 }}
                                         viewport={{ once: true }}
-                                        className="group flex flex-col rounded-2xl overflow-hidden bg-white border border-slate-200 shadow-sm hover:shadow-xl hover:border-cyan-200 transition-all scroll-mt-28"
+                                        className="group flex flex-col rounded-2xl overflow-hidden bg-white border border-slate-200 shadow-sm hover:shadow-xl hover:border-brand-200 transition-all scroll-mt-28"
                                     >
                                         <div className="relative aspect-[4/3] overflow-hidden bg-white border-b border-slate-100 p-4 sm:p-6">
                                             <img
@@ -346,7 +346,7 @@ const FabricsPage = () => {
                                                 className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
                                             />
                                             <div className="absolute top-3 right-3 z-10">
-                                                <span className="inline-block px-2.5 py-1 rounded-full bg-cyan-600 text-white text-[10px] font-black uppercase tracking-wider shadow-sm">
+                                                <span className="inline-block px-2.5 py-1 rounded-full bg-brand-600 text-white text-[10px] font-black uppercase tracking-wider shadow-sm">
                                                     {/\d/.test(fabric.gsm) ? `${fabric.gsm} GSM` : fabric.gsm}
                                                 </span>
                                             </div>
@@ -372,19 +372,19 @@ const FabricsPage = () => {
                                             <div className="flex flex-wrap gap-2 pt-3 border-t border-slate-100 items-center">
                                                 <Link
                                                     href={`/products?fabric=${encodeURIComponent(fabric.name)}`}
-                                                    className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-slate-50 hover:bg-cyan-50 border border-slate-200 hover:border-cyan-300 text-[9px] font-black uppercase tracking-widest text-slate-600 hover:text-cyan-700 transition-all"
+                                                    className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-slate-50 hover:bg-brand-50 border border-slate-200 hover:border-brand-300 text-[9px] font-black uppercase tracking-widest text-slate-600 hover:text-brand-700 transition-all"
                                                 >
                                                     Products <ArrowRight size={8} />
                                                 </Link>
                                                 <Link
                                                     href={`/uniforms?fabric=${encodeURIComponent(fabric.name)}`}
-                                                    className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-slate-50 hover:bg-cyan-50 border border-slate-200 hover:border-cyan-300 text-[9px] font-black uppercase tracking-widest text-slate-600 hover:text-cyan-700 transition-all"
+                                                    className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-slate-50 hover:bg-brand-50 border border-slate-200 hover:border-brand-300 text-[9px] font-black uppercase tracking-widest text-slate-600 hover:text-brand-700 transition-all"
                                                 >
                                                     Uniforms <ArrowRight size={8} />
                                                 </Link>
                                                 <Link
                                                     href={`/inquiry?fabric=${encodeURIComponent(fabric.name)}`}
-                                                    className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-cyan-600 hover:bg-cyan-700 text-[9px] font-black uppercase tracking-widest text-white transition-all ml-auto"
+                                                    className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-brand-600 hover:bg-brand-700 text-[9px] font-black uppercase tracking-widest text-white transition-all ml-auto"
                                                 >
                                                     Inquire <ArrowRight size={8} />
                                                 </Link>

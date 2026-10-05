@@ -15,7 +15,7 @@ const FounderStory = ({ showAboutLink = false }: { showAboutLink?: boolean }) =>
                     viewport={{ once: true }}
                     className="min-w-0 h-full flex flex-col"
                 >
-                    <h2 className="text-[13px] sm:text-3xl md:text-4xl font-black mb-2 sm:mb-6 border-l-2 sm:border-l-4 border-cyan-500 pl-2 sm:pl-6 uppercase tracking-tighter text-slate-900 leading-[1.15]">
+                    <h2 className="text-[13px] sm:text-3xl md:text-4xl font-black mb-2 sm:mb-6 border-l-2 sm:border-l-4 border-brand-500 pl-2 sm:pl-6 uppercase tracking-tighter text-slate-900 leading-[1.15]">
                         {BRAND_DETAILS.name}
                     </h2>
                     <p className="text-slate-600 text-[10px] sm:text-lg md:text-xl leading-relaxed mb-2 sm:mb-5">
@@ -24,7 +24,7 @@ const FounderStory = ({ showAboutLink = false }: { showAboutLink?: boolean }) =>
 
                     <div className="grid grid-cols-2 gap-1.5 sm:gap-3 mb-3 sm:mb-6">
                         <article className="rounded-lg sm:rounded-2xl bg-slate-50 border border-slate-100 p-2 sm:p-5">
-                            <p className="text-[7px] sm:text-[11px] font-black uppercase tracking-[0.18em] text-cyan-600 mb-1 sm:mb-2">
+                            <p className="text-[7px] sm:text-[11px] font-black uppercase tracking-[0.18em] text-brand-600 mb-1 sm:mb-2">
                                 Our Mission
                             </p>
                             <p className="text-slate-600 text-[9px] sm:text-sm md:text-base leading-snug sm:leading-relaxed">
@@ -32,7 +32,7 @@ const FounderStory = ({ showAboutLink = false }: { showAboutLink?: boolean }) =>
                             </p>
                         </article>
                         <article className="rounded-lg sm:rounded-2xl bg-slate-50 border border-slate-100 p-2 sm:p-5">
-                            <p className="text-[7px] sm:text-[11px] font-black uppercase tracking-[0.18em] text-cyan-600 mb-1 sm:mb-2">
+                            <p className="text-[7px] sm:text-[11px] font-black uppercase tracking-[0.18em] text-brand-600 mb-1 sm:mb-2">
                                 Our Vision
                             </p>
                             <p className="text-slate-600 text-[9px] sm:text-sm md:text-base leading-snug sm:leading-relaxed">
@@ -52,7 +52,7 @@ const FounderStory = ({ showAboutLink = false }: { showAboutLink?: boolean }) =>
                         </div>
                     </div>
                     {showAboutLink && (
-                        <Link href="/about" className="mt-2 sm:mt-4 text-cyan-600 font-black uppercase tracking-widest text-[8px] sm:text-xs inline-flex items-center gap-1 hover:text-slate-900">
+                        <Link href="/about" className="mt-2 sm:mt-4 text-brand-600 font-black uppercase tracking-widest text-[8px] sm:text-xs inline-flex items-center gap-1 hover:text-slate-900">
                             Full story <ChevronRight size={14} />
                         </Link>
                     )}
@@ -71,7 +71,7 @@ const FounderStory = ({ showAboutLink = false }: { showAboutLink?: boolean }) =>
                             className="absolute inset-0 w-full h-full object-cover object-[center_12%]"
                         />
                         <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent px-2 sm:px-8 pb-2.5 sm:pb-8 pt-10 sm:pt-28">
-                            <span className="block text-cyan-400 font-black uppercase tracking-widest text-[6px] sm:text-[10px] mb-0.5 sm:mb-1">
+                            <span className="block text-brand-400 font-black uppercase tracking-widest text-[6px] sm:text-[10px] mb-0.5 sm:mb-1">
                                 Founder & Proprietor
                             </span>
                             <h3 className="text-[11px] sm:text-2xl md:text-3xl font-black text-white tracking-tight">

@@ -185,7 +185,7 @@ const InquiryPage = () => {
             />
             <section className="bg-slate-900 py-20 px-6 text-center">
                 <motion.h1 initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="text-4xl md:text-5xl font-black text-white uppercase tracking-tighter">Get A Quote</motion.h1>
-                <p className="text-cyan-400 mt-4 uppercase tracking-widest text-xs font-bold">Mumbai Headquarters: {BRAND_DETAILS.headquarters}</p>
+                <p className="text-brand-400 mt-4 uppercase tracking-widest text-xs font-bold">Mumbai Headquarters: {BRAND_DETAILS.headquarters}</p>
             </section>
 
             <div className="max-w-6xl mx-auto px-6 -mt-16 pb-24">
@@ -205,11 +205,11 @@ const InquiryPage = () => {
                                     rel="noopener noreferrer"
                                     className="flex items-start gap-4 group cursor-pointer"
                                 >
-                                    <div className="w-10 h-10 rounded-xl bg-cyan-500/20 flex items-center justify-center text-cyan-400 group-hover:scale-110 group-hover:bg-cyan-500 group-hover:text-white transition-all shrink-0">
+                                    <div className="w-10 h-10 rounded-xl bg-brand-500/20 flex items-center justify-center text-brand-400 group-hover:scale-110 group-hover:bg-brand-500 group-hover:text-white transition-all shrink-0">
                                         <MapPin size={20} />
                                     </div>
                                     <div>
-                                        <h4 className="text-xs font-bold text-slate-400 uppercase mb-1 tracking-widest group-hover:text-cyan-400 transition-colors">Our Address</h4>
+                                        <h4 className="text-xs font-bold text-slate-400 uppercase mb-1 tracking-widest group-hover:text-brand-400 transition-colors">Our Address</h4>
                                         <p className="text-sm font-medium leading-relaxed text-white/80 group-hover:text-white transition-colors">
                                             {BRAND_DETAILS.addresses[0].text}
                                         </p>
@@ -231,12 +231,12 @@ const InquiryPage = () => {
 
                                 {/* Call Us */}
                                 <div className="flex items-start gap-4 group">
-                                    <div className="w-10 h-10 rounded-xl bg-cyan-500/20 flex items-center justify-center text-cyan-400 group-hover:scale-110 group-hover:bg-cyan-500 group-hover:text-white transition-all">
+                                    <div className="w-10 h-10 rounded-xl bg-brand-500/20 flex items-center justify-center text-brand-400 group-hover:scale-110 group-hover:bg-brand-500 group-hover:text-white transition-all">
                                         <Phone size={20} />
                                     </div>
                                     <div>
                                         <h4 className="text-xs font-bold text-slate-400 uppercase mb-1 tracking-widest">Call Us</h4>
-                                        <a href={`tel:${BRAND_DETAILS.contacts.phone.replace(/\s+/g, '')}`} className="text-sm font-medium leading-relaxed hover:text-cyan-400 transition-colors">
+                                        <a href={`tel:${BRAND_DETAILS.contacts.phone.replace(/\s+/g, '')}`} className="text-sm font-medium leading-relaxed hover:text-brand-400 transition-colors">
                                             {BRAND_DETAILS.contacts.phone}
                                         </a>
                                     </div>
@@ -244,12 +244,12 @@ const InquiryPage = () => {
 
                                 {/* Email */}
                                 <div className="flex items-start gap-4 group">
-                                    <div className="w-10 h-10 rounded-xl bg-cyan-500/20 flex items-center justify-center text-cyan-400 group-hover:scale-110 group-hover:bg-cyan-500 group-hover:text-white transition-all">
+                                    <div className="w-10 h-10 rounded-xl bg-brand-500/20 flex items-center justify-center text-brand-400 group-hover:scale-110 group-hover:bg-brand-500 group-hover:text-white transition-all">
                                         <Mail size={20} />
                                     </div>
                                     <div>
                                         <h4 className="text-xs font-bold text-slate-400 uppercase mb-1 tracking-widest">Email</h4>
-                                        <a href={`mailto:${BRAND_DETAILS.contacts.email}`} className="text-sm font-bold leading-relaxed hover:text-cyan-400 transition-colors">
+                                        <a href={`mailto:${BRAND_DETAILS.contacts.email}`} className="text-sm font-bold leading-relaxed hover:text-brand-400 transition-colors">
                                             {BRAND_DETAILS.contacts.email}
                                         </a>
                                     </div>
@@ -279,14 +279,14 @@ const InquiryPage = () => {
                                 className="flex flex-col items-center justify-center min-h-[520px] text-center px-4 py-12 relative overflow-hidden"
                             >
                                 {/* Animated background blobs */}
-                                <div className="absolute top-0 left-0 w-64 h-64 bg-cyan-400/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 animate-pulse" />
+                                <div className="absolute top-0 left-0 w-64 h-64 bg-brand-400/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 animate-pulse" />
                                 <div className="absolute bottom-0 right-0 w-72 h-72 bg-blue-400/10 rounded-full blur-3xl translate-x-1/2 translate-y-1/2 animate-pulse" />
 
                                 {/* Floating dots */}
                                 {[...Array(6)].map((_, i) => (
                                     <motion.div
                                         key={i}
-                                        className="absolute w-2 h-2 rounded-full bg-cyan-400/40"
+                                        className="absolute w-2 h-2 rounded-full bg-brand-400/40"
                                         initial={{ opacity: 0, scale: 0 }}
                                         animate={{
                                             opacity: [0, 1, 0],
@@ -304,7 +304,7 @@ const InquiryPage = () => {
                                     initial={{ scale: 0, rotate: -20 }}
                                     animate={{ scale: 1, rotate: 0 }}
                                     transition={{ type: 'spring', stiffness: 260, damping: 18, delay: 0.1 }}
-                                    className="w-24 h-24 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-3xl flex items-center justify-center text-5xl shadow-2xl shadow-cyan-200 mb-8 relative z-10"
+                                    className="w-24 h-24 bg-gradient-to-br from-brand-400 to-blue-500 rounded-3xl flex items-center justify-center text-5xl shadow-2xl shadow-brand-200 mb-8 relative z-10"
                                 >
                                     {thankYouMsg.emoji}
                                 </motion.div>
@@ -314,7 +314,7 @@ const InquiryPage = () => {
                                     initial={{ opacity: 0, y: 10 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.25 }}
-                                    className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-50 border border-cyan-200 text-cyan-600 text-[10px] font-black uppercase tracking-widest mb-5 relative z-10"
+                                    className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-50 border border-brand-200 text-brand-600 text-[10px] font-black uppercase tracking-widest mb-5 relative z-10"
                                 >
                                     <CheckCircle2 size={12} /> {thankYouMsg.tag}
                                 </motion.div>
@@ -391,12 +391,12 @@ const InquiryPage = () => {
                             
                             {/* Pre-filled context badge */}
                             {(prefilledProduct || prefilledFabric) && (
-                                <div className="flex items-start gap-3 p-4 rounded-2xl bg-cyan-50 border border-cyan-200">
-                                    <div className="w-8 h-8 rounded-xl bg-cyan-500 flex items-center justify-center shrink-0 mt-0.5">
+                                <div className="flex items-start gap-3 p-4 rounded-2xl bg-brand-50 border border-brand-200">
+                                    <div className="w-8 h-8 rounded-xl bg-brand-500 flex items-center justify-center shrink-0 mt-0.5">
                                         <CheckCircle2 size={16} className="text-white" />
                                     </div>
                                     <div>
-                                        <p className="text-[10px] font-black uppercase tracking-widest text-cyan-600 mb-1">
+                                        <p className="text-[10px] font-black uppercase tracking-widest text-brand-600 mb-1">
                                             {prefilledProduct ? 'Customizing From Product Page' : 'Inquiry From Fabric Library'}
                                         </p>
                                         <p className="text-sm font-bold text-slate-800">
@@ -404,7 +404,7 @@ const InquiryPage = () => {
                                         </p>
                                         <div className="flex flex-wrap gap-2 mt-2">
                                             {prefilledCode && <span className="px-2 py-0.5 rounded-full bg-slate-900 text-white text-[9px] font-black uppercase tracking-widest">{prefilledCode}</span>}
-                                            {prefilledProduct && prefilledFabric && <span className="px-2 py-0.5 rounded-full bg-cyan-600 text-white text-[9px] font-black uppercase tracking-widest">{prefilledFabric}</span>}
+                                            {prefilledProduct && prefilledFabric && <span className="px-2 py-0.5 rounded-full bg-brand-600 text-white text-[9px] font-black uppercase tracking-widest">{prefilledFabric}</span>}
                                             {prefilledPlacement && <span className="px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 text-[9px] font-black uppercase tracking-widest">{prefilledPlacement}</span>}
                                             {prefilledSize && <span className="px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 text-[9px] font-black uppercase tracking-widest">Size: {prefilledSize}</span>}
                                             {prefilledLogo && <span className="px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 text-[9px] font-black uppercase tracking-widest truncate max-w-[200px]">Logo: {prefilledLogo}</span>}
@@ -420,7 +420,7 @@ const InquiryPage = () => {
                                         required 
                                         type="text" 
                                         name="fullName"
-                                        className="w-full p-4 bg-slate-50 text-slate-900 rounded-2xl border-none focus:ring-2 focus:ring-cyan-400 outline-none transition-all" 
+                                        className="w-full p-4 bg-slate-50 text-slate-900 rounded-2xl border-none focus:ring-2 focus:ring-brand-400 outline-none transition-all" 
                                         placeholder="John Doe"
                                         value={formData.fullName}
                                         onChange={handleChange}
@@ -432,7 +432,7 @@ const InquiryPage = () => {
                                         required 
                                         type="email" 
                                         name="email"
-                                        className="w-full p-4 bg-slate-50 text-slate-900 rounded-2xl border-none focus:ring-2 focus:ring-cyan-400 outline-none transition-all" 
+                                        className="w-full p-4 bg-slate-50 text-slate-900 rounded-2xl border-none focus:ring-2 focus:ring-brand-400 outline-none transition-all" 
                                         placeholder="john@example.com"
                                         value={formData.email}
                                         onChange={handleChange}
@@ -447,7 +447,7 @@ const InquiryPage = () => {
                                         required 
                                         type="tel" 
                                         name="phone"
-                                        className="w-full p-4 bg-slate-50 text-slate-900 rounded-2xl border-none focus:ring-2 focus:ring-cyan-400 outline-none transition-all" 
+                                        className="w-full p-4 bg-slate-50 text-slate-900 rounded-2xl border-none focus:ring-2 focus:ring-brand-400 outline-none transition-all" 
                                         placeholder="+91 00000 00000"
                                         value={formData.phone}
                                         onChange={handleChange}
@@ -458,7 +458,7 @@ const InquiryPage = () => {
                                     <input 
                                         type="number" 
                                         name="quantity"
-                                        className="w-full p-4 bg-slate-50 text-slate-900 rounded-2xl border-none focus:ring-2 focus:ring-cyan-400 outline-none transition-all" 
+                                        className="w-full p-4 bg-slate-50 text-slate-900 rounded-2xl border-none focus:ring-2 focus:ring-brand-400 outline-none transition-all" 
                                         placeholder="E.g. 50"
                                         value={formData.quantity}
                                         onChange={handleChange}
@@ -471,7 +471,7 @@ const InquiryPage = () => {
                                 <select
                                     required
                                     name="productType"
-                                    className="w-full p-4 bg-slate-50 text-slate-900 rounded-2xl border-none focus:ring-2 focus:ring-cyan-400 outline-none transition-all appearance-none"
+                                    className="w-full p-4 bg-slate-50 text-slate-900 rounded-2xl border-none focus:ring-2 focus:ring-brand-400 outline-none transition-all appearance-none"
                                     value={formData.productType}
                                     onChange={handleChange}
                                 >
@@ -488,7 +488,7 @@ const InquiryPage = () => {
                             <div className="space-y-2">
                                 <label className="text-xs font-black uppercase tracking-widest text-slate-400">Reference Design (Optional)</label>
                                 <div className="relative group">
-                                    <div className={`w-full p-8 border-2 border-dashed rounded-3xl transition-all flex flex-col items-center justify-center gap-4 ${imagePreview ? 'border-cyan-500 bg-cyan-50/10' : 'border-slate-200 hover:border-cyan-400 bg-slate-50'}`}>
+                                    <div className={`w-full p-8 border-2 border-dashed rounded-3xl transition-all flex flex-col items-center justify-center gap-4 ${imagePreview ? 'border-brand-500 bg-brand-50/10' : 'border-slate-200 hover:border-brand-400 bg-slate-50'}`}>
                                         {imagePreview ? (
                                             <div className="relative">
                                                 <img src={imagePreview} alt="Preview" className="h-24 w-auto object-contain rounded-xl shadow-lg" />
@@ -506,7 +506,7 @@ const InquiryPage = () => {
                                             </div>
                                         ) : (
                                             <>
-                                                <div className="w-12 h-12 bg-white rounded-2xl shadow-sm flex items-center justify-center text-slate-400 group-hover:text-cyan-500 group-hover:scale-110 transition-all">
+                                                <div className="w-12 h-12 bg-white rounded-2xl shadow-sm flex items-center justify-center text-slate-400 group-hover:text-brand-500 group-hover:scale-110 transition-all">
                                                     <Upload size={24} />
                                                 </div>
                                                 <div className="text-center">
@@ -530,7 +530,7 @@ const InquiryPage = () => {
                                     required
                                     name="message"
                                     rows={4}
-                                    className="w-full p-4 bg-slate-50 text-slate-900 rounded-2xl border-none focus:ring-2 focus:ring-cyan-400 outline-none transition-all resize-none"
+                                    className="w-full p-4 bg-slate-50 text-slate-900 rounded-2xl border-none focus:ring-2 focus:ring-brand-400 outline-none transition-all resize-none"
                                     placeholder="Please provide details about colors, sizing, and your team's requirements..."
                                     value={formData.message}
                                     onChange={handleChange}
@@ -544,7 +544,7 @@ const InquiryPage = () => {
                                         animate={{ opacity: 1, height: 'auto' }}
                                         exit={{ opacity: 0, height: 0 }}
                                         className={`flex items-center gap-3 p-4 rounded-xl text-sm font-bold ${
-                                            status === 'error' ? 'bg-red-50 text-red-700' : 'bg-cyan-50 text-cyan-700'
+                                            status === 'error' ? 'bg-red-50 text-red-700' : 'bg-brand-50 text-brand-700'
                                         }`}
                                     >
                                         {status === 'error' && <AlertCircle size={18} />}
@@ -557,7 +557,7 @@ const InquiryPage = () => {
                             <button 
                                 type="submit" 
                                 disabled={status === 'sending'}
-                                className={`w-full py-4 bg-slate-900 text-white font-black uppercase tracking-widest rounded-xl transition-all flex items-center justify-center gap-3 active:scale-95 group ${status === 'sending' ? 'opacity-70 cursor-not-allowed' : 'hover:bg-cyan-600 shadow-xl shadow-cyan-100'}`}
+                                className={`w-full py-4 bg-slate-900 text-white font-black uppercase tracking-widest rounded-xl transition-all flex items-center justify-center gap-3 active:scale-95 group ${status === 'sending' ? 'opacity-70 cursor-not-allowed' : 'hover:bg-brand-600 shadow-xl shadow-brand-100'}`}
                             >
                                 {status === 'sending' ? 'Sending...' : 'Submit Inquiry'}
                                 <Send size={18} className={status === 'sending' ? '' : 'group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform'} />

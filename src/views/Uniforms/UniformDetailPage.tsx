@@ -90,7 +90,7 @@ const UniformDetailPage = () => {
     if (loading) {
         return (
             <div className="min-h-screen flex flex-col items-center justify-center bg-slate-50 px-6 pt-20">
-                <Loader2 className="animate-spin text-cyan-500 mb-4" size={32} />
+                <Loader2 className="animate-spin text-brand-500 mb-4" size={32} />
                 <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Loading uniform…</p>
             </div>
         );
@@ -100,7 +100,7 @@ const UniformDetailPage = () => {
         return (
             <div className="min-h-screen flex flex-col items-center justify-center bg-slate-50 px-6">
                 <h2 className="text-2xl font-black uppercase text-slate-900 mb-4">Uniform Style Not Found</h2>
-                <Link href="/uniforms" className="text-cyan-600 font-bold uppercase tracking-widest text-xs flex items-center gap-2">
+                <Link href="/uniforms" className="text-brand-600 font-bold uppercase tracking-widest text-xs flex items-center gap-2">
                     <ArrowLeft size={16} /> Back to Uniforms
                 </Link>
             </div>
@@ -136,7 +136,7 @@ const UniformDetailPage = () => {
             <div className="max-w-7xl mx-auto px-6 py-8">
                 <button
                     onClick={() => router.back()}
-                    className="flex items-center gap-2 text-slate-400 hover:text-cyan-600 transition-colors font-bold uppercase tracking-widest text-[10px]"
+                    className="flex items-center gap-2 text-slate-400 hover:text-brand-600 transition-colors font-bold uppercase tracking-widest text-[10px]"
                 >
                     <ArrowLeft size={14} /> Back to Collection
                 </button>
@@ -164,7 +164,7 @@ const UniformDetailPage = () => {
                                     <button
                                         key={idx}
                                         onClick={() => setActiveImageIndex(idx)}
-                                        className={`relative w-16 h-16 md:w-20 md:h-20 rounded-xl md:rounded-2xl overflow-hidden aspect-square border-2 transition-all p-1.5 md:p-2 bg-slate-50 ${activeImageIndex === idx ? 'border-cyan-500 shadow-lg shadow-cyan-100' : 'border-transparent opacity-60 hover:opacity-100'
+                                        className={`relative w-16 h-16 md:w-20 md:h-20 rounded-xl md:rounded-2xl overflow-hidden aspect-square border-2 transition-all p-1.5 md:p-2 bg-slate-50 ${activeImageIndex === idx ? 'border-brand-500 shadow-lg shadow-brand-100' : 'border-transparent opacity-60 hover:opacity-100'
                                             }`}
                                     >
                                         {product.imageBack && (img === product.image || img === product.imageBack) && (
@@ -186,7 +186,7 @@ const UniformDetailPage = () => {
                         animate={{ opacity: 1, x: 0 }}
                     >
                         <div className="flex items-center gap-3 mb-4">
-                            <span className="px-3 py-1 bg-cyan-100 text-cyan-700 font-black uppercase tracking-widest text-[10px] rounded-full">
+                            <span className="px-3 py-1 bg-brand-100 text-brand-700 font-black uppercase tracking-widest text-[10px] rounded-full">
                                 {product.category}
                             </span>
                             {product.subcategory && (
@@ -200,7 +200,7 @@ const UniformDetailPage = () => {
                         </h1>
                         <Link
                             href={`/fabrics#fabric-${fabricSlug(sportexFabric)}`}
-                            className="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full bg-slate-900 text-cyan-400 text-[10px] font-black uppercase tracking-widest hover:bg-cyan-600 hover:text-white transition-all"
+                            className="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full bg-slate-900 text-brand-400 text-[10px] font-black uppercase tracking-widest hover:bg-brand-600 hover:text-white transition-all"
                         >
                             Sportex {sportexFabric}
                             {sportexGsm && /\d/.test(sportexGsm) ? ` · ${sportexGsm} GSM` : ''}
@@ -212,8 +212,8 @@ const UniformDetailPage = () => {
 
                         <div className="space-y-4 mb-6">
                             {product.features.map((feature, idx) => (
-                                <div key={idx} className="flex items-center gap-4 p-4 bg-slate-50 rounded-2xl border border-slate-100 group hover:border-cyan-500 transition-all">
-                                    <div className="w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center text-cyan-500">
+                                <div key={idx} className="flex items-center gap-4 p-4 bg-slate-50 rounded-2xl border border-slate-100 group hover:border-brand-500 transition-all">
+                                    <div className="w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center text-brand-500">
                                         <CheckCircle2 size={20} />
                                     </div>
                                     <span className="font-bold text-slate-700 uppercase tracking-tight text-sm">{feature}</span>
@@ -225,7 +225,7 @@ const UniformDetailPage = () => {
                             onClick={() => setIsSizeChartOpen(true)}
                             className="flex items-center gap-3 px-5 py-3 mb-10 bg-slate-100 hover:bg-slate-200 text-slate-900 rounded-xl font-bold uppercase tracking-widest text-xs transition-colors border border-slate-200"
                         >
-                            <Ruler size={16} className="text-cyan-600" />
+                            <Ruler size={16} className="text-brand-600" />
                             View Size Chart & Fit Guide
                         </button>
 
@@ -238,7 +238,7 @@ const UniformDetailPage = () => {
                             </button>
                             <Link
                                 href={`/inquiry?product=${encodeURIComponent(product.title)}`}
-                                className="py-6 bg-slate-900 text-white rounded-[2rem] font-black uppercase tracking-widest text-sm flex items-center justify-center gap-3 hover:bg-cyan-600 transition-all shadow-2xl shadow-slate-900/20 active:scale-95 group"
+                                className="py-6 bg-slate-900 text-white rounded-[2rem] font-black uppercase tracking-widest text-sm flex items-center justify-center gap-3 hover:bg-brand-600 transition-all shadow-2xl shadow-slate-900/20 active:scale-95 group"
                             >
                                 Email Inquiry <ChevronRight className="group-hover:translate-x-1 transition-transform" />
                             </Link>
@@ -258,11 +258,11 @@ const UniformDetailPage = () => {
                                 <h2 className="text-3xl font-black uppercase tracking-tighter text-slate-900">Specifications</h2>
                             </div>
                             <div className="space-y-3">
-                                <div className="flex justify-between items-center p-5 bg-cyan-50 rounded-2xl border border-cyan-200 shadow-sm">
-                                    <span className="text-[10px] font-black uppercase tracking-widest text-cyan-700">Sportex Fabric</span>
+                                <div className="flex justify-between items-center p-5 bg-brand-50 rounded-2xl border border-brand-200 shadow-sm">
+                                    <span className="text-[10px] font-black uppercase tracking-widest text-brand-700">Sportex Fabric</span>
                                     <Link
                                         href={`/fabrics#fabric-${fabricSlug(sportexFabric)}`}
-                                        className="text-xs font-bold text-cyan-800 uppercase tracking-tight hover:text-cyan-600"
+                                        className="text-xs font-bold text-brand-800 uppercase tracking-tight hover:text-brand-600"
                                     >
                                         {sportexFabric}
                                     </Link>
@@ -323,7 +323,7 @@ const UniformDetailPage = () => {
                         {!product.sizeCharts && (
                              <div className="lg:col-span-2">
                                 <div className="bg-slate-900 rounded-[3rem] p-12 text-center h-full flex flex-col items-center justify-center">
-                                    <Zap size={48} className="text-cyan-500 mb-6" />
+                                    <Zap size={48} className="text-brand-500 mb-6" />
                                     <h3 className="text-2xl font-black text-white uppercase mb-4">Custom Sizing Available</h3>
                                     <p className="text-slate-400 text-sm max-w-md mx-auto">
                                         We provide tailored sizing solutions for bulk orders. Contact us to get a specialized size guide for your team or organization.
@@ -347,7 +347,7 @@ const UniformDetailPage = () => {
 
                     <Link
                         href="/inquiry"
-                        className="relative z-10 px-10 py-5 bg-cyan-500 text-white font-black uppercase tracking-widest text-xs rounded-full hover:bg-white hover:text-slate-900 transition-all shadow-2xl shadow-cyan-500/30 active:scale-95"
+                        className="relative z-10 px-10 py-5 bg-brand-500 text-white font-black uppercase tracking-widest text-xs rounded-full hover:bg-white hover:text-slate-900 transition-all shadow-2xl shadow-brand-500/30 active:scale-95"
                     >
                         Inquire Bulk Pricing
                     </Link>

@@ -37,7 +37,7 @@ const TermsPage = () => {
             {/* Header */}
             <section className="bg-slate-900 py-20 px-6 text-center relative overflow-hidden">
                 <div className="absolute inset-0 opacity-10">
-                    <div className="absolute top-0 left-0 w-64 h-64 bg-cyan-500 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2"></div>
+                    <div className="absolute top-0 left-0 w-64 h-64 bg-brand-500 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2"></div>
                     <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-600 rounded-full blur-[150px] translate-x-1/2 translate-y-1/2"></div>
                 </div>
                 <motion.h1
@@ -45,7 +45,7 @@ const TermsPage = () => {
                     animate={{ opacity: 1, y: 0 }}
                     className="text-4xl md:text-5xl font-black text-white uppercase tracking-tighter relative z-10"
                 >
-                    Terms & <span className="text-cyan-500">Conditions</span>
+                    Terms & <span className="text-brand-500">Conditions</span>
                 </motion.h1>
                 <p className="text-slate-400 mt-4 max-w-2xl mx-auto uppercase tracking-[0.3em] text-[10px] font-black relative z-10">
                     Legal Framework & Usage Policies
@@ -64,7 +64,7 @@ const TermsPage = () => {
                             className="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm"
                         >
                             <div className="flex items-center gap-4 mb-6">
-                                <div className="p-3 bg-cyan-50 text-cyan-600 rounded-xl">
+                                <div className="p-3 bg-brand-50 text-brand-600 rounded-xl">
                                     {section.icon}
                                 </div>
                                 <h2 className="text-xl font-black text-slate-900 uppercase tracking-tighter">
@@ -79,12 +79,12 @@ const TermsPage = () => {
                 </div>
 
                 <div className="mt-20 p-12 bg-slate-900 rounded-[3rem] text-center text-white relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/20 rounded-full blur-3xl"></div>
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-brand-500/20 rounded-full blur-3xl"></div>
                     <h3 className="text-2xl font-black uppercase tracking-tighter mb-4 relative z-10">Need Clarification?</h3>
                     <p className="text-slate-400 text-sm font-medium mb-8 relative z-10">
                         If you have any questions regarding our terms, please feel free to reach out to our legal team.
                     </p>
-                    <a href="/inquiry" className="inline-block px-8 py-4 bg-cyan-600 text-white rounded-xl text-xs font-black uppercase tracking-widest hover:bg-cyan-500 transition-all relative z-10">
+                    <a href="/inquiry" className="inline-block px-8 py-4 bg-brand-600 text-white rounded-xl text-xs font-black uppercase tracking-widest hover:bg-brand-500 transition-all relative z-10">
                         Contact Support
                     </a>
                 </div>

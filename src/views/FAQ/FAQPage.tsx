@@ -72,14 +72,14 @@ const FAQPage = () => {
             />
             {/* Header Section */}
             <div className="bg-slate-900 text-white py-20 relative overflow-hidden">
-                <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-cyan-400 via-slate-900 to-slate-900"></div>
+                <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-brand-400 via-slate-900 to-slate-900"></div>
                 <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6 }}
                     >
-                        <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6">Frequently Asked <span className="text-cyan-400">Questions</span></h1>
+                        <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6">Frequently Asked <span className="text-brand-400">Questions</span></h1>
                         <p className="text-slate-400 max-w-2xl mx-auto text-lg leading-relaxed">
                             Find answers to common questions about our custom sportswear, manufacturing process, and ordering.
                         </p>
@@ -105,7 +105,7 @@ const FAQPage = () => {
                             >
                                 <span className="font-bold text-slate-800 pr-4">{faq.question}</span>
                                 <ChevronDown 
-                                    className={`text-cyan-500 transition-transform duration-300 flex-shrink-0 ${openIndex === index ? 'rotate-180' : ''}`} 
+                                    className={`text-brand-500 transition-transform duration-300 flex-shrink-0 ${openIndex === index ? 'rotate-180' : ''}`} 
                                     size={20} 
                                 />
                             </button>
@@ -130,15 +130,15 @@ const FAQPage = () => {
 
             {/* Still have questions */}
             <div className="max-w-4xl mx-auto px-6 text-center">
-                <div className="bg-cyan-50 rounded-3xl p-10 border border-cyan-100">
-                    <MessageCircle className="mx-auto text-cyan-500 mb-4" size={40} />
+                <div className="bg-brand-50 rounded-3xl p-10 border border-brand-100">
+                    <MessageCircle className="mx-auto text-brand-500 mb-4" size={40} />
                     <h2 className="text-2xl font-black text-slate-900 mb-3 tracking-tight">Still have questions?</h2>
                     <p className="text-slate-600 mb-6 max-w-lg mx-auto">
                         If you couldn't find the answer to your question, feel free to reach out to our team. We're here to help!
                     </p>
                     <a 
                         href="/inquiry" 
-                        className="inline-flex items-center justify-center px-8 py-3 bg-slate-900 text-white font-bold uppercase tracking-widest text-sm rounded-full hover:bg-cyan-600 transition-colors shadow-lg shadow-slate-200"
+                        className="inline-flex items-center justify-center px-8 py-3 bg-slate-900 text-white font-bold uppercase tracking-widest text-sm rounded-full hover:bg-brand-600 transition-colors shadow-lg shadow-slate-200"
                     >
                         Contact Us
                     </a>

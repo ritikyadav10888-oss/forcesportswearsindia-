@@ -441,7 +441,7 @@ export default function ProductsManager() {
         return catalogRecencyMs(b) - catalogRecencyMs(a);
     });
 
-    if (loading) return <div className="flex justify-center p-20"><Loader2 className="w-8 h-8 animate-spin text-cyan-600" /></div>;
+    if (loading) return <div className="flex justify-center p-20"><Loader2 className="w-8 h-8 animate-spin text-brand-600" /></div>;
 
     if (view === 'form') {
         return (
@@ -460,21 +460,21 @@ export default function ProductsManager() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="space-y-2">
                             <label className="text-xs font-black uppercase tracking-widest text-slate-400">Product Title *</label>
-                            <input required type="text" className="w-full p-4 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-cyan-500 text-slate-900" value={formData.title || ''} onChange={e => setFormData({...formData, title: e.target.value})} placeholder="e.g., T20 Pro Polo" />
+                            <input required type="text" className="w-full p-4 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-brand-500 text-slate-900" value={formData.title || ''} onChange={e => setFormData({...formData, title: e.target.value})} placeholder="e.g., T20 Pro Polo" />
                         </div>
                         <div className="space-y-2">
                             <label className="text-xs font-black uppercase tracking-widest text-slate-400">Product Code</label>
-                            <input type="text" className="w-full p-4 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-cyan-500 text-slate-900" value={formData.productCode || ''} onChange={e => setFormData({...formData, productCode: e.target.value})} placeholder="e.g., #TN-101" />
+                            <input type="text" className="w-full p-4 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-brand-500 text-slate-900" value={formData.productCode || ''} onChange={e => setFormData({...formData, productCode: e.target.value})} placeholder="e.g., #TN-101" />
                         </div>
                         <div className="space-y-2">
                             <label className="text-xs font-black uppercase tracking-widest text-slate-400">Category *</label>
-                            <select className="w-full p-4 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-cyan-500 text-slate-900" value={formData.category} onChange={e => setFormData({...formData, category: e.target.value})}>
+                            <select className="w-full p-4 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-brand-500 text-slate-900" value={formData.category} onChange={e => setFormData({...formData, category: e.target.value})}>
                                 {CATEGORIES.map(c => <option key={c} value={c}>{c}</option>)}
                             </select>
                         </div>
                         <div className="space-y-2">
                             <label className="text-xs font-black uppercase tracking-widest text-slate-400">Sport *</label>
-                            <select className="w-full p-4 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-cyan-500 text-slate-900" value={formData.sport} onChange={e => setFormData({...formData, sport: e.target.value})}>
+                            <select className="w-full p-4 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-brand-500 text-slate-900" value={formData.sport} onChange={e => setFormData({...formData, sport: e.target.value})}>
                                 {SPORTS.map(s => <option key={s} value={s}>{s}</option>)}
                             </select>
                         </div>
@@ -484,11 +484,11 @@ export default function ProductsManager() {
                     <div className="space-y-6">
                         <div className="space-y-2">
                             <label className="text-xs font-black uppercase tracking-widest text-slate-400">Short Description *</label>
-                            <textarea required className="w-full p-4 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-cyan-500 text-slate-900 h-24" value={formData.description || ''} onChange={e => setFormData({...formData, description: e.target.value})} placeholder="Brief overview of the product..." />
+                            <textarea required className="w-full p-4 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-brand-500 text-slate-900 h-24" value={formData.description || ''} onChange={e => setFormData({...formData, description: e.target.value})} placeholder="Brief overview of the product..." />
                         </div>
                         <div className="space-y-2">
                             <label className="text-xs font-black uppercase tracking-widest text-slate-400">Long Description (Optional)</label>
-                            <textarea className="w-full p-4 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-cyan-500 text-slate-900 h-32" value={formData.longDescription || ''} onChange={e => setFormData({...formData, longDescription: e.target.value})} placeholder="Detailed explanation..." />
+                            <textarea className="w-full p-4 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-brand-500 text-slate-900 h-32" value={formData.longDescription || ''} onChange={e => setFormData({...formData, longDescription: e.target.value})} placeholder="Detailed explanation..." />
                         </div>
                     </div>
 
@@ -500,7 +500,7 @@ export default function ProductsManager() {
                             {/* Main Image */}
                             <div className="space-y-2">
                                 <label className="text-xs font-black uppercase tracking-widest text-slate-400">Main Front Image *</label>
-                                <div onClick={() => fileInputRef.current?.click()} className="border-2 border-dashed border-slate-300 rounded-2xl p-6 text-center cursor-pointer hover:border-cyan-500 hover:bg-cyan-50 transition-all flex flex-col items-center justify-center min-h-[150px]">
+                                <div onClick={() => fileInputRef.current?.click()} className="border-2 border-dashed border-slate-300 rounded-2xl p-6 text-center cursor-pointer hover:border-brand-500 hover:bg-brand-50 transition-all flex flex-col items-center justify-center min-h-[150px]">
                                     {imagePreview ? (
                                         <img src={imagePreview} alt="Preview" className="h-32 object-contain rounded-lg" />
                                     ) : (
@@ -513,7 +513,7 @@ export default function ProductsManager() {
                             {/* Back Image */}
                             <div className="space-y-2">
                                 <label className="text-xs font-black uppercase tracking-widest text-slate-400">Back Image (Optional)</label>
-                                <div onClick={() => backFileInputRef.current?.click()} className="border-2 border-dashed border-slate-300 rounded-2xl p-6 text-center cursor-pointer hover:border-cyan-500 hover:bg-cyan-50 transition-all flex flex-col items-center justify-center min-h-[150px]">
+                                <div onClick={() => backFileInputRef.current?.click()} className="border-2 border-dashed border-slate-300 rounded-2xl p-6 text-center cursor-pointer hover:border-brand-500 hover:bg-brand-50 transition-all flex flex-col items-center justify-center min-h-[150px]">
                                     {imageBackPreview ? (
                                         <img src={imageBackPreview} alt="Back Preview" className="h-32 object-contain rounded-lg" />
                                     ) : (
@@ -528,7 +528,7 @@ export default function ProductsManager() {
                         <div className="space-y-2">
                             <div className="flex justify-between items-center">
                                 <label className="text-xs font-black uppercase tracking-widest text-slate-400">Gallery Images (Optional)</label>
-                                <button type="button" onClick={() => galleryInputRef.current?.click()} className="text-cyan-600 hover:text-cyan-700 text-xs font-bold uppercase flex items-center gap-1">
+                                <button type="button" onClick={() => galleryInputRef.current?.click()} className="text-brand-600 hover:text-brand-700 text-xs font-bold uppercase flex items-center gap-1">
                                     <Plus className="w-3 h-3" /> Add Photos
                                 </button>
                                 <input type="file" ref={galleryInputRef} onChange={handleGalleryChange} accept="image/*" multiple className="hidden" />
@@ -543,14 +543,14 @@ export default function ProductsManager() {
                                                 <X className="w-3 h-3" />
                                             </button>
                                             <div className="flex gap-1 p-1 bg-slate-50 border-t border-slate-200">
-                                                <button type="button" onClick={() => setGalleryAsFront(idx)} className="flex-1 py-1 px-1 bg-white hover:bg-cyan-50 text-[9px] font-black uppercase text-cyan-700 border border-slate-200 rounded text-center transition-colors">Set Front</button>
+                                                <button type="button" onClick={() => setGalleryAsFront(idx)} className="flex-1 py-1 px-1 bg-white hover:bg-brand-50 text-[9px] font-black uppercase text-brand-700 border border-slate-200 rounded text-center transition-colors">Set Front</button>
                                                 <button type="button" onClick={() => setGalleryAsBack(idx)} className="flex-1 py-1 px-1 bg-white hover:bg-slate-100 text-[9px] font-black uppercase text-slate-700 border border-slate-200 rounded text-center transition-colors">Set Back</button>
                                             </div>
                                         </div>
                                     ))}
                                 </div>
                             ) : (
-                                <div onClick={() => galleryInputRef.current?.click()} className="border-2 border-dashed border-slate-300 rounded-2xl p-6 text-center cursor-pointer hover:border-cyan-500 hover:bg-cyan-50 transition-all flex flex-col items-center justify-center">
+                                <div onClick={() => galleryInputRef.current?.click()} className="border-2 border-dashed border-slate-300 rounded-2xl p-6 text-center cursor-pointer hover:border-brand-500 hover:bg-brand-50 transition-all flex flex-col items-center justify-center">
                                     <ImageIcon className="w-8 h-8 text-slate-300 mb-2" />
                                     <p className="text-xs font-bold text-slate-500">Click to upload multiple gallery images</p>
                                 </div>
@@ -564,7 +564,7 @@ export default function ProductsManager() {
                         <div className="space-y-4">
                             <div className="flex justify-between items-center">
                                 <label className="text-xs font-black uppercase tracking-widest text-slate-400">Fabric Materials</label>
-                                <button type="button" onClick={addFabric} className="text-cyan-600 hover:text-cyan-700 text-xs font-bold uppercase flex items-center gap-1">
+                                <button type="button" onClick={addFabric} className="text-brand-600 hover:text-brand-700 text-xs font-bold uppercase flex items-center gap-1">
                                     <Plus className="w-3 h-3" /> Add Fabric
                                 </button>
                             </div>
@@ -573,7 +573,7 @@ export default function ProductsManager() {
                                     <select
                                         value={fabric}
                                         onChange={(e) => handleFabricChange(index, e.target.value)}
-                                        className="flex-1 p-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-cyan-500 font-medium text-slate-900 text-sm"
+                                        className="flex-1 p-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-brand-500 font-medium text-slate-900 text-sm"
                                     >
                                         <option value="">Select Fabric...</option>
                                         {availableFabrics.map(f => <option key={f} value={f}>{f}</option>)}
@@ -588,13 +588,13 @@ export default function ProductsManager() {
                         <div className="space-y-4">
                             <div className="flex justify-between items-center">
                                 <label className="text-xs font-black uppercase tracking-widest text-slate-400">Available GSM Options</label>
-                                <button type="button" onClick={addGsm} className="text-cyan-600 hover:text-cyan-700 text-xs font-bold uppercase flex items-center gap-1">
+                                <button type="button" onClick={addGsm} className="text-brand-600 hover:text-brand-700 text-xs font-bold uppercase flex items-center gap-1">
                                     <Plus className="w-3 h-3" /> Add GSM
                                 </button>
                             </div>
                             {(formData.gsms || []).map((gsm, idx) => (
                                 <div key={idx} className="flex gap-2">
-                                    <select className="flex-1 p-3 bg-slate-50 border border-slate-200 rounded-lg outline-none focus:border-cyan-500 text-slate-900 text-sm" value={gsm} onChange={e => handleGsmChange(idx, e.target.value)}>
+                                    <select className="flex-1 p-3 bg-slate-50 border border-slate-200 rounded-lg outline-none focus:border-brand-500 text-slate-900 text-sm" value={gsm} onChange={e => handleGsmChange(idx, e.target.value)}>
                                         <option value="">Select GSM...</option>
                                         {COMMON_GSMS.map(g => <option key={g} value={g}>{g} GSM</option>)}
                                     </select>
@@ -610,13 +610,13 @@ export default function ProductsManager() {
                         <div className="space-y-4">
                             <div className="flex justify-between items-center">
                                 <label className="text-xs font-black uppercase tracking-widest text-slate-400">Features List</label>
-                                <button type="button" onClick={addFeature} className="text-cyan-600 hover:text-cyan-700 text-xs font-bold uppercase flex items-center gap-1">
+                                <button type="button" onClick={addFeature} className="text-brand-600 hover:text-brand-700 text-xs font-bold uppercase flex items-center gap-1">
                                     <Plus className="w-3 h-3" /> Add Feature
                                 </button>
                             </div>
                             {(formData.features || []).map((feat, idx) => (
                                 <div key={idx} className="flex gap-2">
-                                    <input type="text" className="flex-1 p-3 bg-slate-50 border border-slate-200 rounded-lg outline-none focus:border-cyan-500 text-slate-900 text-sm" value={feat} onChange={e => handleFeatureChange(idx, e.target.value)} placeholder="e.g., Moisture Wicking" />
+                                    <input type="text" className="flex-1 p-3 bg-slate-50 border border-slate-200 rounded-lg outline-none focus:border-brand-500 text-slate-900 text-sm" value={feat} onChange={e => handleFeatureChange(idx, e.target.value)} placeholder="e.g., Moisture Wicking" />
                                     <button type="button" onClick={() => removeFeature(idx)} className="p-3 text-red-400 hover:bg-red-50 rounded-lg"><X className="w-4 h-4" /></button>
                                 </div>
                             ))}
@@ -626,14 +626,14 @@ export default function ProductsManager() {
                         <div className="space-y-4">
                             <div className="flex justify-between items-center">
                                 <label className="text-xs font-black uppercase tracking-widest text-slate-400">Specifications</label>
-                                <button type="button" onClick={addSpec} className="text-cyan-600 hover:text-cyan-700 text-xs font-bold uppercase flex items-center gap-1">
+                                <button type="button" onClick={addSpec} className="text-brand-600 hover:text-brand-700 text-xs font-bold uppercase flex items-center gap-1">
                                     <Plus className="w-3 h-3" /> Add Spec
                                 </button>
                             </div>
                             {Object.entries(formData.specs || {}).map(([key, val], idx) => (
                                 <div key={idx} className="flex gap-2">
-                                    <input type="text" className="w-1/3 p-3 bg-slate-50 border border-slate-200 rounded-lg outline-none focus:border-cyan-500 text-slate-900 text-sm font-bold" value={key} onChange={e => handleSpecChange(key, e.target.value, val)} placeholder="Key" />
-                                    <input type="text" className="flex-1 p-3 bg-slate-50 border border-slate-200 rounded-lg outline-none focus:border-cyan-500 text-slate-900 text-sm" value={val} onChange={e => handleSpecChange(key, key, e.target.value)} placeholder="Value" />
+                                    <input type="text" className="w-1/3 p-3 bg-slate-50 border border-slate-200 rounded-lg outline-none focus:border-brand-500 text-slate-900 text-sm font-bold" value={key} onChange={e => handleSpecChange(key, e.target.value, val)} placeholder="Key" />
+                                    <input type="text" className="flex-1 p-3 bg-slate-50 border border-slate-200 rounded-lg outline-none focus:border-brand-500 text-slate-900 text-sm" value={val} onChange={e => handleSpecChange(key, key, e.target.value)} placeholder="Value" />
                                     <button type="button" onClick={() => removeSpec(key)} className="p-3 text-red-400 hover:bg-red-50 rounded-lg"><X className="w-4 h-4" /></button>
                                 </div>
                             ))}
@@ -675,7 +675,7 @@ export default function ProductsManager() {
                             <Trash2 className="w-4 h-4" /> Delete All Filtered
                         </button>
                     )}
-                    <button onClick={() => setView('form')} className="bg-cyan-600 text-white px-6 py-3 rounded-xl font-black text-sm uppercase tracking-wider hover:bg-cyan-700 transition-colors flex items-center gap-2">
+                    <button onClick={() => setView('form')} className="bg-brand-600 text-white px-6 py-3 rounded-xl font-black text-sm uppercase tracking-wider hover:bg-brand-700 transition-colors flex items-center gap-2">
                         <Plus className="w-4 h-4" /> Add Product
                     </button>
                 </div>
@@ -685,7 +685,7 @@ export default function ProductsManager() {
             <div>
                 <div className="flex justify-between items-center mb-3">
                     <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Filter By Category</p>
-                    {selectedCategory && <button onClick={() => setSelectedCategory(null)} className="text-[10px] font-black uppercase text-cyan-600 hover:text-cyan-700">Clear</button>}
+                    {selectedCategory && <button onClick={() => setSelectedCategory(null)} className="text-[10px] font-black uppercase text-brand-600 hover:text-brand-700">Clear</button>}
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3">
                     {[
@@ -695,12 +695,12 @@ export default function ProductsManager() {
                         { label: 'Jackets',       key: 'Jackets',         emoji: '🧥', color: 'bg-orange-50 border-orange-100 text-orange-700' },
                         { label: 'Bags',          key: 'Bags',            emoji: '🎒', color: 'bg-amber-50 border-amber-100 text-amber-700' },
                         { label: 'Caps',          key: 'Caps',            emoji: '🧢', color: 'bg-green-50 border-green-100 text-green-700' },
-                        { label: '3D Innovations',key: '3D Innovations',  emoji: '🏅', color: 'bg-cyan-50 border-cyan-100 text-cyan-700' },
+                        { label: '3D Innovations',key: '3D Innovations',  emoji: '🏅', color: 'bg-brand-50 border-brand-100 text-brand-700' },
                     ].map(({ label, key, emoji, color }) => {
                         const count = products.filter(p => p.category === key && (!selectedSport || p.sport === selectedSport || p.sport === 'All' || !p.sport)).length;
                         const isSelected = selectedCategory === key;
                         return (
-                            <button key={key} onClick={() => setSelectedCategory(isSelected ? null : key)} className={`flex flex-col items-center justify-center p-4 rounded-2xl border transition-all hover:scale-105 ${isSelected ? 'ring-2 ring-cyan-500 shadow-md ' + color : color + ' opacity-80 hover:opacity-100'}`}>
+                            <button key={key} onClick={() => setSelectedCategory(isSelected ? null : key)} className={`flex flex-col items-center justify-center p-4 rounded-2xl border transition-all hover:scale-105 ${isSelected ? 'ring-2 ring-brand-500 shadow-md ' + color : color + ' opacity-80 hover:opacity-100'}`}>
                                 <span className="text-2xl mb-1">{emoji}</span>
                                 <span className="text-2xl font-black leading-none">{count}</span>
                                 <span className="text-[9px] font-black uppercase tracking-widest mt-1 text-center opacity-70">{label}</span>
@@ -714,7 +714,7 @@ export default function ProductsManager() {
             <div>
                 <div className="flex justify-between items-center mb-3">
                     <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Filter By Sport</p>
-                    {selectedSport && <button onClick={() => setSelectedSport(null)} className="text-[10px] font-black uppercase text-cyan-600 hover:text-cyan-700">Clear</button>}
+                    {selectedSport && <button onClick={() => setSelectedSport(null)} className="text-[10px] font-black uppercase text-brand-600 hover:text-brand-700">Clear</button>}
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3">
                     {[
@@ -724,12 +724,12 @@ export default function ProductsManager() {
                         { label: 'Volleyball',  key: 'Volleyball',  emoji: '🏐', color: 'bg-orange-50 border-orange-100 text-orange-700' },
                         { label: 'Kabaddi',     key: 'Kabaddi',     emoji: '🤼', color: 'bg-red-50 border-red-100 text-red-700' },
                         { label: 'Pickleball',  key: 'Pickleball',  emoji: '🎾', color: 'bg-lime-50 border-lime-100 text-lime-700' },
-                        { label: 'Tennis',      key: 'Tennis',      emoji: '🎾', color: 'bg-teal-50 border-teal-100 text-teal-700' },
+                        { label: 'Tennis',      key: 'Tennis',      emoji: '🎾', color: 'bg-brand-50 border-brand-100 text-brand-700' },
                     ].map(({ label, key, emoji, color }) => {
                         const count = products.filter(p => p.sport === key && (!selectedCategory || p.category === selectedCategory)).length;
                         const isSelected = selectedSport === key;
                         return (
-                            <button key={key} onClick={() => setSelectedSport(isSelected ? null : key)} className={`flex flex-col items-center justify-center p-4 rounded-2xl border transition-all hover:scale-105 ${isSelected ? 'ring-2 ring-cyan-500 shadow-md ' + color : color + ' opacity-80 hover:opacity-100'}`}>
+                            <button key={key} onClick={() => setSelectedSport(isSelected ? null : key)} className={`flex flex-col items-center justify-center p-4 rounded-2xl border transition-all hover:scale-105 ${isSelected ? 'ring-2 ring-brand-500 shadow-md ' + color : color + ' opacity-80 hover:opacity-100'}`}>
                                 <span className="text-2xl mb-1">{emoji}</span>
                                 <span className="text-2xl font-black leading-none">{count}</span>
                                 <span className="text-[9px] font-black uppercase tracking-widest mt-1 text-center opacity-70">{label}</span>
@@ -804,7 +804,7 @@ export default function ProductsManager() {
                                             <p className="text-[9px] font-black uppercase tracking-widest text-slate-400 mb-1">Fabrics</p>
                                             <div className="flex flex-wrap gap-1">
                                                 {prod.fabrics.filter(Boolean).map((f, i) => (
-                                                    <span key={i} className="bg-cyan-50 border border-cyan-100 text-cyan-700 text-[9px] font-black px-2 py-0.5 rounded-md uppercase tracking-wide">
+                                                    <span key={i} className="bg-brand-50 border border-brand-100 text-brand-700 text-[9px] font-black px-2 py-0.5 rounded-md uppercase tracking-wide">
                                                         {f}
                                                     </span>
                                                 ))}

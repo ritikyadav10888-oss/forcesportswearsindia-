@@ -60,7 +60,7 @@ export default function TestimonialsManager() {
     if (loading) {
         return (
             <div className="flex justify-center p-20">
-                <Loader2 className="w-8 h-8 animate-spin text-cyan-600" />
+                <Loader2 className="w-8 h-8 animate-spin text-brand-600" />
             </div>
         );
     }
@@ -108,7 +108,7 @@ export default function TestimonialsManager() {
                                         </span>
                                     </div>
                                     {item.role && (
-                                        <p className="text-[10px] font-bold uppercase tracking-widest text-cyan-600 mb-2">{item.role}</p>
+                                        <p className="text-[10px] font-bold uppercase tracking-widest text-brand-600 mb-2">{item.role}</p>
                                     )}
                                     <div className="flex gap-0.5 text-yellow-500 mb-3">
                                         {Array.from({ length: item.rating || 5 }).map((_, i) => (

@@ -202,7 +202,7 @@ const ProductDetailPage = () => {
     if (loading) {
         return (
             <div className="min-h-screen flex flex-col items-center justify-center bg-slate-50 px-6 pt-20">
-                <Loader2 className="animate-spin text-cyan-500 mb-4" size={32} />
+                <Loader2 className="animate-spin text-brand-500 mb-4" size={32} />
                 <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Loading product…</p>
             </div>
         );
@@ -212,7 +212,7 @@ const ProductDetailPage = () => {
         return (
             <div className="min-h-screen flex flex-col items-center justify-center bg-slate-50 px-6 pt-20">
                 <h2 className="text-2xl font-black uppercase text-slate-900 mb-4">Product Not Found</h2>
-                <Link href="/products" className="text-cyan-600 font-bold uppercase tracking-widest text-xs flex items-center gap-2">
+                <Link href="/products" className="text-brand-600 font-bold uppercase tracking-widest text-xs flex items-center gap-2">
                     <ArrowLeft size={16} /> Back to Catalog
                 </Link>
             </div>
@@ -242,7 +242,7 @@ const ProductDetailPage = () => {
             <div className="max-w-7xl mx-auto px-6 py-8">
                 <button
                     onClick={() => router.back()}
-                    className="flex items-center gap-2 text-slate-400 hover:text-cyan-600 transition-colors font-bold uppercase tracking-widest text-[10px]"
+                    className="flex items-center gap-2 text-slate-400 hover:text-brand-600 transition-colors font-bold uppercase tracking-widest text-[10px]"
                 >
                     <ArrowLeft size={14} /> Back
                 </button>
@@ -291,7 +291,7 @@ const ProductDetailPage = () => {
                                     <button
                                         key={idx}
                                         onClick={() => setActiveImageIndex(idx)}
-                                        className={`relative w-12 h-12 md:w-14 md:h-14 rounded-lg flex-shrink-0 overflow-hidden border-2 transition-all p-1 bg-slate-50 ${activeImageIndex === idx ? 'border-cyan-500 shadow-lg shadow-cyan-100' : 'border-transparent opacity-60 hover:opacity-100'
+                                        className={`relative w-12 h-12 md:w-14 md:h-14 rounded-lg flex-shrink-0 overflow-hidden border-2 transition-all p-1 bg-slate-50 ${activeImageIndex === idx ? 'border-brand-500 shadow-lg shadow-brand-100' : 'border-transparent opacity-60 hover:opacity-100'
                                             }`}
                                     >
                                         {product.category !== 'Caps' && product.category !== 'Bags' && product.imageBack && (img === product.image || img === product.imageBack) && (
@@ -315,7 +315,7 @@ const ProductDetailPage = () => {
                         animate={{ opacity: 1, x: 0 }}
                     >
                         <div className="flex flex-wrap items-center gap-2 mb-4">
-                            <span className="px-3 py-1 bg-cyan-100 text-cyan-700 font-black uppercase tracking-widest text-[10px] rounded-full">
+                            <span className="px-3 py-1 bg-brand-100 text-brand-700 font-black uppercase tracking-widest text-[10px] rounded-full">
                                 {product.category}
                             </span>
                             {product.brand && (
@@ -349,7 +349,7 @@ const ProductDetailPage = () => {
                         )}
                         <Link
                             href={`/fabrics#fabric-${fabricSlug(sportexFabric)}`}
-                            className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-slate-900 text-cyan-400 text-[10px] font-black uppercase tracking-widest hover:bg-cyan-600 hover:text-white transition-all"
+                            className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-slate-900 text-brand-400 text-[10px] font-black uppercase tracking-widest hover:bg-brand-600 hover:text-white transition-all"
                         >
                             <Layers size={12} />
                             Sportex {sportexFabric}
@@ -385,7 +385,7 @@ const ProductDetailPage = () => {
                                             {product.gsms.map((g) => (
                                                 <span
                                                     key={g}
-                                                    className="px-2.5 py-1 rounded-full bg-cyan-50 border border-cyan-100 text-[10px] font-bold text-cyan-800 uppercase"
+                                                    className="px-2.5 py-1 rounded-full bg-brand-50 border border-brand-100 text-[10px] font-bold text-brand-800 uppercase"
                                                 >
                                                     {g} GSM
                                                 </span>
@@ -401,10 +401,10 @@ const ProductDetailPage = () => {
                         </p>
 
                         {product.customizationOptions && product.customizationOptions.length > 0 && (
-                            <div className="mb-8 p-5 rounded-2xl bg-cyan-50/50 border border-cyan-100">
+                            <div className="mb-8 p-5 rounded-2xl bg-brand-50/50 border border-brand-100">
                                 <div className="flex items-center gap-2 mb-3">
-                                    <Palette size={16} className="text-cyan-600" />
-                                    <span className="text-[10px] font-black uppercase tracking-widest text-cyan-800">
+                                    <Palette size={16} className="text-brand-600" />
+                                    <span className="text-[10px] font-black uppercase tracking-widest text-brand-800">
                                         Customization available
                                     </span>
                                 </div>
@@ -412,7 +412,7 @@ const ProductDetailPage = () => {
                                     {product.customizationOptions.map((opt) => (
                                         <span
                                             key={opt}
-                                            className="px-3 py-1.5 rounded-full bg-white text-[10px] font-bold text-slate-700 uppercase border border-cyan-100"
+                                            className="px-3 py-1.5 rounded-full bg-white text-[10px] font-bold text-slate-700 uppercase border border-brand-100"
                                         >
                                             {opt}
                                         </span>
@@ -423,8 +423,8 @@ const ProductDetailPage = () => {
 
                         <div className="space-y-4 mb-6">
                             {product.features.length > 0 ? product.features.map((feature, idx) => (
-                                <div key={idx} className="flex items-center gap-4 p-4 bg-slate-50 rounded-2xl border border-slate-100 group hover:border-cyan-500 transition-all">
-                                    <div className="w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center text-cyan-500">
+                                <div key={idx} className="flex items-center gap-4 p-4 bg-slate-50 rounded-2xl border border-slate-100 group hover:border-brand-500 transition-all">
+                                    <div className="w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center text-brand-500">
                                         <CheckCircle2 size={20} />
                                     </div>
                                     <span className="font-bold text-slate-700 uppercase tracking-tight text-sm">{feature}</span>
@@ -439,13 +439,13 @@ const ProductDetailPage = () => {
                             <button
                                 type="button"
                                 onClick={() => setShowCustomize(true)}
-                                className="py-6 bg-cyan-600 text-white rounded-[2rem] font-black uppercase tracking-widest text-sm flex items-center justify-center gap-3 hover:bg-slate-900 transition-all shadow-2xl shadow-cyan-900/20 active:scale-95 group"
+                                className="py-6 bg-brand-600 text-white rounded-[2rem] font-black uppercase tracking-widest text-sm flex items-center justify-center gap-3 hover:bg-slate-900 transition-all shadow-2xl shadow-brand-900/20 active:scale-95 group"
                             >
                                 Customize <Zap className="group-hover:scale-110 transition-transform" />
                             </button>
                             <Link
                                 href={`/inquiry?product=${encodeURIComponent(product.title)}`}
-                                className="py-6 bg-slate-900 text-white rounded-[2rem] font-black uppercase tracking-widest text-sm flex items-center justify-center gap-3 hover:bg-cyan-600 transition-all shadow-2xl shadow-slate-900/20 active:scale-95 group"
+                                className="py-6 bg-slate-900 text-white rounded-[2rem] font-black uppercase tracking-widest text-sm flex items-center justify-center gap-3 hover:bg-brand-600 transition-all shadow-2xl shadow-slate-900/20 active:scale-95 group"
                             >
                                 Inquire Now <ChevronRight className="group-hover:translate-x-1 transition-transform" />
                             </Link>
@@ -488,7 +488,7 @@ const ProductDetailPage = () => {
                                         type="button"
                                         onClick={() => setActiveImageIndex(idx)}
                                         className={`relative flex-shrink-0 w-20 aspect-square rounded-2xl overflow-hidden border-2 p-2 bg-white/5 ${
-                                            activeImageIndex === idx ? 'border-cyan-400' : 'border-white/10 opacity-70 hover:opacity-100'
+                                            activeImageIndex === idx ? 'border-brand-400' : 'border-white/10 opacity-70 hover:opacity-100'
                                         }`}
                                         aria-label={`Select image ${idx + 1}`}
                                     >
@@ -526,11 +526,11 @@ const ProductDetailPage = () => {
                                 <h2 className="text-3xl font-black uppercase tracking-tighter text-slate-900">Specifications</h2>
                             </div>
                             <div className={product.category === 'Bags' ? "grid grid-cols-1 md:grid-cols-2 gap-4" : "space-y-3"}>
-                                <div className="flex justify-between items-center p-5 bg-cyan-50 rounded-2xl border border-cyan-200 shadow-sm">
-                                    <span className="text-[10px] font-black uppercase tracking-widest text-cyan-700">Sportex Fabric</span>
+                                <div className="flex justify-between items-center p-5 bg-brand-50 rounded-2xl border border-brand-200 shadow-sm">
+                                    <span className="text-[10px] font-black uppercase tracking-widest text-brand-700">Sportex Fabric</span>
                                     <Link
                                         href={`/fabrics#fabric-${fabricSlug(sportexFabric)}`}
-                                        className="text-xs font-bold text-cyan-800 uppercase tracking-tight hover:text-cyan-600"
+                                        className="text-xs font-bold text-brand-800 uppercase tracking-tight hover:text-brand-600"
                                     >
                                         {sportexFabric}
                                     </Link>
@@ -554,7 +554,7 @@ const ProductDetailPage = () => {
                                     <span className="text-slate-400 font-bold uppercase tracking-widest text-[10px] mb-4 block">Fabric Details</span>
                                     <div
                                         id={`fabric-${fabricSlug(fabricDetails.name)}`}
-                                        className="group flex flex-col rounded-2xl overflow-hidden bg-white border border-slate-200 shadow-sm hover:shadow-xl hover:border-cyan-200 transition-all scroll-mt-28"
+                                        className="group flex flex-col rounded-2xl overflow-hidden bg-white border border-slate-200 shadow-sm hover:shadow-xl hover:border-brand-200 transition-all scroll-mt-28"
                                     >
                                         <div className="relative aspect-[4/3] overflow-hidden bg-white border-b border-slate-100 p-4 sm:p-6">
                                             <img
@@ -564,7 +564,7 @@ const ProductDetailPage = () => {
                                                 className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
                                             />
                                             <div className="absolute top-3 right-3 z-10">
-                                                <span className="inline-block px-2.5 py-1 rounded-full bg-cyan-600 text-white text-[10px] font-black uppercase tracking-wider shadow-sm">
+                                                <span className="inline-block px-2.5 py-1 rounded-full bg-brand-600 text-white text-[10px] font-black uppercase tracking-wider shadow-sm">
                                                     {/\d/.test(fabricDetails.gsm) ? `${fabricDetails.gsm} GSM` : fabricDetails.gsm}
                                                 </span>
                                             </div>
@@ -590,19 +590,19 @@ const ProductDetailPage = () => {
                                             <div className="flex flex-wrap gap-2 pt-3 border-t border-slate-100 items-center">
                                                 <Link
                                                     href={`/products?fabric=${encodeURIComponent(fabricDetails.name)}`}
-                                                    className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-slate-50 hover:bg-cyan-50 border border-slate-200 hover:border-cyan-300 text-[9px] font-black uppercase tracking-widest text-slate-600 hover:text-cyan-700 transition-all"
+                                                    className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-slate-50 hover:bg-brand-50 border border-slate-200 hover:border-brand-300 text-[9px] font-black uppercase tracking-widest text-slate-600 hover:text-brand-700 transition-all"
                                                 >
                                                     Products <ArrowRight size={8} />
                                                 </Link>
                                                 <Link
                                                     href={`/uniforms?fabric=${encodeURIComponent(fabricDetails.name)}`}
-                                                    className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-slate-50 hover:bg-cyan-50 border border-slate-200 hover:border-cyan-300 text-[9px] font-black uppercase tracking-widest text-slate-600 hover:text-cyan-700 transition-all"
+                                                    className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-slate-50 hover:bg-brand-50 border border-slate-200 hover:border-brand-300 text-[9px] font-black uppercase tracking-widest text-slate-600 hover:text-brand-700 transition-all"
                                                 >
                                                     Uniforms <ArrowRight size={8} />
                                                 </Link>
                                                 <Link
                                                     href={`/inquiry?fabric=${encodeURIComponent(fabricDetails.name)}`}
-                                                    className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-cyan-600 hover:bg-cyan-700 text-[9px] font-black uppercase tracking-widest text-white transition-all ml-auto"
+                                                    className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-brand-600 hover:bg-brand-700 text-[9px] font-black uppercase tracking-widest text-white transition-all ml-auto"
                                                 >
                                                     Inquire <ArrowRight size={8} />
                                                 </Link>
@@ -664,7 +664,7 @@ const ProductDetailPage = () => {
                                 return (
                                     <div className="lg:col-span-2">
                                         <div className="bg-slate-900 rounded-[3rem] p-12 text-center h-full flex flex-col items-center justify-center">
-                                            <Ruler size={48} className="text-cyan-500 mb-6 mx-auto" />
+                                            <Ruler size={48} className="text-brand-500 mb-6 mx-auto" />
                                             <h3 className="text-2xl font-black text-white uppercase mb-4">Sizing Details</h3>
                                             <p className="text-slate-400 text-sm max-w-md mx-auto">
                                                 This product is available in standard sizes. Please inquire for specific dimensions or custom specifications.
@@ -690,7 +690,7 @@ const ProductDetailPage = () => {
 
                     <Link
                         href="/inquiry"
-                        className="relative z-10 px-10 py-5 bg-cyan-500 text-white font-black uppercase tracking-widest text-xs rounded-full hover:bg-white hover:text-slate-900 transition-all shadow-2xl shadow-cyan-500/30 active:scale-95"
+                        className="relative z-10 px-10 py-5 bg-brand-500 text-white font-black uppercase tracking-widest text-xs rounded-full hover:bg-white hover:text-slate-900 transition-all shadow-2xl shadow-brand-500/30 active:scale-95"
                     >
                         Get Custom Design
                     </Link>

@@ -225,7 +225,7 @@ export default function ProductCustomizeModal({ product, onClose }: ProductCusto
                 {/* Live preview */}
                 <div className="w-full md:w-[42%] bg-gradient-to-br from-slate-100 to-slate-50 flex flex-col p-4 sm:p-6 md:p-8 shrink-0 border-b md:border-b-0 md:border-r border-slate-100">
                     <div className="flex items-center justify-between mb-3">
-                        <span className="text-[9px] font-black uppercase tracking-widest text-cyan-600">Live preview</span>
+                        <span className="text-[9px] font-black uppercase tracking-widest text-brand-600">Live preview</span>
                         {product.imageBack && (
                             <div className="flex rounded-full bg-white p-0.5 border border-slate-200 shadow-sm">
                                 {(['front', 'back'] as const).map((side) => (
@@ -263,7 +263,7 @@ export default function ProductCustomizeModal({ product, onClose }: ProductCusto
                                     animate={{ opacity: 1, scale: 1 }}
                                     exit={{ opacity: 0, scale: 0.8 }}
                                     transition={{ type: 'spring', stiffness: 320, damping: 24 }}
-                                    className={`absolute border-2 border-dashed border-cyan-500 bg-cyan-500/15 rounded-lg flex items-center justify-center overflow-hidden pointer-events-none ${getPlacementOverlayClass(
+                                    className={`absolute border-2 border-dashed border-brand-500 bg-brand-500/15 rounded-lg flex items-center justify-center overflow-hidden pointer-events-none ${getPlacementOverlayClass(
                                         customization.placement,
                                         product.category
                                     )} ${getLogoScaleClass(customization.size)}`}
@@ -275,7 +275,7 @@ export default function ProductCustomizeModal({ product, onClose }: ProductCusto
                                             className="w-full h-full object-contain p-1"
                                         />
                                     ) : (
-                                        <span className="text-[7px] font-black text-cyan-700 uppercase px-1 text-center leading-tight">
+                                        <span className="text-[7px] font-black text-brand-700 uppercase px-1 text-center leading-tight">
                                             {customization.logo.slice(0, 24)}
                                         </span>
                                     )}
@@ -292,7 +292,7 @@ export default function ProductCustomizeModal({ product, onClose }: ProductCusto
                 {/* Form */}
                 <div className="flex-1 flex flex-col min-h-0 min-w-0">
                     <div className="px-6 sm:px-8 pt-6 pb-4 border-b border-slate-100">
-                        <span className="text-[10px] font-black text-cyan-600 uppercase tracking-widest">Customization</span>
+                        <span className="text-[10px] font-black text-brand-600 uppercase tracking-widest">Customization</span>
                         <h2 className="text-xl sm:text-2xl font-black text-slate-900 uppercase tracking-tighter mt-1 line-clamp-2">
                             {product.title}
                         </h2>
@@ -308,9 +308,9 @@ export default function ProductCustomizeModal({ product, onClose }: ProductCusto
                                     onClick={() => setStep(i)}
                                     className={`flex-1 py-2 rounded-xl text-[8px] font-black uppercase tracking-widest border transition-all ${
                                         step === i
-                                            ? 'bg-cyan-600 text-white border-cyan-600'
+                                            ? 'bg-brand-600 text-white border-brand-600'
                                             : i < step
-                                              ? 'bg-cyan-50 text-cyan-700 border-cyan-200'
+                                              ? 'bg-brand-50 text-brand-700 border-brand-200'
                                               : 'bg-white text-slate-400 border-slate-100'
                                     }`}
                                 >
@@ -334,14 +334,14 @@ export default function ProductCustomizeModal({ product, onClose }: ProductCusto
                                         <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3 block">
                                             Upload logo
                                         </label>
-                                        <label className="flex flex-col items-center justify-center gap-3 p-8 border-2 border-dashed border-slate-200 rounded-2xl bg-slate-50 cursor-pointer hover:border-cyan-400 hover:bg-cyan-50/50 transition-all group">
+                                        <label className="flex flex-col items-center justify-center gap-3 p-8 border-2 border-dashed border-slate-200 rounded-2xl bg-slate-50 cursor-pointer hover:border-brand-400 hover:bg-brand-50/50 transition-all group">
                                             <input
                                                 type="file"
                                                 accept="image/*"
                                                 className="hidden"
                                                 onChange={handleFileUpload}
                                             />
-                                            <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center text-cyan-500 shadow-sm group-hover:scale-110 transition-transform">
+                                            <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center text-brand-500 shadow-sm group-hover:scale-110 transition-transform">
                                                 <Upload size={22} />
                                             </div>
                                             <span className="text-[10px] font-black uppercase tracking-widest text-slate-500">
@@ -362,7 +362,7 @@ export default function ProductCustomizeModal({ product, onClose }: ProductCusto
                                                 setCustomization((c) => ({ ...c, logo: v }));
                                                 tryLogoUrlPreview(v);
                                             }}
-                                            className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl text-xs font-bold focus:ring-2 focus:ring-cyan-500 outline-none"
+                                            className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl text-xs font-bold focus:ring-2 focus:ring-brand-500 outline-none"
                                         />
                                     </div>
                                 </motion.div>
@@ -392,7 +392,7 @@ export default function ProductCustomizeModal({ product, onClose }: ProductCusto
                                                         className={`px-2 py-2 rounded-xl text-[7px] font-black uppercase tracking-widest border transition-all ${
                                                             customization.placement === p
                                                                 ? 'bg-slate-900 text-white border-slate-900'
-                                                                : 'bg-white text-slate-400 border-slate-100 hover:border-cyan-300'
+                                                                : 'bg-white text-slate-400 border-slate-100 hover:border-brand-300'
                                                         }`}
                                                     >
                                                         {p}
@@ -414,7 +414,7 @@ export default function ProductCustomizeModal({ product, onClose }: ProductCusto
                                                     onClick={() => setCustomization((c) => ({ ...c, size: s }))}
                                                     className={`flex-1 min-w-[70px] px-3 py-3 rounded-xl text-[9px] font-black uppercase tracking-widest border transition-all ${
                                                         customization.size === s
-                                                            ? 'bg-cyan-600 text-white border-cyan-600 shadow-lg shadow-cyan-200'
+                                                            ? 'bg-brand-600 text-white border-brand-600 shadow-lg shadow-brand-200'
                                                             : 'bg-white text-slate-400 border-slate-100'
                                                     }`}
                                                 >
@@ -426,12 +426,12 @@ export default function ProductCustomizeModal({ product, onClose }: ProductCusto
 
                                     <div className="relative">
                                         <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-2 flex items-center gap-1">
-                                            <Layers size={12} className="text-cyan-500" /> Sportex fabric
+                                            <Layers size={12} className="text-brand-500" /> Sportex fabric
                                         </label>
                                         <button
                                             type="button"
                                             onClick={() => setFabricOpen((o) => !o)}
-                                            className="w-full flex items-center justify-between gap-2 px-4 py-3.5 bg-white border border-slate-200 rounded-2xl text-sm font-bold text-slate-900 hover:border-cyan-400 focus:ring-2 focus:ring-cyan-500 outline-none transition-colors"
+                                            className="w-full flex items-center justify-between gap-2 px-4 py-3.5 bg-white border border-slate-200 rounded-2xl text-sm font-bold text-slate-900 hover:border-brand-400 focus:ring-2 focus:ring-brand-500 outline-none transition-colors"
                                         >
                                             <span>
                                                 {customization.fabric}
@@ -468,7 +468,7 @@ export default function ProductCustomizeModal({ product, onClose }: ProductCusto
                                                                     }}
                                                                     className={`w-full text-left px-4 py-2.5 text-sm font-bold transition-colors ${
                                                                         selected
-                                                                            ? 'bg-cyan-600 text-white'
+                                                                            ? 'bg-brand-600 text-white'
                                                                             : 'text-slate-900 hover:bg-slate-100'
                                                                     }`}
                                                                 >
@@ -496,7 +496,7 @@ export default function ProductCustomizeModal({ product, onClose }: ProductCusto
                                                         ...c,
                                                         roster: [...c.roster, { name: '', number: '', size: 'M' }]
                                                     }))}
-                                                    className="px-3 py-1.5 bg-cyan-50 hover:bg-cyan-100/80 text-cyan-600 rounded-lg text-[9px] font-black uppercase tracking-widest transition-colors flex items-center gap-1"
+                                                    className="px-3 py-1.5 bg-brand-50 hover:bg-brand-100/80 text-brand-600 rounded-lg text-[9px] font-black uppercase tracking-widest transition-colors flex items-center gap-1"
                                                 >
                                                     + Add Player
                                                 </button>
@@ -517,7 +517,7 @@ export default function ProductCustomizeModal({ product, onClose }: ProductCusto
                                                             newRoster[idx].name = e.target.value;
                                                             setCustomization((c) => ({ ...c, roster: newRoster }));
                                                         }}
-                                                        className="flex-1 min-w-0 px-3 py-2 bg-slate-50 border border-slate-100 rounded-xl text-xs font-bold focus:ring-1 focus:ring-cyan-500 outline-none"
+                                                        className="flex-1 min-w-0 px-3 py-2 bg-slate-50 border border-slate-100 rounded-xl text-xs font-bold focus:ring-1 focus:ring-brand-500 outline-none"
                                                     />
                                                     <input
                                                         type="text"
@@ -528,7 +528,7 @@ export default function ProductCustomizeModal({ product, onClose }: ProductCusto
                                                             newRoster[idx].number = e.target.value;
                                                             setCustomization((c) => ({ ...c, roster: newRoster }));
                                                         }}
-                                                        className="w-16 px-3 py-2 bg-slate-50 border border-slate-100 rounded-xl text-xs font-bold focus:ring-1 focus:ring-cyan-500 outline-none text-center"
+                                                        className="w-16 px-3 py-2 bg-slate-50 border border-slate-100 rounded-xl text-xs font-bold focus:ring-1 focus:ring-brand-500 outline-none text-center"
                                                     />
                                                     <select
                                                         value={player.size}
@@ -537,7 +537,7 @@ export default function ProductCustomizeModal({ product, onClose }: ProductCusto
                                                             newRoster[idx].size = e.target.value;
                                                             setCustomization((c) => ({ ...c, roster: newRoster }));
                                                         }}
-                                                        className="px-2 py-2 bg-slate-50 border border-slate-100 rounded-xl text-xs font-bold focus:ring-1 focus:ring-cyan-500 outline-none"
+                                                        className="px-2 py-2 bg-slate-50 border border-slate-100 rounded-xl text-xs font-bold focus:ring-1 focus:ring-brand-500 outline-none"
                                                     >
                                                         {['S', 'M', 'L', 'XL', 'XXL', '3XL'].map(sz => (
                                                             <option key={sz} value={sz}>{sz}</option>
@@ -573,7 +573,7 @@ export default function ProductCustomizeModal({ product, onClose }: ProductCusto
                                                     placeholder="e.g. ACADEMY"
                                                     value={customization.leftSleeveText}
                                                     onChange={(e) => setCustomization((c) => ({ ...c, leftSleeveText: e.target.value }))}
-                                                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-100 rounded-xl text-xs font-bold focus:ring-1 focus:ring-cyan-500 outline-none"
+                                                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-100 rounded-xl text-xs font-bold focus:ring-1 focus:ring-brand-500 outline-none"
                                                 />
                                             </div>
                                             <div>
@@ -583,7 +583,7 @@ export default function ProductCustomizeModal({ product, onClose }: ProductCusto
                                                     placeholder="e.g. INDIA"
                                                     value={customization.rightSleeveText}
                                                     onChange={(e) => setCustomization((c) => ({ ...c, rightSleeveText: e.target.value }))}
-                                                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-100 rounded-xl text-xs font-bold focus:ring-1 focus:ring-cyan-500 outline-none"
+                                                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-100 rounded-xl text-xs font-bold focus:ring-1 focus:ring-brand-500 outline-none"
                                                 />
                                             </div>
                                         </div>
@@ -602,7 +602,7 @@ export default function ProductCustomizeModal({ product, onClose }: ProductCusto
                                                     placeholder="e.g. Club Crest"
                                                     value={customization.frontLeftLogoDesc}
                                                     onChange={(e) => setCustomization((c) => ({ ...c, frontLeftLogoDesc: e.target.value }))}
-                                                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-100 rounded-xl text-xs font-bold focus:ring-1 focus:ring-cyan-500 outline-none"
+                                                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-100 rounded-xl text-xs font-bold focus:ring-1 focus:ring-brand-500 outline-none"
                                                 />
                                             </div>
                                             <div>
@@ -612,7 +612,7 @@ export default function ProductCustomizeModal({ product, onClose }: ProductCusto
                                                     placeholder="e.g. Brand Logo"
                                                     value={customization.frontRightLogoText}
                                                     onChange={(e) => setCustomization((c) => ({ ...c, frontRightLogoText: e.target.value }))}
-                                                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-100 rounded-xl text-xs font-bold focus:ring-1 focus:ring-cyan-500 outline-none"
+                                                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-100 rounded-xl text-xs font-bold focus:ring-1 focus:ring-brand-500 outline-none"
                                                 />
                                             </div>
                                             <div className="col-span-2">
@@ -622,7 +622,7 @@ export default function ProductCustomizeModal({ product, onClose }: ProductCusto
                                                     placeholder="e.g. FORCE SPORTS"
                                                     value={customization.frontMidSponsorText}
                                                     onChange={(e) => setCustomization((c) => ({ ...c, frontMidSponsorText: e.target.value }))}
-                                                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-100 rounded-xl text-xs font-bold focus:ring-1 focus:ring-cyan-500 outline-none"
+                                                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-100 rounded-xl text-xs font-bold focus:ring-1 focus:ring-brand-500 outline-none"
                                                 />
                                             </div>
                                         </div>
@@ -640,7 +640,7 @@ export default function ProductCustomizeModal({ product, onClose }: ProductCusto
                                                 placeholder="e.g. EST. 2026"
                                                 value={customization.backLeftBottomText}
                                                 onChange={(e) => setCustomization((c) => ({ ...c, backLeftBottomText: e.target.value }))}
-                                                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-100 rounded-xl text-xs font-bold focus:ring-1 focus:ring-cyan-500 outline-none"
+                                                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-100 rounded-xl text-xs font-bold focus:ring-1 focus:ring-brand-500 outline-none"
                                             />
                                         </div>
                                     </div>
@@ -666,21 +666,21 @@ export default function ProductCustomizeModal({ product, onClose }: ProductCusto
                                             onChange={(e) =>
                                                 setCustomization((c) => ({ ...c, quantity: e.target.value }))
                                             }
-                                            className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl text-xs font-bold focus:ring-2 focus:ring-cyan-500 outline-none"
+                                            className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl text-xs font-bold focus:ring-2 focus:ring-brand-500 outline-none"
                                         />
                                     </div>
 
                                     <div className="p-5 rounded-2xl bg-slate-900 text-white space-y-3">
-                                        <p className="text-[10px] font-black uppercase tracking-widest text-cyan-400">
+                                        <p className="text-[10px] font-black uppercase tracking-widest text-brand-400">
                                             Order summary
                                         </p>
                                         <ul className="space-y-2 text-xs font-medium text-slate-300">
                                             <li className="flex gap-2">
-                                                <Check size={14} className="text-cyan-400 shrink-0 mt-0.5" />
+                                                <Check size={14} className="text-brand-400 shrink-0 mt-0.5" />
                                                 <span>{product.title}</span>
                                             </li>
                                             <li className="flex gap-2">
-                                                <Check size={14} className="text-cyan-400 shrink-0 mt-0.5" />
+                                                <Check size={14} className="text-brand-400 shrink-0 mt-0.5" />
                                                 <span>
                                                     Fabric: {customization.fabric}
                                                     {sportexMeta && /\d/.test(sportexMeta.gsm)
@@ -689,14 +689,14 @@ export default function ProductCustomizeModal({ product, onClose }: ProductCusto
                                                 </span>
                                             </li>
                                             <li className="flex gap-2">
-                                                <Check size={14} className="text-cyan-400 shrink-0 mt-0.5" />
+                                                <Check size={14} className="text-brand-400 shrink-0 mt-0.5" />
                                                 <span>
                                                     {customization.placement} · {customization.size}
                                                 </span>
                                             </li>
                                             {customization.logo && (
                                                 <li className="flex gap-2">
-                                                    <ImageIcon size={14} className="text-cyan-400 shrink-0 mt-0.5" />
+                                                    <ImageIcon size={14} className="text-brand-400 shrink-0 mt-0.5" />
                                                     <span className="truncate">{customization.logo}</span>
                                                 </li>
                                             )}
@@ -723,7 +723,7 @@ export default function ProductCustomizeModal({ product, onClose }: ProductCusto
                                     type="button"
                                     disabled={!canNext}
                                     onClick={() => setStep((s) => s + 1)}
-                                    className="flex-1 py-4 bg-slate-900 text-white rounded-2xl font-black uppercase tracking-widest text-[10px] hover:bg-cyan-600 transition-all flex items-center justify-center gap-2"
+                                    className="flex-1 py-4 bg-slate-900 text-white rounded-2xl font-black uppercase tracking-widest text-[10px] hover:bg-brand-600 transition-all flex items-center justify-center gap-2"
                                 >
                                     Next <ChevronRight size={16} />
                                 </button>
@@ -739,7 +739,7 @@ export default function ProductCustomizeModal({ product, onClose }: ProductCusto
                                     <button
                                         type="button"
                                         onClick={goToInquiry}
-                                        className="flex-1 py-4 bg-slate-900 text-white rounded-2xl font-black uppercase tracking-widest text-[10px] flex items-center justify-center gap-2 hover:bg-cyan-600 transition-all"
+                                        className="flex-1 py-4 bg-slate-900 text-white rounded-2xl font-black uppercase tracking-widest text-[10px] flex items-center justify-center gap-2 hover:bg-brand-600 transition-all"
                                     >
                                         <Send size={16} /> Add to inquiry
                                     </button>
@@ -750,7 +750,7 @@ export default function ProductCustomizeModal({ product, onClose }: ProductCusto
                             <button
                                 type="button"
                                 onClick={() => setStep(0)}
-                                className="w-full py-2 text-[9px] font-black uppercase tracking-widest text-slate-400 hover:text-cyan-600 flex items-center justify-center gap-1"
+                                className="w-full py-2 text-[9px] font-black uppercase tracking-widest text-slate-400 hover:text-brand-600 flex items-center justify-center gap-1"
                             >
                                 <RotateCcw size={12} /> Edit design
                             </button>

@@ -58,7 +58,7 @@ export default function SizeChartModal({ isOpen, onClose }: SizeChartModalProps)
                 >
                     <div className="p-6 md:p-8 border-b border-slate-100 flex justify-between items-center bg-slate-50">
                         <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-cyan-100 rounded-full flex items-center justify-center text-cyan-600">
+                            <div className="w-10 h-10 bg-brand-100 rounded-full flex items-center justify-center text-brand-600">
                                 <Ruler size={20} />
                             </div>
                             <h2 className="text-xl md:text-2xl font-black uppercase tracking-tighter text-slate-900">Size Chart & Fit Guide</h2>

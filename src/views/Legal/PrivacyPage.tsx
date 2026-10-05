@@ -38,14 +38,14 @@ const PrivacyPage = () => {
             <section className="bg-slate-900 py-20 px-6 text-center relative overflow-hidden">
                 <div className="absolute inset-0 opacity-10">
                     <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500 rounded-full blur-[120px] translate-x-1/2 -translate-y-1/2"></div>
-                    <div className="absolute bottom-0 left-0 w-96 h-96 bg-cyan-600 rounded-full blur-[150px] -translate-x-1/2 translate-y-1/2"></div>
+                    <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand-600 rounded-full blur-[150px] -translate-x-1/2 translate-y-1/2"></div>
                 </div>
                 <motion.h1
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     className="text-4xl md:text-5xl font-black text-white uppercase tracking-tighter relative z-10"
                 >
-                    Privacy <span className="text-cyan-500">Policy</span>
+                    Privacy <span className="text-brand-500">Policy</span>
                 </motion.h1>
                 <p className="text-slate-400 mt-4 max-w-2xl mx-auto uppercase tracking-[0.3em] text-[10px] font-black relative z-10">
                     Your Data Security is Our Priority
@@ -84,7 +84,7 @@ const PrivacyPage = () => {
                     <p className="text-slate-400 text-sm font-medium mb-8 relative z-10">
                         We are committed to processing your data in accordance with global privacy standards.
                     </p>
-                    <a href="/" className="inline-block px-8 py-4 bg-white text-slate-900 rounded-xl text-xs font-black uppercase tracking-widest hover:bg-cyan-500 hover:text-white transition-all relative z-10">
+                    <a href="/" className="inline-block px-8 py-4 bg-white text-slate-900 rounded-xl text-xs font-black uppercase tracking-widest hover:bg-brand-500 hover:text-white transition-all relative z-10">
                         Back To Home
                     </a>
                 </div>

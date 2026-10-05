@@ -78,7 +78,7 @@ const CatalogPage = () => {
     if (loading) {
         return (
             <div className="min-h-screen flex flex-col items-center justify-center bg-[#050B14] px-6">
-                <Loader2 className="animate-spin text-cyan-500 mb-4" size={32} />
+                <Loader2 className="animate-spin text-brand-500 mb-4" size={32} />
                 <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Loading catalogs…</p>
             </div>
         );
@@ -87,7 +87,7 @@ const CatalogPage = () => {
     return (
         <div className="bg-[#050B14] min-h-screen pt-24 pb-16 text-white overflow-hidden relative">
             {/* Background Glows */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-cyan-600/20 blur-[120px] rounded-full pointer-events-none" />
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-brand-600/20 blur-[120px] rounded-full pointer-events-none" />
             <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-blue-600/10 blur-[150px] rounded-full pointer-events-none" />
 
             <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
@@ -96,9 +96,9 @@ const CatalogPage = () => {
                     animate={{ opacity: 1, y: 0 }}
                     className="mb-8 md:mb-10"
                 >
-                    <span className="text-cyan-400 font-bold tracking-[0.2em] md:tracking-[0.4em] uppercase text-[9px] md:text-[10px] mb-3 md:mb-4 block">Interactive Experience</span>
+                    <span className="text-brand-400 font-bold tracking-[0.2em] md:tracking-[0.4em] uppercase text-[9px] md:text-[10px] mb-3 md:mb-4 block">Interactive Experience</span>
                     <h1 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter uppercase mb-3 md:mb-4 drop-shadow-2xl">
-                        Product <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Catalogs</span>
+                        Product <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-blue-500">Catalogs</span>
                     </h1>
                     <p className="text-slate-400 max-w-2xl mx-auto text-xs md:text-sm font-medium leading-relaxed px-4">
                         Explore our comprehensive range of high-performance athletic wear and custom team kits through our digital lookbooks.
@@ -121,7 +121,7 @@ const CatalogPage = () => {
                             {selectedCatalog === cat && (
                                 <motion.div 
                                     layoutId="activeCatalogTab" 
-                                    className="absolute inset-0 bg-gradient-to-r from-cyan-600 to-blue-600 rounded-xl sm:rounded-full shadow-[0_0_30px_rgba(8,145,178,0.5)]"
+                                    className="absolute inset-0 bg-gradient-to-r from-brand-600 to-blue-600 rounded-xl sm:rounded-full shadow-[0_0_30px_rgba(8,145,178,0.5)]"
                                     transition={{ type: "spring", stiffness: 400, damping: 30 }}
                                 />
                             )}
@@ -137,20 +137,20 @@ const CatalogPage = () => {
                     <div className="flex items-center gap-2 bg-black/40 rounded-full p-1 border border-white/5 shrink-0">
                         <button
                             onClick={() => setViewMode('reader')}
-                            className={`flex items-center gap-2 px-4 md:px-5 py-2 rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-widest transition-all ${viewMode === 'reader' ? 'bg-white/10 text-cyan-400' : 'text-slate-500 hover:text-white hover:bg-white/5'}`}
+                            className={`flex items-center gap-2 px-4 md:px-5 py-2 rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-widest transition-all ${viewMode === 'reader' ? 'bg-white/10 text-brand-400' : 'text-slate-500 hover:text-white hover:bg-white/5'}`}
                         >
                             <BookOpen size={14} /> <span className="hidden sm:inline">Reader</span>
                         </button>
                         <button
                             onClick={() => setViewMode('grid')}
-                            className={`flex items-center gap-2 px-4 md:px-5 py-2 rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-widest transition-all ${viewMode === 'grid' ? 'bg-white/10 text-cyan-400' : 'text-slate-500 hover:text-white hover:bg-white/5'}`}
+                            className={`flex items-center gap-2 px-4 md:px-5 py-2 rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-widest transition-all ${viewMode === 'grid' ? 'bg-white/10 text-brand-400' : 'text-slate-500 hover:text-white hover:bg-white/5'}`}
                         >
                             <LayoutGrid size={14} /> <span className="hidden sm:inline">Grid</span>
                         </button>
                     </div>
 
                     <div className="hidden md:block shrink-0">
-                        <p className="text-[10px] font-black text-cyan-400 uppercase tracking-widest drop-shadow-md">
+                        <p className="text-[10px] font-black text-brand-400 uppercase tracking-widest drop-shadow-md">
                             {currentCatalog.description}
                         </p>
                     </div>
@@ -160,7 +160,7 @@ const CatalogPage = () => {
                             <a
                                 href={(currentCatalog as any).downloadUrl}
                                 download={`${currentCatalog.title}.pdf`}
-                                className="flex items-center gap-2 px-4 py-2 md:px-5 md:py-3 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-widest transition-all shadow-lg shadow-cyan-900/40 hover:shadow-cyan-500/50 hover:-translate-y-0.5"
+                                className="flex items-center gap-2 px-4 py-2 md:px-5 md:py-3 bg-gradient-to-r from-brand-600 to-blue-600 hover:from-brand-500 hover:to-blue-500 text-white rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-widest transition-all shadow-lg shadow-brand-900/40 hover:shadow-brand-500/50 hover:-translate-y-0.5"
                             >
                                 <Download size={14} /> <span className="hidden sm:inline">Download PDF</span>
                             </a>
@@ -181,7 +181,7 @@ const CatalogPage = () => {
                             >
                                 <div className="relative group max-w-6xl w-full">
                                     {/* Reader Container */}
-                                    <div className="relative p-2 md:p-6 bg-white backdrop-blur-2xl border border-slate-200 rounded-2xl md:rounded-[2rem] shadow-2xl flex items-center justify-center min-h-[45vh] md:min-h-[50vh] transition-all hover:border-cyan-300">
+                                    <div className="relative p-2 md:p-6 bg-white backdrop-blur-2xl border border-slate-200 rounded-2xl md:rounded-[2rem] shadow-2xl flex items-center justify-center min-h-[45vh] md:min-h-[50vh] transition-all hover:border-brand-300">
                                         <div className="absolute inset-0 bg-slate-50 rounded-2xl md:rounded-[2rem] flex items-center justify-center -z-10">
                                             <BookOpen className="text-slate-200" size={48} />
                                         </div>
@@ -200,13 +200,13 @@ const CatalogPage = () => {
                                         {/* Page Navigation Arrows */}
                                         <button
                                             onClick={(e) => { e.stopPropagation(); prevPage(); }}
-                                            className="absolute left-1 md:left-6 top-1/2 -translate-y-1/2 w-10 h-10 md:w-16 md:h-16 bg-white/80 backdrop-blur-md rounded-full border border-slate-200 flex items-center justify-center text-slate-800 opacity-10 md:opacity-0 group-hover:opacity-100 transition-all hover:bg-cyan-600 hover:text-white hover:scale-110 z-20 shadow-xl"
+                                            className="absolute left-1 md:left-6 top-1/2 -translate-y-1/2 w-10 h-10 md:w-16 md:h-16 bg-white/80 backdrop-blur-md rounded-full border border-slate-200 flex items-center justify-center text-slate-800 opacity-10 md:opacity-0 group-hover:opacity-100 transition-all hover:bg-brand-600 hover:text-white hover:scale-110 z-20 shadow-xl"
                                         >
                                             <ChevronLeft className="w-5 h-5 md:w-7 md:h-7" />
                                         </button>
                                         <button
                                             onClick={(e) => { e.stopPropagation(); nextPage(); }}
-                                            className="absolute right-1 md:right-6 top-1/2 -translate-y-1/2 w-10 h-10 md:w-16 md:h-16 bg-white/80 backdrop-blur-md rounded-full border border-slate-200 flex items-center justify-center text-slate-800 opacity-10 md:opacity-0 group-hover:opacity-100 transition-all hover:bg-cyan-600 hover:text-white hover:scale-110 z-20 shadow-xl"
+                                            className="absolute right-1 md:right-6 top-1/2 -translate-y-1/2 w-10 h-10 md:w-16 md:h-16 bg-white/80 backdrop-blur-md rounded-full border border-slate-200 flex items-center justify-center text-slate-800 opacity-10 md:opacity-0 group-hover:opacity-100 transition-all hover:bg-brand-600 hover:text-white hover:scale-110 z-20 shadow-xl"
                                         >
                                             <ChevronRight className="w-5 h-5 md:w-7 md:h-7" />
                                         </button>
@@ -216,7 +216,7 @@ const CatalogPage = () => {
                                             <div className="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 flex flex-nowrap overflow-x-auto gap-2 justify-start md:justify-center z-30 bg-slate-600 p-2 rounded-full shadow-2xl w-max max-w-[95%] md:max-w-[85%] items-center [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                                                 <button
                                                     onClick={() => setSelectedColor(null)}
-                                                    className={`shrink-0 w-8 h-8 md:w-10 md:h-10 rounded-full transition-transform hover:scale-110 ${!selectedColor ? 'border-2 border-cyan-400 scale-110' : ''}`}
+                                                    className={`shrink-0 w-8 h-8 md:w-10 md:h-10 rounded-full transition-transform hover:scale-110 ${!selectedColor ? 'border-2 border-brand-400 scale-110' : ''}`}
                                                     style={{ backgroundColor: '#fff' }}
                                                     title="Master View"
                                                 />
@@ -237,7 +237,7 @@ const CatalogPage = () => {
                                                             <button
                                                                 key={item}
                                                                 onClick={() => setSelectedColor(item)}
-                                                                className={`shrink-0 w-8 h-8 md:w-10 md:h-10 rounded-full border-2 transition-transform hover:scale-110 overflow-hidden bg-slate-500/50 ${isSelected ? 'border-cyan-400 scale-110' : 'border-slate-500/50'}`}
+                                                                className={`shrink-0 w-8 h-8 md:w-10 md:h-10 rounded-full border-2 transition-transform hover:scale-110 overflow-hidden bg-slate-500/50 ${isSelected ? 'border-brand-400 scale-110' : 'border-slate-500/50'}`}
                                                                 title={cleanFilename || `Variant ${idx + 1}`}
                                                             >
                                                                 <img src={getCDNUrl(item, { width: 80 })} alt={cleanFilename || `Variant ${idx + 1}`} className="w-full h-full object-cover bg-slate-100" />
@@ -256,7 +256,7 @@ const CatalogPage = () => {
                                                 key={idx}
                                                 onClick={() => setCurrentPage(idx)}
                                                 className={`flex-shrink-0 w-16 md:w-24 aspect-[3/4] md:aspect-square rounded-lg md:rounded-xl overflow-hidden border-2 transition-all duration-300 ${
-                                                    currentPage === idx ? 'border-cyan-400 scale-105 shadow-[0_0_15px_rgba(34,211,238,0.5)]' : 'border-transparent opacity-40 hover:opacity-100 hover:scale-105'
+                                                    currentPage === idx ? 'border-brand-400 scale-105 shadow-[0_0_15px_rgba(34,211,238,0.5)]' : 'border-transparent opacity-40 hover:opacity-100 hover:scale-105'
                                                 }`}
                                             >
                                                 <img 
@@ -282,7 +282,7 @@ const CatalogPage = () => {
                                     <motion.div
                                         key={idx}
                                         whileHover={{ y: -8, scale: 1.02 }}
-                                        className="group aspect-[3/4] bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden relative cursor-pointer shadow-lg border border-white/10 hover:border-cyan-400/50 hover:shadow-cyan-500/20 transition-all duration-300"
+                                        className="group aspect-[3/4] bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden relative cursor-pointer shadow-lg border border-white/10 hover:border-brand-400/50 hover:shadow-brand-500/20 transition-all duration-300"
                                         onClick={() => {
                                             setCurrentPage(idx);
                                             setViewMode('reader');
@@ -300,7 +300,7 @@ const CatalogPage = () => {
                                             }}
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6">
-                                            <span className="text-[10px] font-black uppercase tracking-widest bg-cyan-600/90 backdrop-blur-md px-5 py-2 rounded-full text-white shadow-xl">
+                                            <span className="text-[10px] font-black uppercase tracking-widest bg-brand-600/90 backdrop-blur-md px-5 py-2 rounded-full text-white shadow-xl">
                                                 View Page {idx + 1}
                                             </span>
                                         </div>

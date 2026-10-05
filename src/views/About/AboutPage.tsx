@@ -81,7 +81,7 @@ const AboutPage = () => {
                         transition={{ delay: 0.1 }}
                         className="font-black text-white uppercase tracking-tighter leading-[0.92]"
                     >
-                        <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-50 to-slate-300">
+                        <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-transparent bg-clip-text bg-gradient-to-r from-white via-brand-50 to-slate-300">
                             {BRAND_DETAILS.nameLines[0]}
                         </span>
                         <span className="block text-xl sm:text-2xl md:text-3xl lg:text-4xl mt-1 md:mt-2 text-white/95">
@@ -106,7 +106,7 @@ const AboutPage = () => {
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="text-center mb-20">
                         <h2 className="text-4xl font-black text-slate-900 uppercase tracking-tighter mb-4">What Sets Us Alpha?</h2>
-                        <div className="w-20 h-1 bg-cyan-500 mx-auto" />
+                        <div className="w-20 h-1 bg-brand-500 mx-auto" />
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -117,9 +117,9 @@ const AboutPage = () => {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 transition={{ delay: idx * 0.1 }}
                                 viewport={{ once: true }}
-                                className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl hover:border-cyan-500 transition-all group"
+                                className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl hover:border-brand-500 transition-all group"
                             >
-                                <div className="w-14 h-14 bg-slate-50 rounded-2xl flex items-center justify-center mb-6 text-slate-900 group-hover:bg-cyan-500 group-hover:text-white transition-all">
+                                <div className="w-14 h-14 bg-slate-50 rounded-2xl flex items-center justify-center mb-6 text-slate-900 group-hover:bg-brand-500 group-hover:text-white transition-all">
                                     <feature.icon size={28} />
                                 </div>
                                 <h4 className="text-lg font-black mb-4 uppercase text-slate-900">{feature.title}</h4>
@@ -139,7 +139,7 @@ const AboutPage = () => {
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                         >
-                            <span className="text-cyan-400 font-bold tracking-widest uppercase mb-4 block">Manufacturing Excellence</span>
+                            <span className="text-brand-400 font-bold tracking-widest uppercase mb-4 block">Manufacturing Excellence</span>
                             <h2 className="text-4xl md:text-5xl font-black mb-8 uppercase tracking-tighter">
                                 A Vertically <br /> Integrated Powerhouse
                             </h2>
@@ -150,14 +150,14 @@ const AboutPage = () => {
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                 {BRAND_DETAILS.manufacturing.capabilities.slice(0, 4).map((cap) => (
                                     <div key={cap} className="flex items-center gap-3 p-4 bg-white/5 rounded-xl border border-white/10">
-                                        <div className="w-2 h-2 bg-cyan-500 rounded-full" />
+                                        <div className="w-2 h-2 bg-brand-500 rounded-full" />
                                         <span className="text-sm font-bold uppercase tracking-wide">{cap}</span>
                                     </div>
                                 ))}
                             </div>
 
                             <div className="mt-12">
-                                <Link href="/fabrics" className="text-cyan-400 font-black uppercase tracking-[0.2em] text-xs flex items-center gap-2 hover:text-white transition-colors group">
+                                <Link href="/fabrics" className="text-brand-400 font-black uppercase tracking-[0.2em] text-xs flex items-center gap-2 hover:text-white transition-colors group">
                                     Browse All Fabrics & GSM <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
                                 </Link>
                             </div>
@@ -182,14 +182,14 @@ const AboutPage = () => {
             {/* Force Group */}
             <section className="py-16 md:py-24 bg-slate-50">
                 <div className="max-w-6xl mx-auto px-6 text-center">
-                    <span className="text-cyan-600 font-bold tracking-widest uppercase text-sm mb-3 block">Our Corporate Ecosystem</span>
+                    <span className="text-brand-600 font-bold tracking-widest uppercase text-sm mb-3 block">Our Corporate Ecosystem</span>
                     <h2 className="text-4xl font-black mb-16 text-slate-900 uppercase tracking-tighter">Force Group of Companies</h2>
 
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
                         {GROUP.map((company) => (
                             <div
                                 key={company.desc}
-                                className="p-8 bg-white rounded-3xl shadow-sm border border-slate-100 hover:border-cyan-500 hover:shadow-xl transition-all group flex flex-col justify-center items-center text-center"
+                                className="p-8 bg-white rounded-3xl shadow-sm border border-slate-100 hover:border-brand-500 hover:shadow-xl transition-all group flex flex-col justify-center items-center text-center"
                             >
                                 <div className="flex-1 flex items-center justify-center mb-4 min-h-[80px]">
                                     <img
@@ -198,7 +198,7 @@ const AboutPage = () => {
                                         className="max-h-20 max-w-full object-contain group-hover:scale-105 transition-transform"
                                     />
                                 </div>
-                                <h4 className="text-lg md:text-xl font-black text-slate-900 mb-3 uppercase group-hover:text-cyan-600 transition-colors tracking-tight leading-tight flex items-center justify-center">
+                                <h4 className="text-lg md:text-xl font-black text-slate-900 mb-3 uppercase group-hover:text-brand-600 transition-colors tracking-tight leading-tight flex items-center justify-center">
                                     {company.live ? (
                                         <span className="flex items-center justify-center gap-[2px]">
                                             FORCE<span className="text-[#F15A24] text-3xl md:text-4xl mx-[1px]">1</span>LIVE
