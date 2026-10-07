@@ -67,6 +67,7 @@ const InquiryPage = () => {
     const prefilledSize    = searchParams ? searchParams.get('size') : null;
     const prefilledLogo    = searchParams ? searchParams.get('logo') : null;
     const prefilledQuantity = searchParams ? searchParams.get('quantity') : null;
+    const prefilledDesign  = searchParams ? searchParams.get('design') : null; // full spec from the Customize studio
     const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || '';
 
     // Build a rich pre-filled message for the admin
@@ -81,6 +82,7 @@ const InquiryPage = () => {
         if (prefilledSize)      parts.push(`Logo Size: ${prefilledSize}`);
         if (prefilledLogo)      parts.push(`Logo: ${prefilledLogo}`);
         if (prefilledQuantity)  parts.push(`Estimated Quantity: ${prefilledQuantity}`);
+        if (prefilledDesign)    parts.push(`\n${prefilledDesign}`);
         
         if (parts.length > 0) {
             parts.push('\nPlease share bulk pricing, MOQ, and delivery timeline.');

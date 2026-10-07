@@ -38,6 +38,12 @@ const ProductPage = ({ initialSport }: ProductPageProps = {}) => {
     const [selectedUsages, setSelectedUsages] = useState<string[]>([]);
     const [searchQuery, setSearchQuery] = useState('');
     const [customizingProduct, setCustomizingProduct] = useState<Product | null>(null);
+
+    // /products?category=3D%20Innovations opens straight on that section (used by "Back to products" in Customize)
+    useEffect(() => {
+        const category = new URLSearchParams(window.location.search).get('category');
+        if (category && (Categories as readonly string[]).includes(category)) setSelectedCategories([category]);
+    }, []);
     
     // Live catalog — Force HQ / Firestore first, then remaining static items
     const [liveProducts, setLiveProducts] = useState<Product[]>(() =>
@@ -486,6 +492,10 @@ const ProductPage = ({ initialSport }: ProductPageProps = {}) => {
                     <ProductCustomizeModal
                         product={customizingProduct}
                         onClose={() => setCustomizingProduct(null)}
+                        onBack={() => {
+                            setSelectedCategories([customizingProduct.category]);
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }}
                     />
                 )}
             </AnimatePresence>
