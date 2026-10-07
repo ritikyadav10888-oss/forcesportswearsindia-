@@ -126,7 +126,7 @@ def intro(data, n):
         d.text((M + 80, y), t.upper(), font=BLACK(26), fill=INK)
         d.multiline_text((M + 80, y + 38), wrap(d, s, REG(22), W - 2 * M - 80), font=REG(22), fill=MUTED, spacing=4); y += 125
     y += 20; d.rounded_rectangle([M, y, W - M, y + 150], radius=32, fill=SOFT)
-    facts = [(f"SINCE {b['established']}", f"{b['experience']} in-house"), ('1,000+', 'teams kitted'), ('ALL PRINTS', 'sublimation to embroidery')]
+    facts = [(f"SINCE {b['established']}", f"{b['experience']} in-house"), ('1M+', 'teams kitted'), ('ALL PRINTS', 'sublimation to embroidery')]
     fw = (W - 2 * M) // 3
     for i, (a, c) in enumerate(facts):
         d.text((M + 40 + i * fw, y + 35), a, font=BLACK(32), fill=CYAN); d.text((M + 40 + i * fw, y + 85), fit(d, c, REG(20), fw - 60), font=REG(20), fill=MUTED)

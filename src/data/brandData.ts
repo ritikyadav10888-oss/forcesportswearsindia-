@@ -11,7 +11,7 @@ export const BRAND_DETAILS = {
     tagline: "Fueling Champions Since 2007",
     heroSubtitle:
         "Custom athletic jerseys and technical apparel engineered for peak performance and relentless durability.",
-    trustedTeamsLabel: "Trusted by 1,000+ Teams",
+    trustedTeamsLabel: "Trusted by 1M+ Teams",
     aboutIntro:
         "At Force Sports and Wears India, we don't just make apparel — we engineer performance. From the heart of Mumbai, 18+ years of in-house manufacturing have shaped every custom kit we produce.",
     aboutMission:

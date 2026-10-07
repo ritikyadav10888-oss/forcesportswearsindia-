@@ -27,8 +27,8 @@ const TBA = 'To be announced';
 const STATS = [
     { value: String(BRAND_DETAILS.established), label: 'Making sportswear since' },
     { value: '18+', label: 'Years of in-house manufacturing' },
-    { value: '1,000+', label: 'Teams kitted' },
-    { value: '8', label: 'Sports, official & fan' },
+    { value: '1M+', label: 'Teams kitted' },
+    { value: '20+', label: 'Sports we make kits for' },
 ];
 
 const PROCESS = [
