@@ -8,7 +8,7 @@ export const ISPO_EVENT = {
     /** e.g. "RAI Amsterdam" */
     venue: '',
     /** e.g. "Hall 5" */
-    hall: 'B13 / 11',
+    hall: 'B3 / 11',
     /** e.g. "C21" */
     booth: '',
 };
