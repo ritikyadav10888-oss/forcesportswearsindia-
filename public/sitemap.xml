@@ -13,6 +13,18 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.forcesportsindia.com/ispo/showroom</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.forcesportsindia.com/ispo</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.forcesportsindia.com/catalog/sports</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://www.forcesportsindia.com/catalog</loc>
     <priority>0.8</priority>
   </url>
@@ -82,10 +94,6 @@
   </url>
   <url>
     <loc>https://www.forcesportsindia.com/products/force-element-jacket</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.forcesportsindia.com/products/force-apex-duffel</loc>
     <priority>0.6</priority>
   </url>
   <url>
@@ -714,90 +722,6 @@
   </url>
   <url>
     <loc>https://www.forcesportsindia.com/products/force-bag-ball-01</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.forcesportsindia.com/uniforms/uni-sch-polo</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.forcesportsindia.com/uniforms/uni-sch-raglan</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.forcesportsindia.com/uniforms/uni-sch-house</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.forcesportsindia.com/uniforms/uni-sch-event</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.forcesportsindia.com/uniforms/uni-sch-trackpant</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.forcesportsindia.com/uniforms/uni-sch-shorts</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.forcesportsindia.com/uniforms/uni-sch-cap</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.forcesportsindia.com/uniforms/uni-corp-polo</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.forcesportsindia.com/uniforms/uni-corp-tshirt</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.forcesportsindia.com/uniforms/uni-corp-polo-perf</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.forcesportsindia.com/uniforms/uni-corp-crew-tee</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.forcesportsindia.com/uniforms/uni-corp-trackpant</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.forcesportsindia.com/uniforms/uni-corp-shorts</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.forcesportsindia.com/uniforms/uni-corp-cap</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.forcesportsindia.com/uniforms/uni-ff-service-tshirt</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.forcesportsindia.com/uniforms/uni-ff-cap</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.forcesportsindia.com/uniforms/uni-ind-workwear</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.forcesportsindia.com/uniforms/uni-ind-cargo</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.forcesportsindia.com/uniforms/uni-ind-safecap</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.forcesportsindia.com/uniforms/uni-qds-rider-jersey</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.forcesportsindia.com/uniforms/uni-qds-safecap</loc>
     <priority>0.6</priority>
   </url>
 </urlset>
