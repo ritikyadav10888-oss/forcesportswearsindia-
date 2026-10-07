@@ -4,11 +4,11 @@ export const ISPO_EVENT = {
     name: 'ISPO Amsterdam',
     city: 'Amsterdam, Netherlands',
     /** e.g. "1–3 December 2026" */
-    dates: '',
+    dates: '4–5 November 2026',
     /** e.g. "RAI Amsterdam" */
     venue: '',
     /** e.g. "Hall 5" */
-    hall: '',
+    hall: 'B13 / 11',
     /** e.g. "C21" */
     booth: '',
 };
