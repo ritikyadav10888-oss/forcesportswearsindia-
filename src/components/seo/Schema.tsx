@@ -44,7 +44,7 @@ const Schema = () => {
         'name': 'Force Sports & Wears India',
         'areaServed': 'Worldwide',
         'description': 'Global Exporter and Top Bulk T-Shirt & Custom Sportswear Manufacturer. Based in India, supplying worldwide.',
-        'image': 'https://www.forcesportsindia.com/og-image.jpg',
+        'image': 'https://www.forcesportsindia.com/hero-montage.png',
         '@id': 'https://www.forcesportsindia.com',
         'url': 'https://www.forcesportsindia.com',
         'telephone': '+91 9594021303',

@@ -3,7 +3,6 @@ export const CATALOG_DATA = {
     jabraat: {
         title: "Jabraat Collection",
         description: "Premium performance apparel and customized kits.",
-        downloadUrl: "/catalogs/Jabraat_Collection.pdf",
         pages: [
             "/jabraat/JABRAAT_page-0001.jpg",
             "/jabraat/JABRAAT_page-0002.jpg",
@@ -88,7 +87,6 @@ export const CATALOG_DATA = {
     shatak: {
         title: "Shatak Collection",
         description: "Technical sports gear and professional match day apparel.",
-        downloadUrl: "/catalogs/Shatak_Collection.pdf",
         pages: [
             "/shatak/SHATAK 2023-compressed_page-0001.jpg",
             "/shatak/SHATAK 2023-compressed_page-0002.jpg",
@@ -168,7 +166,6 @@ export const CATALOG_DATA = {
         title: "Premium Designed",
         description: "Advanced 3D designs and conceptual sports architecture.",
         isInteractive: true,
-        downloadUrl: "/catalogs/Premium_Designed.pdf",
         pages: Array.from({ length: 30 }, (_, i) => {
             const pageNum = i + 1;
             const folderNum = pageNum;

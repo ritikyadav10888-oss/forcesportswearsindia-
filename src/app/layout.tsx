@@ -41,8 +41,8 @@ export const metadata: Metadata = {
     "Force Sports school uniform",
   ],
   icons: {
-    icon: "/brand-logo.png",
-    apple: "/brand-logo.png",
+    icon: "/force sport and wears india.png",
+    apple: "/force sport and wears india.png",
   },
 };
 

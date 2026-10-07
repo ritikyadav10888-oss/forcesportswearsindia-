@@ -15,7 +15,7 @@ interface SEOProps {
 const SEO: React.FC<SEOProps> = ({ 
     title, 
     description, 
-    image = 'https://www.forcesportsindia.com/og-image.jpg', 
+    image = 'https://www.forcesportsindia.com/hero-montage.png', 
     article = false,
     keywords = SEO_KEYWORDS.default
 }) => {

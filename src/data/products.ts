@@ -2579,28 +2579,6 @@ export const PRODUCTS: Product[] = [
         "category": "T-Shirts"
     },
     {
-        "brand": "Force",
-        "sport": "Other",
-        "title": "Apex Pro Duffel",
-        "specs": {
-            "Dimensions": "24\" x 12\" x 12\"",
-            "Material": "Matt Finish 900D Poly",
-            "Durability": "Extreme Wear Rating"
-        },
-        "category": "Bags",
-        "productCode": "#BG 404",
-        "description": "Premium sports bag with dedicated compartments for any gear.",
-        "longDescription": "The Apex Pro Duffel is designed for the serious athlete. It features a ventilated shoe compartment, padded shoulder strap, and multiple internal pockets for organized storage of your essentials.",
-        "id": "force-apex-duffel",
-        "image": "/bag-apex.png",
-        "features": [
-            "Ventilated Shoe Pocket",
-            "Padded Straps",
-            "Heavy-Duty Fabric",
-            "50L Capacity"
-        ]
-    },
-    {
         "id": "force-badminton-01",
         "description": "Premium Badminton technical sports uniform kit featuring modern design patterns. Engineered for maximum breathability.",
         "category": "T-Shirts",

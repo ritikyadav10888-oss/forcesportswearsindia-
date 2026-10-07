@@ -238,7 +238,7 @@ export async function POST(req: Request) {
                     <div style="margin-top: 32px; padding-top: 20px; border-top: 1px solid #e2e8f0; text-align: center;">
                         <p style="margin: 0; font-size: 11px; color: #94a3b8;">
                             This lead has been saved to your 
-                            <a href="https://forcesportswearsindia.com/force-hq" style="color: #0891b2;">Firebase Leads Dashboard</a>.
+                            <a href="https://www.forcesportsindia.com/force-hq" style="color: #0891b2;">Firebase Leads Dashboard</a>.
                         </p>
                         <p style="margin: 6px 0 0; font-size: 11px; color: #cbd5e1;">Force Sports & Wears India · ${BRAND_DETAILS.headquarters}</p>
                     </div>
