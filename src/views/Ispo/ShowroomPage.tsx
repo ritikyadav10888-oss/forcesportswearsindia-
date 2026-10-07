@@ -52,6 +52,9 @@ const fadeUp = {
     transition: { duration: 0.6 },
 };
 
+// hero animates on load (not on scroll) so it is visible straight away
+const heroIn = { initial: { opacity: 0, y: 30 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.6 } };
+
 const displayColour = (c: CatalogColour, i: number) => (/^colour \d+$/i.test(c.name) ? `Colourway ${i + 1}` : c.name);
 const designNumber = (id: string) => id.replace(/\D+/g, '');
 
@@ -130,13 +133,13 @@ export default function ShowroomPage() {
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_30%,rgba(8,145,178,0.35),transparent_55%),radial-gradient(ellipse_at_10%_90%,rgba(14,116,144,0.25),transparent_50%)]" />
                 <div className="relative max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-12 items-center">
                     <div>
-                        <motion.p {...fadeUp} className="text-[10px] font-black uppercase tracking-[0.3em] text-cyan-400">
+                        <motion.p {...heroIn} className="text-[10px] font-black uppercase tracking-[0.3em] text-cyan-400">
                             Digital showroom · {ISPO_EVENT.name}
                         </motion.p>
-                        <motion.h1 {...fadeUp} transition={{ duration: 0.6, delay: 0.05 }} className="mt-6 text-5xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tighter leading-[0.9]">
+                        <motion.h1 {...heroIn} transition={{ duration: 0.6, delay: 0.05 }} className="mt-6 text-5xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tighter leading-[0.9]">
                             Teamwear,<br />made in <span className="text-cyan-400">Mumbai</span>.<br />Worn worldwide.
                         </motion.h1>
-                        <motion.p {...fadeUp} transition={{ duration: 0.6, delay: 0.1 }} className="mt-8 max-w-xl text-slate-300 leading-relaxed">
+                        <motion.p {...heroIn} transition={{ duration: 0.6, delay: 0.1 }} className="mt-8 max-w-xl text-slate-300 leading-relaxed">
                             Step inside {BRAND_DETAILS.navDisplayName}: our collections, the colours, the factory behind them and what we
                             are bringing to {ISPO_EVENT.name}.
                         </motion.p>
@@ -153,7 +156,7 @@ export default function ShowroomPage() {
                             Enter the showroom <ArrowDown size={14} className="animate-bounce" />
                         </a>
                     </div>
-                    <motion.div {...fadeUp} transition={{ duration: 0.8, delay: 0.1 }} className="relative aspect-square max-w-lg w-full mx-auto">
+                    <motion.div {...heroIn} transition={{ duration: 0.8, delay: 0.1 }} className="relative aspect-square max-w-lg w-full mx-auto">
                         <div className="absolute inset-[8%] rounded-full bg-cyan-500/20 blur-3xl" />
                         {designs[0] && (
                             <img
