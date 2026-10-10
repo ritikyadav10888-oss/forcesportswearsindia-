@@ -59,7 +59,7 @@ export default function IspoPage() {
                 </header>
 
                 <div className={`${s.actions} ${s.in} ${s.d1}`}>
-                    <a className={s.save} href="/ispo/showroom">
+                    <a className={s.save} href="https://ispo.forcesportsindia.com">
                         <Store strokeWidth={2} />
                         Enter the digital showroom
                     </a>
