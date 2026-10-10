@@ -21,7 +21,7 @@ const MAIN_SITE = 'https://www.forcesportsindia.com';
 // vCard from src/app/ispo/contact.vcf; proxy.ts lets file paths through on the ispo host too
 const SAVE_CONTACT = '/ispo/contact.vcf';
 const CATALOG = '/design-studio/catalog';
-const HERO_IMAGE = '/ispo/hero-india.webp';
+const HERO_IMAGE = '/ispo/hero-india-2.webp';
 const VIEWS: { id: View; label: string }[] = [
     { id: 'front', label: 'Front' }, { id: 'back', label: 'Back' }, { id: 'left', label: 'Left sleeve' }, { id: 'right', label: 'Right sleeve' },
 ];
@@ -110,7 +110,7 @@ export default function ShowroomPage() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
                     <a href="#top" className="flex items-center gap-3 min-w-0">
                         <span className="h-10 w-10 shrink-0 rounded-[1rem] bg-white p-1.5 flex items-center justify-center">
-                            <img src={getCDNUrl(BRAND_DETAILS.logo)} alt={BRAND_DETAILS.logoAlt} className="w-full h-full object-contain" />
+                            <img src={getCDNUrl(BRAND_DETAILS.logo)} alt={BRAND_DETAILS.logoAlt} className="logo-mark w-full h-full object-contain" />
                         </span>
                         <span className="text-[11px] sm:text-xs font-black uppercase tracking-widest truncate">
                             Force <span className="text-cyan-600">×</span> {ISPO_EVENT.name}
@@ -172,7 +172,7 @@ export default function ShowroomPage() {
                             </a>
                         </div>
                     </div>
-                    <img src={HERO_IMAGE} alt="Athletes across India in Force Sports kit" className="lg:hidden w-full max-w-md mx-auto" />
+                    <img src={HERO_IMAGE} alt="Map of India made of sportswear fabrics, with the Force Sports logo" className="lg:hidden w-full max-w-md mx-auto" />
                 </div>
             </section>
 

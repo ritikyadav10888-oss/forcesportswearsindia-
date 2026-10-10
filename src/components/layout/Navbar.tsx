@@ -37,10 +37,10 @@ const Navbar = () => {
                             alt={BRAND_DETAILS.logoAlt ?? BRAND_DETAILS.name}
                             width={48}
                             height={48}
-                            className="w-full h-full object-contain"
+                            className="logo-mark w-full h-full object-contain"
                         />
                     </span>
-                    <span className="text-[10px] sm:text-xs md:text-sm lg:text-base font-black tracking-tight text-slate-900 leading-tight uppercase lg:whitespace-nowrap group-hover:text-cyan-700 transition-colors">
+                    <span className="font-bodoni text-[10px] sm:text-xs md:text-sm lg:text-base font-black tracking-tight text-slate-900 leading-tight uppercase lg:whitespace-nowrap group-hover:text-cyan-700 transition-colors">
                         {BRAND_DETAILS.navDisplayName}
                     </span>
                 </Link>

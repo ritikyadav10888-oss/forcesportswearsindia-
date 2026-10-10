@@ -18,8 +18,6 @@ import ProductCardDetails from '../../components/products/ProductCardDetails';
 import { db } from '../../lib/firebase';
 import { collection, onSnapshot, query, where } from 'firebase/firestore';
 import { findLiveProduct, mergeLiveProductCatalog, productFromFirestore } from '../../utils/productUtils';
-import { FALLBACK_TESTIMONIALS, Testimonial } from '../../data/testimonials';
-import TestimonialForm from '../../components/forms/TestimonialForm';
 import { SEO_KEYWORDS } from '../../data/seoKeywords';
 
 const FEATURED_PRODUCT_IDS = ['force-3d-inv-01', 'force-stealth-joggers', 'force-plain-cap-black'];
@@ -108,9 +106,6 @@ const HomePage = () => {
     );
     const [featuredFabrics, setFeaturedFabrics] = React.useState<any[]>([]);
     const [logoMap, setLogoMap] = React.useState<Record<string, string>>({});
-    const [testimonials, setTestimonials] = React.useState<Testimonial[]>(
-        FALLBACK_TESTIMONIALS.map((t, i) => ({ ...t, id: `fallback-${i}`, status: 'approved' as const }))
-    );
 
     React.useEffect(() => {
         const unsubscribe = onSnapshot(
@@ -126,34 +121,6 @@ const HomePage = () => {
                 if (featured.length) setFeaturedProducts(featured);
             },
             (error) => console.error('Failed to load featured products', error)
-        );
-        return () => unsubscribe();
-    }, []);
-
-    React.useEffect(() => {
-        const q = query(collection(db, 'testimonials'), where('status', '==', 'approved'));
-        const unsubscribe = onSnapshot(
-            q,
-            (snapshot) => {
-                const live = snapshot.docs.map((d) => ({ id: d.id, ...d.data() })) as Testimonial[];
-                live.sort((a, b) => {
-                    const ms = (v: unknown) => {
-                        if (!v || typeof v !== 'object') return 0;
-                        const t = v as { toMillis?: () => number; seconds?: number };
-                        if (typeof t.toMillis === 'function') return t.toMillis();
-                        if (typeof t.seconds === 'number') return t.seconds * 1000;
-                        return 0;
-                    };
-                    return ms(b.createdAt) - ms(a.createdAt);
-                });
-                if (live.length) setTestimonials(live);
-                else {
-                    setTestimonials(
-                        FALLBACK_TESTIMONIALS.map((t, i) => ({ ...t, id: `fallback-${i}`, status: 'approved' as const }))
-                    );
-                }
-            },
-            (error) => console.error('Failed to load testimonials', error)
         );
         return () => unsubscribe();
     }, []);
@@ -207,7 +174,7 @@ const HomePage = () => {
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.15, ease: 'easeOut' }}
-                        className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[5.5rem] font-black text-white tracking-tighter mb-4 uppercase leading-[0.95] xl:whitespace-nowrap"
+                        className="font-bodoni text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[4.25rem] 2xl:text-[5rem] font-black text-white tracking-tight mb-4 uppercase leading-[0.95] xl:whitespace-nowrap"
                     >
                         {BRAND_DETAILS.navDisplayName}
                     </motion.h1>
@@ -625,50 +592,6 @@ const HomePage = () => {
                     </div>
                 </div>
             </section>
-
-            {/* Testimonials */}
-            <section className="py-16 md:py-24 bg-white">
-                <div className="max-w-7xl mx-auto px-6">
-                    <div className="text-center mb-12">
-                        <h2 className="text-3xl md:text-4xl font-black text-slate-900 uppercase tracking-tighter mb-4">What our clients say</h2>
-                        <div className="inline-flex gap-1 text-yellow-500 items-center">
-                            {[1, 2, 3, 4, 5].map((i) => <Star key={i} size={18} fill="currentColor" />)}
-                            <span className="ml-2 font-black text-slate-900 text-sm">
-                                {(
-                                    testimonials.reduce((sum, t) => sum + (t.rating || 5), 0) / Math.max(testimonials.length, 1)
-                                ).toFixed(1)}/5
-                            </span>
-                        </div>
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {testimonials.slice(0, 9).map((testi) => (
-                            <div key={testi.id} className="p-8 rounded-3xl bg-slate-50 border border-slate-100">
-                                <div className="flex gap-0.5 text-yellow-500 mb-4">
-                                    {Array.from({ length: Math.min(5, testi.rating || 5) }).map((_, i) => (
-                                        <Star key={i} size={14} fill="currentColor" />
-                                    ))}
-                                </div>
-                                <p className="text-slate-600 italic leading-relaxed mb-6">&ldquo;{testi.quote}&rdquo;</p>
-                                <div>
-                                    <h4 className="font-black text-slate-900 text-sm uppercase">{testi.name}</h4>
-                                    {testi.role && (
-                                        <span className="text-cyan-600 text-[10px] font-bold uppercase tracking-widest">{testi.role}</span>
-                                    )}
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                    <div className="max-w-2xl mx-auto mt-14">
-                        <div className="text-center mb-6">
-                            <h3 className="text-xl font-black uppercase tracking-tight text-slate-900">Share your review</h3>
-                            <p className="text-slate-500 text-sm mt-2">Tell us about your experience with Force Sports & Wears India.</p>
-                        </div>
-                        <TestimonialForm compact />
-                    </div>
-                </div>
-            </section>
-
-
 
             {/* Clients marquee */}
             <section className="py-14 md:py-16 bg-[#f4f6f8] overflow-hidden isolate">

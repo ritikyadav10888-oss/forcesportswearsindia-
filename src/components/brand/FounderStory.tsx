@@ -15,7 +15,7 @@ const FounderStory = ({ showAboutLink = false }: { showAboutLink?: boolean }) =>
                     viewport={{ once: true }}
                     className="min-w-0 h-full flex flex-col"
                 >
-                    <h2 className="text-[13px] sm:text-3xl md:text-4xl font-black mb-2 sm:mb-6 border-l-2 sm:border-l-4 border-cyan-500 pl-2 sm:pl-6 uppercase tracking-tighter text-slate-900 leading-[1.15]">
+                    <h2 className="font-bodoni text-[13px] sm:text-3xl md:text-4xl font-black mb-2 sm:mb-6 border-l-2 sm:border-l-4 border-cyan-500 pl-2 sm:pl-6 uppercase tracking-tighter text-slate-900 leading-[1.15]">
                         {BRAND_DETAILS.name}
                     </h2>
                     <p className="text-slate-600 text-[10px] sm:text-lg md:text-xl leading-relaxed mb-2 sm:mb-5">

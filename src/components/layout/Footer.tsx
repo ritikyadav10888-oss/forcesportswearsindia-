@@ -17,10 +17,10 @@ const Footer = () => {
                                     alt={BRAND_DETAILS.logoAlt ?? BRAND_DETAILS.name}
                                     width={56}
                                     height={56}
-                                    className="w-full h-full object-contain"
+                                    className="logo-mark w-full h-full object-contain"
                                 />
                             </span>
-                            <h2 className="text-base sm:text-lg md:text-xl font-black tracking-wide leading-none text-slate-300 whitespace-nowrap uppercase">
+                            <h2 className="font-bodoni text-base sm:text-lg md:text-xl font-black tracking-wide leading-tight sm:leading-none text-slate-300 sm:whitespace-nowrap uppercase">
                                 {BRAND_DETAILS.navDisplayName}
                             </h2>
                         </div>
@@ -89,7 +89,7 @@ const Footer = () => {
                             <li><a href="/catalog" className="hover:text-cyan-400 transition-colors">Digital Catalog</a></li>
                             <li><a href="/about" className="hover:text-cyan-400 transition-colors">Our Story</a></li>
                             <li><a href="/inquiry" className="hover:text-cyan-400 transition-colors">Get A Quote</a></li>
-                            <li><a href="/testimonial" className="hover:text-cyan-400 transition-colors">Write a Review</a></li>
+                            <li><a href="/review" className="hover:text-cyan-400 transition-colors">Write a Review</a></li>
                             <li><a href="/faq" className="hover:text-cyan-400 transition-colors">FAQ</a></li>
                         </ul>
                     </div>

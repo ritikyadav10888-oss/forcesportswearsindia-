@@ -331,7 +331,7 @@ const ProductPage = ({ initialSport }: ProductPageProps = {}) => {
                         )}
 
                         {/* Grid */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-3 gap-6 lg:gap-8">
+                        <div className="grid grid-cols-2 2xl:grid-cols-3 gap-3 sm:gap-6 lg:gap-8">
                             {!loading && filteredProducts.map((product) => {
                                     const sportexFabric = getProductSportexFabric(
                                         product.id,
@@ -358,9 +358,9 @@ const ProductPage = ({ initialSport }: ProductPageProps = {}) => {
                                     return (
                                     <div
                                         key={(product as { firestoreId?: string }).firestoreId || product.id}
-                                        className="bg-white rounded-[2rem] overflow-hidden shadow-sm hover:shadow-2xl hover:shadow-slate-200 transition-all border border-slate-100 group flex flex-col h-full"
+                                        className="bg-white rounded-2xl sm:rounded-[2rem] overflow-hidden shadow-sm hover:shadow-2xl hover:shadow-slate-200 transition-all border border-slate-100 group flex flex-col h-full"
                                     >
-                                        <div className="relative aspect-[4/5] bg-[radial-gradient(circle_at_top,rgba(6,182,212,0.08),transparent_60%)] flex items-center justify-center overflow-hidden p-5 sm:p-6 group/img">
+                                        <div className="relative aspect-[4/5] bg-[radial-gradient(circle_at_top,rgba(6,182,212,0.08),transparent_60%)] flex items-center justify-center overflow-hidden p-3 sm:p-6 group/img">
                                             <div className="absolute inset-0 bg-gradient-to-b from-white via-white/40 to-slate-50" />
                                             {product.image ? (
                                                 <img
@@ -381,47 +381,47 @@ const ProductPage = ({ initialSport }: ProductPageProps = {}) => {
                                                     className="absolute inset-0 w-full h-full object-contain p-5 sm:p-6 opacity-0 group-hover/img:opacity-100 transition-all duration-700 scale-110 group-hover/img:scale-100 drop-shadow-[0_20px_30px_rgba(15,23,42,0.10)]"
                                                 />
                                             )}
-                                            <div className="absolute top-4 left-4 sm:top-6 sm:left-6 flex flex-col gap-2 z-20">
+                                            <div className="absolute top-2 left-2 sm:top-6 sm:left-6 flex flex-col gap-2 z-20">
                                                 <div className="flex gap-2">
                                                     {product.sport && !['Other', 'Activity', 'General', 'All'].includes(product.sport) && (
-                                                        <div className="bg-cyan-500 text-white px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest shadow-xl shadow-cyan-900/20">
+                                                        <div className="bg-cyan-500 text-white px-2 sm:px-3 py-1 rounded-full text-[8px] sm:text-[9px] font-black uppercase tracking-widest shadow-xl shadow-cyan-900/20">
                                                             {product.sport}
                                                         </div>
                                                     )}
                                                     {product.usageType && product.usageType !== 'General' && (
-                                                        <div className="bg-white/90 backdrop-blur text-slate-900 px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest shadow-sm">
+                                                        <div className="hidden sm:block bg-white/90 backdrop-blur text-slate-900 px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest shadow-sm">
                                                             {product.usageType}
                                                         </div>
                                                     )}
                                                 </div>
                                             </div>
 
-                                            <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 z-20">
+                                            <div className="absolute bottom-2 left-2 sm:bottom-6 sm:left-6 z-20">
                                                 {product.productCode && (
-                                                    <div className="bg-slate-900/90 text-white px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest">
+                                                    <div className="bg-slate-900/90 text-white px-2 sm:px-3 py-1 rounded-full text-[8px] sm:text-[9px] font-black uppercase tracking-widest">
                                                         {product.productCode}
                                                     </div>
                                                 )}
                                             </div>
                                         </div>
-                                        <div className="p-6 sm:p-8 flex flex-col flex-1">
-                                            <div className="mb-4">
+                                        <div className="p-3 sm:p-8 flex flex-col flex-1">
+                                            <div className="mb-3 sm:mb-4">
                                                 <div className="flex items-start justify-between gap-4">
                                                     <div>
-                                                        <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-2 block">
+                                                        <span className="text-[8px] sm:text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1 sm:mb-2 block">
                                                             {displayCategory}
                                                             {product.sport && !['Other', 'Activity', 'General', 'All'].includes(product.sport) && ` • ${product.sport}`}
                                                             {product.usageType && product.usageType !== 'General' && ` • ${product.usageType}`}
                                                         </span>
-                                                        <h3 className="text-lg sm:text-xl font-black text-slate-900 uppercase tracking-tighter leading-tight">
+                                                        <h3 className="text-sm sm:text-xl font-black text-slate-900 uppercase tracking-tighter leading-tight">
                                                             {product.title}
                                                         </h3>
                                                     </div>
                                                 </div>
-                                                <p className="mt-2 text-slate-600 text-sm leading-relaxed font-medium">
+                                                <p className="hidden sm:block mt-2 text-slate-600 text-sm leading-relaxed font-medium">
                                                     {product.description}
                                                 </p>
-                                                <div className="mt-2 flex flex-wrap gap-2">
+                                                <div className="hidden sm:flex mt-2 flex-wrap gap-2">
                                                     {product.brand && (
                                                         <span className="text-[9px] font-black text-cyan-700 uppercase tracking-widest px-2 py-0.5 bg-cyan-50 rounded-md">
                                                             {product.brand}
@@ -433,7 +433,7 @@ const ProductPage = ({ initialSport }: ProductPageProps = {}) => {
                                                 </div>
                                             </div>
 
-                                            <div className="mb-5 flex-1">
+                                            <div className="hidden sm:block mb-5 flex-1">
                                                 <ProductCardDetails
                                                     product={product}
                                                     sportexFabric={sportexFabric}
@@ -442,16 +442,16 @@ const ProductPage = ({ initialSport }: ProductPageProps = {}) => {
                                                 />
                                             </div>
 
-                                            <div className="grid grid-cols-2 gap-3 md:gap-4 mt-auto">
+                                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 md:gap-4 mt-auto">
                                                 <button
                                                     onClick={() => setCustomizingProduct(product)}
-                                                    className="py-4 bg-slate-900 text-white text-[11px] font-black uppercase tracking-widest rounded-2xl hover:bg-cyan-600 transition-all"
+                                                    className="py-3 sm:py-4 bg-slate-900 text-white text-[10px] sm:text-[11px] font-black uppercase tracking-widest rounded-xl sm:rounded-2xl hover:bg-cyan-600 transition-all"
                                                 >
                                                     Customize
                                                 </button>
                                                 <Link
                                                     href={`/products/${product.id}`}
-                                                    className="py-4 bg-white text-slate-900 text-[11px] font-black uppercase tracking-widest rounded-2xl hover:bg-slate-50 transition-all border border-slate-200 text-center flex items-center justify-center gap-1"
+                                                    className="py-3 sm:py-4 bg-white text-slate-900 text-[10px] sm:text-[11px] font-black uppercase tracking-widest rounded-xl sm:rounded-2xl hover:bg-slate-50 transition-all border border-slate-200 text-center flex items-center justify-center gap-1"
                                                 >
                                                     Full details <ChevronRight size={14} />
                                                 </Link>
@@ -460,9 +460,9 @@ const ProductPage = ({ initialSport }: ProductPageProps = {}) => {
                                             <button
                                                 type="button"
                                                 onClick={() => openWhatsApp(product, displayCategory)}
-                                                className="mt-3 w-full py-3 rounded-2xl bg-[#25D366]/10 border border-[#25D366]/20 text-[#128C7E] text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-[#25D366] hover:text-white transition-all"
+                                                className="mt-2 sm:mt-3 w-full py-3 rounded-xl sm:rounded-2xl bg-[#25D366]/10 border border-[#25D366]/20 text-[#128C7E] text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-[#25D366] hover:text-white transition-all"
                                             >
-                                                <MessageCircle size={16} /> WhatsApp Quote
+                                                <MessageCircle size={16} /> <span className="sm:hidden">WhatsApp</span><span className="hidden sm:inline">WhatsApp Quote</span>
                                             </button>
                                         </div>
                                     </div>

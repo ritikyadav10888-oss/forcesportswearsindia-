@@ -2,7 +2,7 @@ export const BRAND_DETAILS = {
     name: "Force Sports and Wears India",
     /** Navbar & footer — single horizontal line */
     navDisplayName: "Force Sports & Wears India",
-    logo: "/force sport and wears india.png",
+    logo: "/brand/logo-256.png",
     logoAlt: "Force Sports & Wears India — orange bull mark",
     brandOrange: "#F15A24",
     shortName: "Force Sports",

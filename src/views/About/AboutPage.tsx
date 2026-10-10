@@ -33,7 +33,7 @@ const ALPHA_FEATURES = [
 ];
 
 const GROUP = [
-    { name: 'Force Sports and Wears India', desc: 'Custom Sportswear Manufacturing', logo: '/force sport and wears india.png' },
+    { name: 'Force Sports and Wears India', desc: 'Custom Sportswear Manufacturing', logo: BRAND_DETAILS.logo },
     { name: 'Force Playing Field India Private Limited', desc: 'Sports Infrastructure', logo: '/force group of company/force playing field logo .png' },
     { name: 'FORCE1LIVE', desc: 'Sports Media & Broadcasting', logo: '/force group of company/force1live .png', live: true },
     { name: 'Force Sports Infra', desc: 'Infrastructure & Development', logo: '/force group of company/force sport infra .png' },
@@ -81,10 +81,10 @@ const AboutPage = () => {
                         transition={{ delay: 0.1 }}
                         className="font-black text-white uppercase tracking-tighter leading-[0.92]"
                     >
-                        <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-50 to-slate-300">
+                        <span className="font-bodoni block text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-50 to-slate-300">
                             {BRAND_DETAILS.nameLines[0]}
                         </span>
-                        <span className="block text-xl sm:text-2xl md:text-3xl lg:text-4xl mt-1 md:mt-2 text-white/95">
+                        <span className="font-bodoni block text-xl sm:text-2xl md:text-3xl lg:text-4xl mt-1 md:mt-2 text-white/95">
                             {BRAND_DETAILS.nameLines[1]}
                         </span>
                     </motion.div>

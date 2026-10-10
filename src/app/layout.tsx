@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Roboto, Playfair_Display } from "next/font/google";
+import { Roboto, Playfair_Display, Bodoni_Moda } from "next/font/google";
 import "../index.css";
 import PublicLayoutWrapper from "../components/layout/PublicLayoutWrapper";
 import { Analytics } from "@vercel/analytics/react";
@@ -19,6 +19,14 @@ const playfair = Playfair_Display({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-serif',
+});
+
+// brand name wordmark ("Force Sports & Wears India")
+const bodoni = Bodoni_Moda({
+  weight: ['700', '900'],
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-bodoni',
 });
 
 export const metadata: Metadata = {
@@ -41,14 +49,14 @@ export const metadata: Metadata = {
     "Force Sports school uniform",
   ],
   icons: {
-    icon: "/force sport and wears india.png",
-    apple: "/force sport and wears india.png",
+    icon: "/brand/logo-256.png",
+    apple: "/brand/logo-256.png",
   },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${roboto.variable} ${playfair.variable} font-sans scroll-smooth`}>
+    <html lang="en" className={`${roboto.variable} ${playfair.variable} ${bodoni.variable} font-sans scroll-smooth`}>
       <body className="font-sans">
         <PublicLayoutWrapper>
           {children}

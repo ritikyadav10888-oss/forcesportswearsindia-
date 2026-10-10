@@ -18,6 +18,9 @@ export const getCDNUrl = (
   }
 
   const normalized = path.startsWith('/') ? path : `/${path}`;
+
+  // brand assets (logo) ship with the site itself, never from Firebase Storage
+  if (normalized.startsWith('/brand/')) return encodeURI(normalized);
   const cleanPath = path.startsWith('/') ? path.substring(1) : path;
   
   const ext = cleanPath.split('.').pop()?.toLowerCase() || '';
