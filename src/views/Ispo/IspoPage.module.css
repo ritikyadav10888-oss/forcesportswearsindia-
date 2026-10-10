@@ -1,0 +1,112 @@
+/* ISPO digital card: one narrow column. Emblem hero, one primary action, then contact rows. */
+.page {
+    --bg: #FFFFFF; --surface: #FFFFFF; --ink: #1C1512; --muted: #7A6B63; --line: #EBE1DB;
+    --brand: #E54B22; --brand-ink: #FFFFFF; --brand-soft: #FCE9E2; --ok: #2F9E5B;
+    --display: var(--font-ispo-display), "Arial Narrow", Impact, sans-serif;
+    --body: var(--font-ispo-body), system-ui, -apple-system, "Segoe UI", sans-serif;
+    --r: 14px;
+    color-scheme: light;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+    padding: 0 16px 64px;
+    overflow-x: clip;
+}
+.page a { color: inherit; text-decoration: none; }
+.wrap { max-width: 440px; margin: 0 auto; display: flex; flex-direction: column; gap: 28px; }
+
+/* ---------- Hero ---------- */
+.hero { position: relative; display: flex; flex-direction: column; align-items: center; gap: 18px; padding-top: 44px; text-align: center; }
+.mark { position: relative; width: 168px; height: 168px; display: grid; place-items: center; }
+.mark svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.ringDraw { fill: none; stroke: var(--brand); stroke-width: 1.25; stroke-dasharray: 540; stroke-dashoffset: 0;
+    animation: draw 1.4s cubic-bezier(.6,.05,.2,1) both; }
+.ringOrbit { fill: none; stroke: var(--line); stroke-width: 1; stroke-dasharray: 1.5 6; transform-origin: 50% 50%;
+    animation: spin 80s linear infinite; }
+.orbitDot { fill: var(--brand); transform-origin: 84px 84px; animation: spin 9s linear infinite, fade .6s 1.2s both; }
+.emblem { width: 118px; height: 118px; background: var(--brand);
+    -webkit-mask: url('/ispo/emblem.png') center/contain no-repeat;
+            mask: url('/ispo/emblem.png') center/contain no-repeat;
+    animation: pop .9s .35s cubic-bezier(.2,.9,.25,1.15) both; }
+.wordmark { margin: 0; width: min(232px, 64vw); aspect-ratio: 900/231; background: var(--brand);
+    -webkit-mask: url('/ispo/wordmark.png') center/contain no-repeat;
+            mask: url('/ispo/wordmark.png') center/contain no-repeat;
+    animation: rise .8s .7s cubic-bezier(.2,.8,.2,1) both; }
+.tag { font-family: var(--display); font-weight: 600; text-transform: uppercase; letter-spacing: .2em; font-size: 13px; color: var(--muted); white-space: nowrap;
+    display: flex; align-items: center; gap: 12px; animation: rise .8s .85s cubic-bezier(.2,.8,.2,1) both; }
+.tag::before, .tag::after { content: ""; width: 22px; height: 1px; background: currentColor; opacity: .5; }
+.streak { position: absolute; top: 118px; left: 50%; width: 100vw; height: 1px; pointer-events: none;
+    background: linear-gradient(90deg, transparent, var(--brand) 50%, transparent); opacity: 0;
+    transform: translateX(-50%) scaleX(.2); animation: streak 1.3s .25s ease-out both; }
+
+/* ---------- Primary action ---------- */
+.save { display: flex; align-items: center; justify-content: center; gap: 10px; height: 56px; border-radius: var(--r);
+    background: var(--brand); color: var(--brand-ink) !important; font-weight: 600; font-size: 16.5px; letter-spacing: .01em;
+    box-shadow: 0 10px 24px -14px var(--brand); transition: transform .15s, box-shadow .2s; }
+.save:active { transform: scale(.98); }
+.save svg { width: 20px; height: 20px; }
+.actions { display: flex; flex-direction: column; gap: 10px; }
+.saveAlt { background: var(--surface); color: var(--brand) !important; border: 1.5px solid var(--brand); box-shadow: none; }
+.saveAlt:hover { background: var(--brand-soft); }
+
+/* ---------- ISPO stand ---------- */
+.stand { position: relative; overflow: hidden; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface);
+    padding: 18px 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.stand::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .55;
+    background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 18px 18px;
+    -webkit-mask: linear-gradient(90deg, transparent 35%, #000); mask: linear-gradient(90deg, transparent 35%, #000); }
+.stand > * { position: relative; z-index: 1; }
+.eyebrow { white-space: nowrap; font-family: var(--display); font-weight: 600; text-transform: uppercase; letter-spacing: .2em; font-size: 12px; color: var(--brand); }
+.stand p { margin: 4px 0 0; color: var(--muted); font-size: 14px; }
+.booth { font-family: var(--display); font-weight: 800; font-size: 44px; line-height: .9; letter-spacing: .01em; white-space: nowrap;
+    display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.booth small { font-family: var(--body); font-weight: 500; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.pin { width: 8px; height: 8px; border-radius: 50%; background: var(--brand); display: inline-block; margin-right: 6px; vertical-align: 1px;
+    box-shadow: 0 0 0 0 var(--brand); animation: ping 2.4s 1.8s infinite; }
+
+/* ---------- Rows ---------- */
+.group { display: flex; flex-direction: column; gap: 10px; }
+.label { font-family: var(--display); font-weight: 600; text-transform: uppercase; letter-spacing: .2em; font-size: 12px; color: var(--muted); padding-left: 2px; }
+.list { border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); overflow: hidden; }
+.row { display: grid; grid-template-columns: 40px 1fr auto; align-items: center; gap: 14px; padding: 14px 16px; min-height: 64px; transition: background .2s; }
+.row + .row { border-top: 1px solid var(--line); }
+.row:hover, .row:focus-visible { background: var(--brand-soft); }
+.row:focus-visible, .save:focus-visible, .socials a:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+.ico { width: 40px; height: 40px; border-radius: 11px; display: grid; place-items: center; background: var(--brand-soft); color: var(--brand); }
+.ico svg { width: 20px; height: 20px; }
+.txt { min-width: 0; }
+.txt b { display: block; font-weight: 600; font-size: 15.5px; }
+.txt span { display: block; color: var(--muted); font-size: 14px; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+.go { color: var(--muted); width: 18px; height: 18px; transition: transform .2s, color .2s; }
+.row:hover .go { transform: translateX(3px); color: var(--brand); }
+
+.socials { display: flex; gap: 10px; }
+.socials a { flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; height: 48px; border: 1px solid var(--line);
+    border-radius: 12px; background: var(--surface); font-size: 14px; font-weight: 500; color: var(--muted); transition: color .2s, border-color .2s; }
+.socials a:hover { color: var(--brand); border-color: var(--brand); }
+.socials svg { width: 18px; height: 18px; }
+
+/* ---------- Footer ---------- */
+.foot { display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; color: var(--muted); font-size: 13.5px; padding-top: 6px; }
+.clock { display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px; border-radius: 999px; border: 1px solid var(--line);
+    font-variant-numeric: tabular-nums; color: var(--ink); font-size: 13.5px; }
+.dot { width: 7px; height: 7px; border-radius: 50%; background: var(--ok); }
+.foot small { font-size: 12px; opacity: .8; }
+
+/* ---------- Motion ---------- */
+.in { animation: rise .7s cubic-bezier(.2,.8,.2,1) both; }
+.d1 { animation-delay: 1s; } .d2 { animation-delay: 1.08s; } .d3 { animation-delay: 1.16s; } .d4 { animation-delay: 1.24s; } .d5 { animation-delay: 1.32s; }
+@keyframes draw { from { stroke-dashoffset: 540; } to { stroke-dashoffset: 0; } }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes pop { from { opacity: 0; transform: scale(.86); } to { opacity: 1; transform: none; } }
+@keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@keyframes streak { 0% { opacity: 0; transform: translateX(-50%) scaleX(.1); } 40% { opacity: .9; } 100% { opacity: 0; transform: translateX(-50%) scaleX(1); } }
+@keyframes ping { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--brand) 55%, transparent); } 70%, 100% { box-shadow: 0 0 0 9px transparent; } }
+@media (prefers-reduced-motion: reduce) {
+    .page *, .page *::before, .page *::after { animation: none !important; transition: none !important; }
+}

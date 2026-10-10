@@ -8,7 +8,9 @@ export const ISPO_EVENT = {
     /** e.g. "RAI Amsterdam" */
     venue: '',
     /** e.g. "Hall 5" */
-    hall: 'B3 / 11',
+    hall: '11',
     /** e.g. "C21" */
-    booth: '',
+    booth: 'B30',
+    /** sales address shown on the ISPO card, showroom and contact card */
+    email: 'sale@forcesports.in',
 };

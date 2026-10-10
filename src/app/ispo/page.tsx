@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import IspoPage from '../../views/Ispo/IspoPage';
 
 export const metadata: Metadata = {
@@ -10,6 +10,11 @@ export const metadata: Metadata = {
         description: 'Visit our stand: official and fan jerseys and team kits from our Mumbai factory.',
         type: 'website',
     },
+};
+
+export const viewport: Viewport = {
+    themeColor: '#E54B22',
+    viewportFit: 'cover',
 };
 
 export default function Page() {
