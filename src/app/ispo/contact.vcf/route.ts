@@ -1,18 +1,17 @@
 import { BRAND_DETAILS } from '../../../data/brandData';
 import { ISPO_EVENT } from '../../../data/ispoEvent';
 
-// "Save our contact" on /ispo: a vCard built from the brand data, so it never drifts from the site.
+// "Save our contact" on /ispo: a vCard built from the brand and ISPO data, so it never drifts from the site.
 export function GET() {
-    const { name, contacts, addresses, social } = BRAND_DETAILS;
+    const { name, addresses, social } = BRAND_DETAILS;
     const hq = addresses[0];
-    const phone = contacts.phone.replace(/\s/g, '');
     const vcard = [
         'BEGIN:VCARD',
         'VERSION:3.0',
         `N:${name};;;;`,
         `FN:${name}`,
         `ORG:${name}`,
-        `TEL;TYPE=CELL,VOICE:${phone}`,
+        ...ISPO_EVENT.phones.map((p) => `TEL;TYPE=CELL,VOICE:${p.replace(/\s/g, '')}`),
         `EMAIL;TYPE=WORK:${ISPO_EVENT.email}`,
         'URL:https://www.forcesportsindia.com/',
         `ADR;TYPE=WORK:;;${hq.text.replace(/,/g, '\\,')};${hq.city};${hq.state};${hq.pincode};India`,

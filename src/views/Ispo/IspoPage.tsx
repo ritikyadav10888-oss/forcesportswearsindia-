@@ -2,7 +2,7 @@ import React from 'react';
 import { Big_Shoulders, Familjen_Grotesk } from 'next/font/google';
 import { Store, Download } from 'lucide-react';
 import { BRAND_DETAILS } from '../../data/brandData';
-import { ISPO_EVENT } from '../../data/ispoEvent';
+import { ISPO_EVENT, ispoWhatsApp } from '../../data/ispoEvent';
 import { PDF_CATALOG_URL } from '../../data/jerseyVersions';
 import MumbaiClock from './MumbaiClock';
 import s from './IspoPage.module.css';
@@ -32,12 +32,9 @@ function Row({ href, icon, title, detail, external }: RowProps) {
 
 // ISPO digital card: what a visitor at our stand scans to save our contact and reach us.
 export default function IspoPage() {
-    const { contacts, social, established, name, headquarters } = BRAND_DETAILS;
+    const { social, established, name, headquarters } = BRAND_DETAILS;
     const stand = [ISPO_EVENT.hall, ISPO_EVENT.booth].filter(Boolean).join(' ');
-    const phoneHref = `tel:${contacts.phone.replace(/\s/g, '')}`;
-    const whatsapp = `${contacts.whatsappLink.split('?')[0]}?text=${encodeURIComponent(
-        `Hi Force Sports, we met at ${ISPO_EVENT.name}${stand ? ` (Stand ${stand})` : ''}.`
-    )}`;
+    const whatsapp = ispoWhatsApp(`Hi Force Sports, we met at ${ISPO_EVENT.name}${stand ? ` (Stand ${stand})` : ''}.`);
     const instagram = social.instagram.split('?')[0];
     const instagramHandle = '@' + instagram.replace(/\/$/, '').split('/').pop();
 
@@ -80,10 +77,12 @@ export default function IspoPage() {
                 <section className={`${s.group} ${s.in} ${s.d3}`} aria-labelledby="ispo-talk">
                     <div className={s.label} id="ispo-talk">Talk to us</div>
                     <div className={s.list}>
-                        <Row href={whatsapp} external title="WhatsApp" detail={contacts.whatsapp}
+                        <Row href={whatsapp} external title="WhatsApp" detail={ISPO_EVENT.phones[0]}
                             icon={<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.5-4.3A8.5 8.5 0 1 1 20.5 11.6Z" /><path d="M9 8.6c.2-.4.5-.5.8-.5h.5l.9 2.1-.6.8c.5 1 1.3 1.8 2.3 2.3l.8-.6 2.1.9v.5c0 .3-.1.6-.5.8-.6.3-1.6.4-3-.4a8 8 0 0 1-3.2-3.2c-.6-1.2-.5-2.2-.1-2.7Z" /></svg>} />
-                        <Row href={phoneHref} title="Call" detail={contacts.phone}
-                            icon={<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M5 3.5h3.2l1.6 4.2-2 1.4a11 11 0 0 0 5.1 5.1l1.4-2 4.2 1.6V17a2.5 2.5 0 0 1-2.7 2.5C9.4 19 5 14.6 4.5 7.2A2.5 2.5 0 0 1 5 3.5Z" /></svg>} />
+                        {ISPO_EVENT.phones.map((phone) => (
+                            <Row key={phone} href={`tel:${phone.replace(/\s/g, '')}`} title="Call" detail={phone}
+                                icon={<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M5 3.5h3.2l1.6 4.2-2 1.4a11 11 0 0 0 5.1 5.1l1.4-2 4.2 1.6V17a2.5 2.5 0 0 1-2.7 2.5C9.4 19 5 14.6 4.5 7.2A2.5 2.5 0 0 1 5 3.5Z" /></svg>} />
+                        ))}
                         <Row href={`mailto:${ISPO_EVENT.email}?subject=${encodeURIComponent(`Enquiry from ${ISPO_EVENT.name}`)}`} title="Email" detail={ISPO_EVENT.email}
                             icon={<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5" /><path d="M3.5 7l8.5 6 8.5-6" /></svg>} />
                     </div>

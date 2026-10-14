@@ -40,3 +40,17 @@ Dhyan do:
      V-neck ya full sleeve ka template alag hai - unke liye ek sample bhejo, main set kar dunga.
    - Recolour kiye gaye backs ko ek nazar dekh lena. Kabhi-kabhi koi chhota hissa (jaise safed panel)
      thoda alag rang le sakta hai.
+
+6) SIDE SLEEVE (force_sleeves.py)  -  jis design ki side-view photo hai
+   - Front photo se bani sleeve seedhi hoti hai. Agar design ki ek SIDE photo hai (kisi bhi ek colour ki),
+     to us se har colour ki asli dikhne wali LEFT aur RIGHT sleeve ban jaati hai.
+   - Pehle force_catalog.py chala lo (design catalog mein hona chahiye). Phir:
+         python force_sleeves.py "SIDE_PHOTO.png" "D:\designs\<design folder>" "D:\catalog\<design-id>"
+     jaise:
+         python force_sleeves.py "side ocean.png" "D:\designs\halftone pro" "D:\catalog\halftone-pro"
+   - Ye har colour ki <colour>-left.webp aur <colour>-right.webp badal deta hai, aur catalog.json
+     (aur us design ki .done file) mein "sleeveView": "side" laga deta hai. Haath se kuch nahi likhna.
+   - Website editor "side" design par sleeve ka print area upar ki baanh par rakhta hai (AREA_SIDE_KIT).
+   - force_catalog.py dobara chalane par bhi "side" bana rehta hai. Lekin agar kisi design ki .done file
+     delete karke use dobara banaya, to sleeves phir se front wali ban jaayengi - force_sleeves.py dobara chalao.
+   - Side photo ka background kaala/dark hona chahiye (tool use hata deta hai).

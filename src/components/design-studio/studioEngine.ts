@@ -49,6 +49,8 @@ export function startStudio(root: HTMLElement, opts: StudioOptions): () => void 
   const AREA_PRODUCT = {front:{x:145,y:120,w:210,h:380}, back:{x:140,y:85,w:220,h:410}, left:{x:150,y:150,w:200,h:200}, right:{x:150,y:150,w:200,h:200}};
   /* sleeve areas on 3/4 side photos (shirt facing left for the left side, right for the right side) */
   const AREA_SIDE_PHOTO = {left:{x:262,y:140,w:178,h:260}, right:{x:48,y:140,w:178,h:260}};
+  /* sleeve areas on side photos made by tools/force-kit/force_sleeves.py (catalog design with "sleeveView":"side") */
+  const AREA_SIDE_KIT = {left:{x:220,y:185,w:195,h:215}, right:{x:85,y:185,w:195,h:215}};
   const AREA = JSON.parse(JSON.stringify(PRODUCT?AREA_PRODUCT:AREA_PHOTO));
   /* Halftone Pro photos live in the kit/ folder: <id>-front.webp, <id>-back.webp, <id>-left.webp, <id>-right.webp */
   const COLOURWAYS = [
@@ -191,7 +193,7 @@ export function startStudio(root: HTMLElement, opts: StudioOptions): () => void 
     Object.assign(AREA, JSON.parse(JSON.stringify(S.product==='custom'?AREA_PRODUCT:S.product==='halftone'?AREA_PHOTO:AREA_DRAWN)));
     if(S.product==='custom'){
       if(V().cat) Object.assign(AREA, JSON.parse(JSON.stringify(AREA_PHOTO)));
-      ['left','right'].forEach(v=>{ if(V().side || (!V().cat && V()[v])) AREA[v]=Object.assign({}, AREA_SIDE_PHOTO[v]); });
+      ['left','right'].forEach(v=>{ if(V().side || (!V().cat && V()[v])) AREA[v]=Object.assign({}, (V().kitSide?AREA_SIDE_KIT:AREA_SIDE_PHOTO)[v]); });
     }
     VIEWS.forEach(([v])=>C[v].getObjects().forEach(o=>{ o.clipPath=clipFor(v); o.dirty=true; }));
   }
@@ -564,8 +566,9 @@ export function startStudio(root: HTMLElement, opts: StudioOptions): () => void 
       const d=(list||[]).find(x=>x.id===did);
       if(!d || !d.colours.length) throw new Error('design not in catalog');
       const base='/design-studio/catalog/'+d.id+'/';
+      const kitSide=d.sleeveView==='side' && !Object.keys(over).length;   // side sleeves already in catalog/<design>/
       VARIANTS=d.colours.map(c=>{ const o=over[c.id], f=base+c.id;
-        return {name:/^Colour \d+$/.test(c.name)?'Original':c.name, cat:true, side:!!o, front:f+'-front.webp', back:f+'-back.webp', left:o?o.left:f+'-left.webp', right:o?o.right:f+'-right.webp', thumb:f+'-thumb.webp'}; });
+        return {name:/^Colour \d+$/.test(c.name)?'Original':c.name, cat:true, side:!!o||kitSide, kitSide, front:f+'-front.webp', back:f+'-back.webp', left:o?o.left:f+'-left.webp', right:o?o.right:f+'-right.webp', thumb:f+'-thumb.webp'}; });
       const pick=want.map(w=>d.colours.findIndex(c=>c.id===w)).find(i=>i>=0);
       S.variant=pick===undefined?0:pick;
     }).catch(()=>{}).then(()=>{ if(dead) return; CAT_PENDING=false; renderVariants(); setAreas(); applyGarmentAll(); scheduleUpdate(); });

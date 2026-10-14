@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { db } from '../../../lib/firebase';
 import { collection, query, orderBy, onSnapshot, doc, updateDoc, deleteDoc } from 'firebase/firestore';
-import { Mail, Phone, Calendar, Loader2, CheckCircle2, Circle, Trash2, ExternalLink, MessageSquare } from 'lucide-react';
+import { Mail, Phone, Calendar, Loader2, CheckCircle2, Circle, Trash2, ExternalLink, MessageSquare, Download } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface Lead {
@@ -15,8 +15,47 @@ interface Lead {
     productType: string;
     message: string;
     imageUrl?: string;
+    company?: string;
+    country?: string;
+    source?: string;
+    consentGiven?: boolean;
+    marketingConsent?: boolean;
+    consentNotice?: string;
     status: 'new' | 'contacted' | 'closed';
     createdAt: any;
+}
+
+// Excel opens CSV directly; the BOM makes it read UTF-8 (names like "Müller"). Cells starting with = + - @
+// are prefixed with ' so Excel shows them as text instead of running them as formulas (data comes from public forms).
+const csvCell = (v: unknown) => {
+    let s = v == null ? '' : String(v);
+    if (/^[=+\-@\t\r]/.test(s)) s = `'${s}`;
+    return `"${s.replace(/"/g, '""')}"`;
+};
+// "+31 612345678" is only digits, so it is safe to hand Excel as ="..." and it shows without the ' prefix
+const phoneCell = (v: unknown) => (typeof v === 'string' && /^\+[\d ]{4,24}$/.test(v) ? `"=""${v}"""` : csvCell(v));
+
+function downloadLeadsCsv(leads: Lead[]) {
+    const columns: [string, (l: Lead) => unknown][] = [
+        ['Date', (l) => l.createdAt?.toDate?.().toLocaleString('en-IN') ?? ''],
+        ['Name', (l) => l.fullName],
+        ['Company / Club', (l) => l.company],
+        ['Country', (l) => l.country],
+        ['Email', (l) => l.email],
+        ['Phone', (l) => l.phone],
+        ['Interested in', (l) => l.productType],
+        ['Quantity', (l) => l.quantity],
+        ['Message', (l) => l.message],
+        ['Source', (l) => l.source || 'Website'],
+        ['Status', (l) => l.status],
+        ['Consent (DPDP)', (l) => (l.consentGiven ? 'Yes' : '')],
+        ['Marketing consent', (l) => (l.consentGiven ? (l.marketingConsent ? 'Yes' : 'No') : '')],
+    ];
+    const rows = [columns.map(([h]) => csvCell(h)).join(','), ...leads.map((l) => columns.map(([h, get]) => (h === 'Phone' ? phoneCell : csvCell)(get(l))).join(','))];
+    const url = URL.createObjectURL(new Blob(['﻿' + rows.join('\r\n')], { type: 'text/csv;charset=utf-8' }));
+    const a = Object.assign(document.createElement('a'), { href: url, download: `force-leads-${new Date().toISOString().slice(0, 10)}.csv` });
+    a.click();
+    URL.revokeObjectURL(url);
 }
 
 export default function LeadsManager() {
@@ -77,6 +116,15 @@ export default function LeadsManager() {
                     <h1 className="text-3xl font-black text-slate-900 uppercase tracking-tight">Leads & Inquiries</h1>
                     <p className="text-slate-500 mt-1">Manage incoming requests from the website</p>
                 </div>
+                <div className="flex items-center gap-3">
+                <button
+                    type="button"
+                    onClick={() => downloadLeadsCsv(leads)}
+                    disabled={leads.length === 0}
+                    className="flex items-center gap-2 px-4 py-3 rounded-xl bg-green-600 text-white text-xs font-black uppercase tracking-wider hover:bg-green-700 transition-colors disabled:opacity-50"
+                >
+                    <Download className="w-4 h-4" /> Download Excel
+                </button>
                 <div className="bg-white px-4 py-2 rounded-xl shadow-sm border border-slate-100 flex gap-4">
                     <div className="text-center">
                         <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Total</p>
@@ -87,6 +135,7 @@ export default function LeadsManager() {
                         <p className="text-xs font-bold text-blue-400 uppercase tracking-wider">New</p>
                         <p className="text-lg font-black text-blue-600">{leads.filter(l => l.status === 'new').length}</p>
                     </div>
+                </div>
                 </div>
             </div>
 
@@ -122,6 +171,9 @@ export default function LeadsManager() {
                                         )}
                                     </div>
                                     <p className="text-xs text-slate-500 truncate mb-2">{lead.productType || 'General Inquiry'}</p>
+                                    {lead.source && (
+                                        <p className="text-[10px] font-black uppercase tracking-widest text-cyan-600 mb-2">{lead.source}</p>
+                                    )}
                                     <div className="flex items-center gap-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
                                         <Calendar className="w-3 h-3" />
                                         {lead.createdAt?.toDate().toLocaleDateString() || 'Just now'}
@@ -185,6 +237,33 @@ export default function LeadsManager() {
                                         <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Estimated Quantity</p>
                                         <p className="font-medium text-slate-900">{selectedLead.quantity || 'Not specified'}</p>
                                     </div>
+                                    {selectedLead.company && (
+                                        <div>
+                                            <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Company / Club</p>
+                                            <p className="font-medium text-slate-900">{selectedLead.company}</p>
+                                        </div>
+                                    )}
+                                    {selectedLead.country && (
+                                        <div>
+                                            <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Country</p>
+                                            <p className="font-medium text-slate-900">{selectedLead.country}</p>
+                                        </div>
+                                    )}
+                                    {selectedLead.source && (
+                                        <div>
+                                            <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Source</p>
+                                            <p className="font-medium text-slate-900">{selectedLead.source}</p>
+                                        </div>
+                                    )}
+                                    {selectedLead.consentGiven && (
+                                        <div>
+                                            <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Consent (DPDP)</p>
+                                            <p className="font-medium text-slate-900">
+                                                Enquiry: yes · Marketing: {selectedLead.marketingConsent ? 'yes' : 'no — do not send offers'}
+                                            </p>
+                                            <p className="text-xs text-slate-400">Notice {selectedLead.consentNotice}</p>
+                                        </div>
+                                    )}
                                 </div>
 
                                 <div>

@@ -13,4 +13,10 @@ export const ISPO_EVENT = {
     booth: 'B30',
     /** sales address shown on the ISPO card, showroom and contact card */
     email: 'sale@forcesports.in',
+    /** ISPO team mobiles; the first one also takes WhatsApp */
+    phones: ['+91 90290 00493', '+91 95940 21303'],
 };
+
+/** wa.me link for the ISPO WhatsApp number, with a pre-filled message */
+export const ispoWhatsApp = (text: string) =>
+    `https://wa.me/${ISPO_EVENT.phones[0].replace(/\D/g, '')}?text=${encodeURIComponent(text)}`;
