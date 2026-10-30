@@ -225,7 +225,7 @@ const HomePage = () => {
                                 >
                                     <img
                                         src={`https://i.pravatar.cc/100?u=force-team-${i}`}
-                                        alt=""
+                                        alt={`Force Sports satisfied customer ${i}`}
                                         className="w-full h-full object-cover"
                                     />
                                 </div>

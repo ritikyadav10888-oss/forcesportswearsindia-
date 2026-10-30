@@ -1,0 +1,174 @@
+{
+  "summary": {
+    "health_score": 68,
+    "business_type": "B2B Custom Sportswear & Apparel Manufacturer / Wholesale",
+    "target_domain": "forcesportsindia.com",
+    "canonical_host": "www.forcesportsindia.com",
+    "top_findings": [
+      "Critical: Missing <link rel=\"canonical\"> tags site-wide, leading to potential duplicate content risks between www/non-www and trailing slash variations.",
+      "High: Product dynamic routes (/products/[productId]) lack generateMetadata(), causing all 180+ product pages to serve duplicate root titles and meta descriptions.",
+      "High: Missing OpenGraph & Twitter image tags (og:image / twitter:image) across pages, causing link shares on WhatsApp/LinkedIn/Twitter to fail card rendering.",
+      "Medium: Missing Product, Offer, and BreadcrumbList JSON-LD schema on product catalog pages.",
+      "Medium: Sitemap lacks <lastmod> timestamps across all 181 entries, degrading search engine crawl efficiency.",
+      "Medium: AI Search Readiness (GEO) lacks llms.txt and Content-Signal declarations for search agents."
+    ],
+    "quick_wins": [
+      "Add metadataBase and alternates.canonical in src/app/layout.tsx to instantly fix canonical URLs site-wide.",
+      "Export generateMetadata in src/app/products/[productId]/page.tsx using existing product data to give each product unique title, description, and OG image.",
+      "Add default og:image to root metadata pointing to /hero-montage.png or /brand/logo-256.png.",
+      "Add <lastmod> dates to sitemap.xml.",
+      "Create public/llms.txt summarizing Force Sports products, B2B wholesale minimums, and fabric technology for AI Overviews and perplexity."
+    ]
+  },
+  "categories": [
+    {
+      "name": "Technical SEO",
+      "score": 70,
+      "what_works": [
+        "Vercel CDN hosting provides fast TTFB (<200ms) with global edge caching",
+        "HTTPS enforced with HSTS (max-age=63072000)",
+        "Valid robots.txt properly referencing sitemap.xml with no blocking rules",
+        "Clean 308 permanent redirect from non-www to www",
+        "Proper HTML viewport declaration for mobile responsiveness"
+      ],
+      "findings": [
+        {
+          "title": "Missing Canonical Tag (<link rel='canonical'>)",
+          "severity": "Critical",
+          "description": "Neither homepage nor interior pages declare a canonical URL tag.",
+          "recommendation": "Configure metadataBase and alternates: { canonical: './' } in Next.js layout.tsx."
+        },
+        {
+          "title": "Missing <lastmod> in sitemap.xml",
+          "severity": "Medium",
+          "description": "All 181 URLs in sitemap.xml omit <lastmod> dates.",
+          "recommendation": "Inject ISO 8601 <lastmod>YYYY-MM-DD</lastmod> tags in sitemap generation."
+        },
+        {
+          "title": "Missing Security & Privacy Headers",
+          "severity": "Low",
+          "description": "X-Content-Type-Options, Referrer-Policy, and X-Frame-Options headers are not explicitly declared in next.config or vercel.json.",
+          "recommendation": "Add security headers in next.config.mjs headers() configuration."
+        }
+      ]
+    },
+    {
+      "name": "On-Page & Content Quality",
+      "score": 64,
+      "what_works": [
+        "Single, clear <h1> on homepage ('Force Sports & Wears India')",
+        "Structured <h2> headings covering key B2B value propositions, fabric tech, and sportswear categories",
+        "32 of 36 images have descriptive alt attributes"
+      ],
+      "findings": [
+        {
+          "title": "Duplicate Metadata on All 180+ Product Pages",
+          "severity": "High",
+          "description": "/products/[productId] lacks dynamic generateMetadata(), reusing the default homepage title and description for every individual product.",
+          "recommendation": "Implement generateMetadata in src/app/products/[productId]/page.tsx using product details."
+        },
+        {
+          "title": "Homepage Meta Description Exceeds Recommended Length",
+          "severity": "Low",
+          "description": "Current description is 207 characters; search engines truncate at ~155-160 characters on desktop/mobile.",
+          "recommendation": "Trim homepage description to 150-160 high-impact characters."
+        },
+        {
+          "title": "Missing Alt Text on 4 Images",
+          "severity": "Low",
+          "description": "4 decorative/content images on homepage lack alt text.",
+          "recommendation": "Add descriptive alt attributes to remaining <img> elements."
+        }
+      ]
+    },
+    {
+      "name": "Structured Data & Schema",
+      "score": 75,
+      "what_works": [
+        "Rich Organization and SportsStore/Manufacturer schema on homepage",
+        "Includes geo-coordinates, operating hours, full address, phone number, and foundingDate",
+        "Includes sameAs linking to Facebook, Instagram, YouTube, and IndiaMart",
+        "Includes knowsAbout list with 15 targeted sportswear entities"
+      ],
+      "findings": [
+        {
+          "title": "Missing Product & Offer Schema on Catalog Pages",
+          "severity": "High",
+          "description": "Product pages render Organization schema instead of schema.org/Product with offers, availability, and brand.",
+          "recommendation": "Add JSON-LD Product schema component to ProductDetailPage."
+        },
+        {
+          "title": "Missing BreadcrumbList Schema",
+          "severity": "Medium",
+          "description": "Nested routes (/products/..., /catalog/..., /ispo/...) do not declare BreadcrumbList markup.",
+          "recommendation": "Implement breadcrumbs schema across multi-level pages for Google search breadcrumb rich snippets."
+        }
+      ]
+    },
+    {
+      "name": "Social & Sharing (OpenGraph)",
+      "score": 60,
+      "what_works": [
+        "og:title, og:description, and og:site_name present on homepage",
+        "twitter:card set to summary_large_image"
+      ],
+      "findings": [
+        {
+          "title": "Missing og:image and twitter:image",
+          "severity": "High",
+          "description": "Social meta tags lack image URLs, causing link shares to display without a visual thumbnail.",
+          "recommendation": "Set openGraph.images in layout.tsx pointing to high-resolution branding graphics."
+        }
+      ]
+    },
+    {
+      "name": "AI Search Readiness & GEO",
+      "score": 65,
+      "what_works": [
+        "Static prerendering ensures full HTML and text content are crawlable without JS execution",
+        "Robots.txt reachable and allows all search bots",
+        "Accurate 404 responses for invalid paths"
+      ],
+      "findings": [
+        {
+          "title": "Missing llms.txt Discovery File",
+          "severity": "Medium",
+          "description": "No /llms.txt file is published for LLM search engines (Perplexity, ChatGPT Search, Claude).",
+          "recommendation": "Place standard llms.txt in public/ summarizing manufacturing facilities, capacity, fabric specs, and ordering contact."
+        }
+      ]
+    }
+  ],
+  "action_plan": {
+    "phases": [
+      {
+        "name": "Phase 1: Critical Technical Fixes",
+        "timeframe": "Immediate (Days 1-2)",
+        "items": [
+          "Configure metadataBase and alternates: { canonical: './' } in src/app/layout.tsx",
+          "Add openGraph.images and twitter.images in src/app/layout.tsx",
+          "Export dynamic generateMetadata() in src/app/products/[productId]/page.tsx"
+        ]
+      },
+      {
+        "name": "Phase 2: Structured Data & Catalog Enhancement",
+        "timeframe": "Week 1",
+        "items": [
+          "Add schema.org/Product structured data to product detail views",
+          "Add BreadcrumbList schema to catalog and category routes",
+          "Add <lastmod> timestamps to sitemap.xml entries"
+        ]
+      },
+      {
+        "name": "Phase 3: AI Search (GEO) & Content Optimization",
+        "timeframe": "Week 2",
+        "items": [
+          "Deploy /public/llms.txt with brand and B2B catalog summary",
+          "Add security headers in next.config.mjs",
+          "Optimize homepage meta description length to under 160 characters"
+        ]
+      }
+    ]
+  }
+}
+

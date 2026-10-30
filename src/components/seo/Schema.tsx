@@ -75,6 +75,18 @@ const Schema = () => {
         }
     };
 
+    const websiteSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        'name': 'Force Sports & Wears India',
+        'url': 'https://www.forcesportsindia.com',
+        'potentialAction': {
+            '@type': 'SearchAction',
+            'target': 'https://www.forcesportsindia.com/products?search={search_term_string}',
+            'query-input': 'required name=search_term_string'
+        }
+    };
+
     return (
         <>
             <script type="application/ld+json">
@@ -82,6 +94,9 @@ const Schema = () => {
             </script>
             <script type="application/ld+json">
                 {JSON.stringify(localBusinessSchema)}
+            </script>
+            <script type="application/ld+json">
+                {JSON.stringify(websiteSchema)}
             </script>
         </>
     );

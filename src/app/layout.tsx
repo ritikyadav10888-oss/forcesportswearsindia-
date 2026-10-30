@@ -30,7 +30,14 @@ const bodoni = Bodoni_Moda({
 });
 
 export const metadata: Metadata = {
-  title: "Force Sports & Wears India | Global Bulk T-Shirt & Custom Sportswear Manufacturer",
+  metadataBase: new URL("https://www.forcesportsindia.com"),
+  alternates: {
+    canonical: "./",
+  },
+  title: {
+    default: "Force Sports & Wears India | Global Bulk T-Shirt & Custom Sportswear Manufacturer",
+    template: "%s | Force Sports India",
+  },
   description: "Leading global manufacturer and wholesale exporter of customized sports apparel, bulk t-shirts, and team uniforms. Based in India, shipping worldwide.",
   keywords: [
     "Force Sports",
@@ -51,6 +58,34 @@ export const metadata: Metadata = {
   icons: {
     icon: "/brand/logo-256.png",
     apple: "/brand/logo-256.png",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "https://www.forcesportsindia.com",
+    siteName: "Force Sports & Wears India",
+    title: "Force Sports & Wears India | Custom Sports Uniforms & Teamwear",
+    description: "Leading global manufacturer and wholesale exporter of customized sports apparel, bulk t-shirts, and team uniforms. Based in India, shipping worldwide.",
+    images: [
+      {
+        url: "/hero-montage.png",
+        width: 1200,
+        height: 630,
+        alt: "Force Sports & Wears India - Custom Sports Uniforms & Apparel",
+      },
+      {
+        url: "/brand/logo-256.png",
+        width: 256,
+        height: 256,
+        alt: "Force Sports & Wears India Logo",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Force Sports & Wears India | Custom Sports Uniforms",
+    description: "Leading global manufacturer and wholesale exporter of customized sports apparel, bulk t-shirts, and team uniforms.",
+    images: ["/hero-montage.png"],
   },
 };
 
