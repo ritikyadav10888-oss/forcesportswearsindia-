@@ -75,7 +75,8 @@
     "swatch": "#8cb2b4",
     "back": "recoloured"
    }
-  ]
+  ],
+  "sleeveView": "side"
  },
  {
   "id": "ppt-2",
@@ -153,7 +154,8 @@
     "swatch": "#9a1e24",
     "back": "recoloured"
    }
-  ]
+  ],
+  "sleeveView": "side"
  },
  {
   "id": "ppt-3",
@@ -231,7 +233,8 @@
     "swatch": "#addbde",
     "back": "recoloured"
    }
-  ]
+  ],
+  "sleeveView": "side"
  },
  {
   "id": "ppt-4",
@@ -309,7 +312,8 @@
     "swatch": "#5190b2",
     "back": "recoloured"
    }
-  ]
+  ],
+  "sleeveView": "side"
  },
  {
   "id": "ppt-5",
@@ -387,7 +391,8 @@
     "swatch": "#5698b7",
     "back": "recoloured"
    }
-  ]
+  ],
+  "sleeveView": "side"
  },
  {
   "id": "ppt-6",
@@ -465,7 +470,8 @@
     "swatch": "#95cbec",
     "back": "recoloured"
    }
-  ]
+  ],
+  "sleeveView": "side"
  },
  {
   "id": "ppt-7",
@@ -543,7 +549,8 @@
     "swatch": "#095b92",
     "back": "recoloured"
    }
-  ]
+  ],
+  "sleeveView": "side"
  },
  {
   "id": "ppt-8",
@@ -621,7 +628,8 @@
     "swatch": "#9e9f9f",
     "back": "recoloured"
    }
-  ]
+  ],
+  "sleeveView": "side"
  },
  {
   "id": "ppt-9",
@@ -699,7 +707,8 @@
     "swatch": "#0076a5",
     "back": "recoloured"
    }
-  ]
+  ],
+  "sleeveView": "side"
  },
  {
   "id": "ppt-10",
@@ -777,7 +786,8 @@
     "swatch": "#468fb8",
     "back": "recoloured"
    }
-  ]
+  ],
+  "sleeveView": "side"
  },
  {
   "id": "ppt-11",
@@ -855,7 +865,8 @@
     "swatch": "#b42b2f",
     "back": "recoloured"
    }
-  ]
+  ],
+  "sleeveView": "side"
  },
  {
   "id": "ppt-12",
@@ -933,7 +944,8 @@
     "swatch": "#044a5d",
     "back": "recoloured"
    }
-  ]
+  ],
+  "sleeveView": "side"
  },
  {
   "id": "ppt-13",
@@ -1011,7 +1023,8 @@
     "swatch": "#ccbd07",
     "back": "recoloured"
    }
-  ]
+  ],
+  "sleeveView": "side"
  },
  {
   "id": "ppt-14",
@@ -1089,7 +1102,8 @@
     "swatch": "#b2a9a5",
     "back": "recoloured"
    }
-  ]
+  ],
+  "sleeveView": "side"
  },
  {
   "id": "ppt-15",
@@ -1167,7 +1181,8 @@
     "swatch": "#948d65",
     "back": "recoloured"
    }
-  ]
+  ],
+  "sleeveView": "side"
  },
  {
   "id": "ppt-16",
@@ -1245,7 +1260,8 @@
     "swatch": "#ad5165",
     "back": "recoloured"
    }
-  ]
+  ],
+  "sleeveView": "side"
  },
  {
   "id": "ppt-17",
@@ -1323,7 +1339,8 @@
     "swatch": "#9f9f9d",
     "back": "recoloured"
    }
-  ]
+  ],
+  "sleeveView": "side"
  },
  {
   "id": "ppt-18",
@@ -1401,7 +1418,8 @@
     "swatch": "#ac311b",
     "back": "recoloured"
    }
-  ]
+  ],
+  "sleeveView": "side"
  },
  {
   "id": "ppt-19",
@@ -1479,7 +1497,8 @@
     "swatch": "#5295ba",
     "back": "recoloured"
    }
-  ]
+  ],
+  "sleeveView": "side"
  },
  {
   "id": "ppt-20",
@@ -1557,7 +1576,8 @@
     "swatch": "#8aafb0",
     "back": "recoloured"
    }
-  ]
+  ],
+  "sleeveView": "side"
  },
  {
   "id": "ppt-21",
@@ -1635,7 +1655,8 @@
     "swatch": "#262c6a",
     "back": "recoloured"
    }
-  ]
+  ],
+  "sleeveView": "side"
  },
  {
   "id": "ppt-22",
@@ -1713,7 +1734,8 @@
     "swatch": "#1e3f61",
     "back": "recoloured"
    }
-  ]
+  ],
+  "sleeveView": "side"
  },
  {
   "id": "ppt-23",
@@ -1791,7 +1813,8 @@
     "swatch": "#67215d",
     "back": "recoloured"
    }
-  ]
+  ],
+  "sleeveView": "side"
  },
  {
   "id": "ppt-24",
@@ -1869,7 +1892,8 @@
     "swatch": "#939297",
     "back": "recoloured"
    }
-  ]
+  ],
+  "sleeveView": "side"
  },
  {
   "id": "ppt-25",
@@ -1947,7 +1971,8 @@
     "swatch": "#b2790d",
     "back": "recoloured"
    }
-  ]
+  ],
+  "sleeveView": "side"
  },
  {
   "id": "ppt-26",
@@ -2025,7 +2050,8 @@
     "swatch": "#b3a600",
     "back": "recoloured"
    }
-  ]
+  ],
+  "sleeveView": "side"
  },
  {
   "id": "ppt-27",
@@ -2103,7 +2129,8 @@
     "swatch": "#ac1868",
     "back": "recoloured"
    }
-  ]
+  ],
+  "sleeveView": "side"
  },
  {
   "id": "ppt-28",
@@ -2181,7 +2208,8 @@
     "swatch": "#8a2322",
     "back": "recoloured"
    }
-  ]
+  ],
+  "sleeveView": "side"
  },
  {
   "id": "ppt-29",
@@ -2259,7 +2287,8 @@
     "swatch": "#6e8100",
     "back": "recoloured"
    }
-  ]
+  ],
+  "sleeveView": "side"
  },
  {
   "id": "ppt-30",
@@ -2337,7 +2366,8 @@
     "swatch": "#6e2463",
     "back": "recoloured"
    }
-  ]
+  ],
+  "sleeveView": "side"
  },
  {
   "id": "ppt-31",
@@ -2409,6 +2439,7 @@
     "swatch": "#a29602",
     "back": "recoloured"
    }
-  ]
+  ],
+  "sleeveView": "side"
  }
 ]
