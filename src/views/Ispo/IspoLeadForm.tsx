@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { CheckCircle2, Loader2, Send } from 'lucide-react';
 import { db } from '../../lib/firebase';
+import { trackEvent } from '../../lib/analytics';
 import { BRAND_DETAILS } from '../../data/brandData';
 import { ISPO_EVENT } from '../../data/ispoEvent';
 import { DIAL_CODES } from '../../data/dialCodes';
@@ -86,6 +87,7 @@ export default function IspoLeadForm() {
                     body: JSON.stringify({ name: form.fullName, phone: `${dial}${digits}` }),
                 }).catch(() => {});
             }
+            trackEvent('generate_lead', { form: 'ispo', product_type: form.productType || undefined });
             setForm(EMPTY);
             setConsent(false);
             setMarketing(false);

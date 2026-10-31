@@ -11,102 +11,102 @@ export const ISPO_SPORTS: IspoSport[] = [
             {
                 "n": 1,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 2,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 3,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 4,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 5,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 6,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 7,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 8,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 9,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 10,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 11,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 12,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 13,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 14,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 15,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 16,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 17,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 18,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 19,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 20,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             }
         ]
     },
@@ -117,37 +117,37 @@ export const ISPO_SPORTS: IspoSport[] = [
             {
                 "n": 1,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 2,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 3,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 4,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 5,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 6,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 7,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             }
         ]
     },
@@ -189,87 +189,87 @@ export const ISPO_SPORTS: IspoSport[] = [
             {
                 "n": 1,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 2,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 3,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 4,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 5,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 6,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 7,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 8,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 9,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 10,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 11,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 12,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 13,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 14,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 15,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 16,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 17,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             }
         ]
     },
@@ -280,32 +280,32 @@ export const ISPO_SPORTS: IspoSport[] = [
             {
                 "n": 1,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 2,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 3,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 4,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 5,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 6,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             }
         ]
     },
@@ -316,27 +316,27 @@ export const ISPO_SPORTS: IspoSport[] = [
             {
                 "n": 1,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 2,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 3,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 4,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 5,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             }
         ]
     },
@@ -373,22 +373,22 @@ export const ISPO_SPORTS: IspoSport[] = [
             {
                 "n": 1,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 2,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 3,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 4,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             }
         ]
     },
@@ -399,17 +399,17 @@ export const ISPO_SPORTS: IspoSport[] = [
             {
                 "n": 1,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 2,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 3,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 4,
@@ -425,12 +425,12 @@ export const ISPO_SPORTS: IspoSport[] = [
             {
                 "n": 1,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             },
             {
                 "n": 2,
                 "back": true,
-                "sleeve": false
+                "sleeve": true
             }
         ]
     },

@@ -1,5 +1,6 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
+import { trackEvent } from '../../lib/analytics';
 import { motion, AnimatePresence } from 'framer-motion';
 import SEO from '../../components/seo/SEO';
 import { SEO_KEYWORDS } from '../../data/seoKeywords';
@@ -100,6 +101,8 @@ const InquiryPage = () => {
         message: buildPrefilledMessage(),
         website_hp: '' // Honeypot field for bot detection
     });
+    // Time trap: the API drops submissions sent too fast or without this
+    const startedAt = useRef(Date.now());
 
     const [image, setImage] = useState<File | null>(null);
     const [imagePreview, setImagePreview] = useState<string | null>(null);
@@ -149,6 +152,7 @@ const InquiryPage = () => {
                     productType: formData.productType,
                     message: formData.message,
                     website_hp: formData.website_hp,
+                    formMs: Date.now() - startedAt.current,
                     imageUrl: imageUrl,
                     product: prefilledProduct || null,
                     productCode: prefilledCode || null,
@@ -162,6 +166,11 @@ const InquiryPage = () => {
             if (!response.ok) {
                 throw new Error('Failed to send inquiry email');
             }
+
+            trackEvent('generate_lead', {
+                form: prefilledProduct ? 'customize' : 'inquiry',
+                product_type: formData.productType || undefined,
+            });
 
             // Pick a random thank-you message
             setThankYouMsg(THANK_YOU_MESSAGES[Math.floor(Math.random() * THANK_YOU_MESSAGES.length)]);

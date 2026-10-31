@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Send, CheckCircle2, Loader2 } from 'lucide-react';
 import { BRAND_DETAILS } from '../../data/brandData';
 import Link from 'next/link';
+import { trackEvent } from '../../lib/analytics';
 
 export default function LeadCaptureForm() {
     const [status, setStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
@@ -13,6 +14,8 @@ export default function LeadCaptureForm() {
         phone: '',
         website_hp: ''
     });
+    // Time trap: the API drops submissions sent too fast or without this
+    const startedAt = useRef(Date.now());
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -28,6 +31,7 @@ export default function LeadCaptureForm() {
                     email: formData.email,
                     phone: formData.phone,
                     website_hp: formData.website_hp,
+                    formMs: Date.now() - startedAt.current,
                     productType: 'Lead Capture Form',
                     message: 'Customer requested contact via the inline lead capture section.',
                     source: 'Inline Lead Capture Section'
@@ -38,6 +42,7 @@ export default function LeadCaptureForm() {
                 throw new Error('Failed to send lead email');
             }
 
+            trackEvent('generate_lead', { form: 'lead_capture' });
             setStatus('success');
             setFormData({ fullName: '', email: '', phone: '', website_hp: '' });
 

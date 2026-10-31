@@ -2,9 +2,9 @@ import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { BRAND_DETAILS } from '../../../data/brandData';
 
-// In-memory rate limiting: Max 5 submissions per IP every 10 minutes
-const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
-const MAX_REQUESTS_PER_WINDOW = 5;
+// In-memory rate limiting: Max 1 submission per IP every 30 seconds
+const RATE_LIMIT_WINDOW_MS = 30 * 1000;
+const MAX_REQUESTS_PER_WINDOW = 1;
 const ipMap = new Map<string, { count: number; resetAt: number }>();
 
 function isRateLimited(ip: string): boolean {
@@ -38,9 +38,10 @@ function isSpamEmail(email: string): boolean {
 
     const [username, domain] = parts;
 
-    // Detect Gmail dot-trick abuse (e.g. 3 or more dots in the username part)
+    // Detect Gmail dot-trick abuse (e.g. da.yujep9.92@gmail.com). Gmail ignores dots, so bots
+    // scatter them to make one inbox look like many; real people rarely use more than one.
     const dotCount = (username.match(/\./g) || []).length;
-    if (domain === 'gmail.com' && dotCount >= 3) {
+    if ((domain === 'gmail.com' || domain === 'googlemail.com') && dotCount >= 2) {
         return true;
     }
 
@@ -76,6 +77,8 @@ export async function POST(req: Request) {
             fullName, email, phone, quantity, productType, message, source,
             // Honeypot field (hidden from human users, filled by bots)
             website_hp,
+            // Milliseconds the visitor spent on the form (sent by our own forms only)
+            formMs,
             // Customize context fields
             product, productCode, fabric, placement, logoSize
         } = body;
@@ -84,6 +87,12 @@ export async function POST(req: Request) {
         if (website_hp && website_hp.trim() !== '') {
             console.warn(`[Anti-Spam] Honeypot field triggered by IP: ${ip}`);
             // Return fake success so bots don't adapt
+            return NextResponse.json({ success: true, message: 'Inquiry received' });
+        }
+
+        // 1b. TIME TRAP: bots post straight to this API (no formMs) or submit instantly
+        if (typeof formMs !== 'number' || formMs < 3000) {
+            console.warn(`[Anti-Spam] Time trap triggered (formMs=${formMs}) by IP: ${ip}`);
             return NextResponse.json({ success: true, message: 'Inquiry received' });
         }
 

@@ -25,8 +25,18 @@ export const KIDS_SIZES: SizeRow[] = [
     { label: '15 TO 16 YEARS', chest: '36' },
 ];
 
-/** shortcut: no women's chart yet; the showroom shows "sizes on request". Add the rows here when you have them. */
-export const WOMEN_SIZES: SizeRow[] = [];
+/** one size smaller than men's: women's SMALL measures like a men's size below SMALL, and so on */
+export const WOMEN_SIZES: SizeRow[] = [
+    { label: 'SMALL', chest: '36', length: '26' },
+    { label: 'MEDIUM', chest: '38', length: '27' },
+    { label: 'LARGE', chest: '40', length: '28' },
+    { label: 'EXTRA LARGE', chest: '42', length: '29' },
+    { label: '2X LARGE', chest: '44', length: '30' },
+    { label: '3X LARGE', chest: '46', length: '31' },
+    { label: '4X LARGE', chest: '48', length: '32' },
+    { label: '5X LARGE', chest: '50', length: '33' },
+    { label: '6X LARGE', chest: '52', length: '34' },
+];
 
 export const TRACK_PANT_SIZES: SizeRow[] = [
     { label: 'MEDIUM', waist: '30-32', length: '39' },
@@ -51,6 +61,6 @@ export const FIT_GUIDE = [
 /** T-shirt chart and short size range per audience, for the showroom */
 export const TSHIRT_BY_FIT = {
     Men: { rows: TSHIRT_SIZES, range: 'S – 6XL', title: "Men's T-shirt sizes" },
-    Women: { rows: WOMEN_SIZES, range: 'Sizes on request', title: "Women's T-shirt sizes" },
+    Women: { rows: WOMEN_SIZES, range: 'S – 6XL', title: "Women's T-shirt sizes" },
     Kids: { rows: KIDS_SIZES, range: '1 – 16 yrs', title: 'Kids T-shirt sizes' },
 } as const;
